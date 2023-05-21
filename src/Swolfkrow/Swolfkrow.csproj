@@ -16,9 +16,13 @@
     <PackageTags>async;dsl</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright © Rubén Campos Zurriaga 2023. All rights reserved.</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
   <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
     <ReadLinesFromFile File="../../RELEASE_NOTES.md">
