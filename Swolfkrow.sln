@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{943D709B-BA8E-435F-8752-0D44D88733CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swolfkrow", "src\Swolfkrow\Swolfkrow.csproj", "{BE76EB9D-A0F4-421E-AD17-2FEB6FFA8A45}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3D231950-25F2-4655-A7E3-A18A239A87EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swolfkrow.Tests", "tests\Swolfkrow.Tests\Swolfkrow.Tests.csproj", "{86BC4AB3-E73B-46BF-9473-A04A027C6B8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE76EB9D-A0F4-421E-AD17-2FEB6FFA8A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE76EB9D-A0F4-421E-AD17-2FEB6FFA8A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE76EB9D-A0F4-421E-AD17-2FEB6FFA8A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE76EB9D-A0F4-421E-AD17-2FEB6FFA8A45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86BC4AB3-E73B-46BF-9473-A04A027C6B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86BC4AB3-E73B-46BF-9473-A04A027C6B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86BC4AB3-E73B-46BF-9473-A04A027C6B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86BC4AB3-E73B-46BF-9473-A04A027C6B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BE76EB9D-A0F4-421E-AD17-2FEB6FFA8A45} = {943D709B-BA8E-435F-8752-0D44D88733CF}
+		{86BC4AB3-E73B-46BF-9473-A04A027C6B8D} = {3D231950-25F2-4655-A7E3-A18A239A87EB}
+	EndGlobalSection
+EndGlobal
