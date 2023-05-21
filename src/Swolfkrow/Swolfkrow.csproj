@@ -1,9 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+  <PropertyGroup>
+    <Authors>Rubén Campos Zurriaga</Authors>
+    <PackageDescription>
+      A DSL designed to compose asynchronous workflows based on the IAsyncEnumerable interface.
+    </PackageDescription>
+    <PackageProjectUrl>https://github.com/rucamzu/swolfkrow</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/rucamzu/swolfkrow</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>async</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <Copyright>Copyright © Rubén Campos Zurriaga 2023. All rights reserved.</Copyright>
+  </PropertyGroup>
 </Project>
