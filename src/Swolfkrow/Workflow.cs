@@ -38,5 +38,16 @@ public static class Workflow
     /// <returns>An asynchronous workflow composed of the given <paramref name="workflow"/> followed by the given <paramref name="continuation"/>.</returns>
     public static IAsyncEnumerable<TEvent> Then<TEvent>(this IAsyncEnumerable<TEvent> workflow,
         IAsyncEnumerable<TEvent> continuation)
-        => workflow.Concat(continuation);
+        => workflow.Concat(Workflow.Start(continuation));
+
+    /// <summary>
+    /// Chains an existing asynchronous workflow to a existing asynchronous workflows. 
+    /// </summary>
+    /// <param name="workflow">An existing asynchronous workflow.</param>
+    /// <param name="startContinuation">A factory function that creates an asynchronous workflow that will be executed as continuation of the initial <paramref name="workflow"/>.</param>
+    /// <typeparam name="TEvent">The (base) type of the events yielded by the resulting asynchronous workflow.</typeparam>
+    /// <returns>An asynchronous workflow composed of the given <paramref name="workflow"/> followed by the given <paramref name="startContinuation"/>.</returns>
+    public static IAsyncEnumerable<TEvent> Then<TEvent>(this IAsyncEnumerable<TEvent> workflow,
+        Func<IAsyncEnumerable<TEvent>> startContinuation)
+        => workflow.Concat(Workflow.Start(startContinuation));
 }
