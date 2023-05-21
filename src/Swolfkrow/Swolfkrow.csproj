@@ -14,7 +14,14 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>async</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes></PackageReleaseNotes>
     <Copyright>Copyright © Rubén Campos Zurriaga 2023. All rights reserved.</Copyright>
   </PropertyGroup>
+  <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
+    <ReadLinesFromFile File="../../RELEASE_NOTES.md" >
+      <Output TaskParameter="Lines" ItemName="ReleaseNotes"/>
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <PackageReleaseNotes>@(ReleaseNotes, '%0a')</PackageReleaseNotes>
+    </PropertyGroup>
+  </Target>
 </Project>
