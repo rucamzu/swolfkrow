@@ -8,9 +8,13 @@ In the context of this library, an asynchronous workflow is defined as a functio
 
 ## Usage
 
+### Simple continuations
+
 Asynchronous workflows can be composed as sequences of simpler workflows:
 
 ```csharp
+public record SomeEvent(string Description);
+
 IAsyncEnumerable<SomeEvent> Step1() { ... }
 IAsyncEnumerable<SomeEvent> Step2(int someInfo) { ... }
 
@@ -18,6 +22,26 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
     => Workflow
         .Start(Step1)
         .Then(Step2, 42);
+```
+
+### Side effects
+
+Side effects can be deliberately injected into an asynchronous workflow:
+
+```c#
+public record SomeEvent(string Description);
+
+IAsyncEnumerable<SomeEvent> Step1() { ... }
+IAsyncEnumerable<SomeEvent> Step2(int someInfo) { ... }
+
+void LogEvent(SomeEvent someEvent)
+    => Console.WriteLine($"Something happened: {SomeEvent}")
+
+IAsyncEnumerable<SomeEvent> ComposedWorkflow()
+    => Workflow
+        .Start(Step1)
+        .Then(Step2, 42)
+        .WithSideEffect(LogEvent);
 ```
 
 ## License and copyright notice
