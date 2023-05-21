@@ -16,6 +16,23 @@ public class WorkflowTests
 
         events.Select(e => e.Description).Should().Equal(eventDescriptions);
     }
+
+    [Test]
+    public async Task ExistingWorkflowsCanBeChained()
+    {
+        var expectedEvents = Enumerable
+            .Range(1, 4)
+            .Select(i => $"Some event #{i}")
+            .Select(description => new TestEvent(description))
+            .ToList();
+
+        var actualEvents = await Workflow
+            .Start(TestWorkflow.FromEvents(expectedEvents.Take(2)))
+            .Then(TestWorkflow.FromEvents(expectedEvents.Skip(2).Take(2)))
+            .ToListAsync();
+
+        actualEvents.Should().Equal(expectedEvents);
+    }
 }
 
 public record TestEvent(string Description);

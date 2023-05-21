@@ -16,9 +16,12 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright © Rubén Campos Zurriaga 2023. All rights reserved.</Copyright>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+  </ItemGroup>
   <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
-    <ReadLinesFromFile File="../../RELEASE_NOTES.md" >
-      <Output TaskParameter="Lines" ItemName="ReleaseNotes"/>
+    <ReadLinesFromFile File="../../RELEASE_NOTES.md">
+      <Output TaskParameter="Lines" ItemName="ReleaseNotes" />
     </ReadLinesFromFile>
     <PropertyGroup>
       <PackageReleaseNotes>@(ReleaseNotes, '%0a')</PackageReleaseNotes>
