@@ -18,6 +18,18 @@ public static class Workflow
         => workflow;
 
     /// <summary>
+    /// Starts an asynchronous workflow from a factory function.
+    /// </summary>
+    /// <param name="start">A factory function that creates an asynchronous workflow.</param>
+    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
+    /// <returns>An asynchronous workflow that <paramref name="start"/>s the underlying asynchronous workflow when iterated.</returns>
+    /// <remarks>
+    /// This function is functionally equivalent to just calling `start()`. Its purpose is to serve as entry point for the DSL. 
+    /// </remarks>
+    public static IAsyncEnumerable<TEvent> Start<TEvent>(Func<IAsyncEnumerable<TEvent>> start)
+        => AsyncEnumerable.Create(cancellationToken => start().GetAsyncEnumerator(cancellationToken));
+
+    /// <summary>
     /// Chains two existing asynchronous workflows. 
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>

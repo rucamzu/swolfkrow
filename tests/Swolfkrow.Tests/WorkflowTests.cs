@@ -6,12 +6,24 @@ namespace Swolfkrow.Tests;
 public class WorkflowTests
 {
     [Test]
-    public async Task StartReturnsAsynchronousStreamOfWorkflowEvents()
+    public async Task StartExistingWorkflowYieldsWorkflowEvents()
     {
         var expectedEvents = Some.Events(howMany: 2).ToList();
 
         var actualEvents = await Workflow
             .Start(TestWorkflow.FromEvents(expectedEvents))
+            .ToListAsync();
+
+        actualEvents.Should().Equal(expectedEvents);
+    }
+
+    [Test]
+    public async Task StartWorkflowFromFactoryFunctionYieldsWorkflowEvents()
+    {
+        var expectedEvents = Some.Events(howMany: 2).ToList();
+
+        var actualEvents = await Workflow
+            .Start(() => TestWorkflow.FromEvents(expectedEvents))
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
