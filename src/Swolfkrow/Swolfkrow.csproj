@@ -8,7 +8,7 @@
     <Authors>Rubén Campos Zurriaga</Authors>
     <Owners>Rubén Campos Zurriaga</Owners>
     <PackageDescription>
-      A DSL designed to compose asynchronous workflows based on the IAsyncEnumerable interface.
+      A DSL designed to declaratively compose asynchronous workflows based on the IAsyncEnumerable interface.
     </PackageDescription>
     <PackageProjectUrl>https://github.com/rucamzu/swolfkrow</PackageProjectUrl>
     <RepositoryUrl>https://github.com/rucamzu/swolfkrow</RepositoryUrl>
