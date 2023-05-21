@@ -6,18 +6,23 @@
   </PropertyGroup>
   <PropertyGroup>
     <Authors>Rubén Campos Zurriaga</Authors>
+    <Owners>Rubén Campos Zurriaga</Owners>
     <PackageDescription>
-      A DSL designed to compose asynchronous workflows based on the IAsyncEnumerable interface.
+      A DSL designed to declaratively compose asynchronous workflows based on the IAsyncEnumerable interface.
     </PackageDescription>
     <PackageProjectUrl>https://github.com/rucamzu/swolfkrow</PackageProjectUrl>
     <RepositoryUrl>https://github.com/rucamzu/swolfkrow</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>async</PackageTags>
+    <PackageTags>async;dsl</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright © Rubén Campos Zurriaga 2023. All rights reserved.</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
   <Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
     <ReadLinesFromFile File="../../RELEASE_NOTES.md">
