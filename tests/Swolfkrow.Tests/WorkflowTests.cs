@@ -1,7 +1,30 @@
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
 public class WorkflowTests
 {
+    [Test]
+    public async Task StartReturnsAsynchronousStreamOfWorkflowEvents()
+    {
+        var eventDescriptions = new[]{ "Some first event", "Some second event" };
+
+        var events = await Workflow
+            .Start(TestWorkflow.FromEvents(eventDescriptions.Select(d => new Tests.TestEvent(d))))
+            .ToListAsync();
+
+        events.Select(e => e.Description).Should().Equal(eventDescriptions);
+    }
+}
+
+public record TestEvent(string Description);
+
+public static class TestWorkflow
+{
+    public static IAsyncEnumerable<TestEvent> FromEvents(params TestEvent[] events)
+        => FromEvents((IEnumerable<TestEvent>) events);
+
+    public static IAsyncEnumerable<TestEvent> FromEvents(IEnumerable<TestEvent> events)
+        => events.ToAsyncEnumerable();
 }
