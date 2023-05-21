@@ -8,23 +8,19 @@ public class WorkflowTests
     [Test]
     public async Task StartReturnsAsynchronousStreamOfWorkflowEvents()
     {
-        var eventDescriptions = new[]{ "Some first event", "Some second event" };
+        var expectedEvents = Some.Events(howMany: 2).ToList();
 
-        var events = await Workflow
-            .Start(TestWorkflow.FromEvents(eventDescriptions.Select(d => new Tests.TestEvent(d))))
+        var actualEvents = await Workflow
+            .Start(TestWorkflow.FromEvents(expectedEvents))
             .ToListAsync();
 
-        events.Select(e => e.Description).Should().Equal(eventDescriptions);
+        actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
     public async Task ExistingWorkflowsCanBeChained()
     {
-        var expectedEvents = Enumerable
-            .Range(1, 4)
-            .Select(i => $"Some event #{i}")
-            .Select(description => new TestEvent(description))
-            .ToList();
+        var expectedEvents = Some.Events(howMany: 4).ToList();
 
         var actualEvents = await Workflow
             .Start(TestWorkflow.FromEvents(expectedEvents.Take(2)))
@@ -44,4 +40,13 @@ public static class TestWorkflow
 
     public static IAsyncEnumerable<TestEvent> FromEvents(IEnumerable<TestEvent> events)
         => events.ToAsyncEnumerable();
+}
+
+public static class Some
+{
+    public static IEnumerable<TestEvent> Events(int howMany)
+        => Enumerable
+            .Range(1, howMany)
+            .Select(i => $"Some event #{i}")
+            .Select(description => new TestEvent(description));
 }
