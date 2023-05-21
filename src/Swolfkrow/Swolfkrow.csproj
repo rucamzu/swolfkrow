@@ -6,13 +6,14 @@
   </PropertyGroup>
   <PropertyGroup>
     <Authors>Rubén Campos Zurriaga</Authors>
+    <Owners>Rubén Campos Zurriaga</Owners>
     <PackageDescription>
       A DSL designed to compose asynchronous workflows based on the IAsyncEnumerable interface.
     </PackageDescription>
     <PackageProjectUrl>https://github.com/rucamzu/swolfkrow</PackageProjectUrl>
     <RepositoryUrl>https://github.com/rucamzu/swolfkrow</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>async</PackageTags>
+    <PackageTags>async;dsl</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright © Rubén Campos Zurriaga 2023. All rights reserved.</Copyright>
   </PropertyGroup>
