@@ -28,7 +28,7 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
 
 Side effects can be deliberately injected into an asynchronous workflow:
 
-```c#
+```csharp
 public record SomeEvent(string Description);
 
 IAsyncEnumerable<SomeEvent> Step1() { ... }
@@ -41,6 +41,26 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
     => Workflow
         .Start(Step1)
         .Then(Step2, 42)
+        .WithSideEffect(LogEvent);
+```
+
+### Stateful continuations
+
+Continuations can be based on state explicitly computed by the workflow:
+
+```csharp
+public record SomeEvent(string Description);
+
+IAsyncEnumerable<SomeEvent> Step1() { ... }
+IAsyncEnumerable<SomeEvent> Step2(int someInfo) { ... }
+
+IAsyncEnumerable<SomeEvent> ComposedWorkflow()
+    => Workflow
+        .Start(Step1)
+        .WithState(
+            stateFolder: (currentState, nextEvent) => currentState + 1,
+            initialState: 0)
+        .Then(Step2, currentState => currentState * 2)
         .WithSideEffect(LogEvent);
 ```
 
