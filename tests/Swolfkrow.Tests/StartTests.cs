@@ -28,4 +28,16 @@ public class StartTests
 
         actualEvents.Should().Equal(expectedEvents);
     }
+
+    [Test]
+    public async Task StartWorkflowFromFactoryFunctionWithArgumentYieldsWorkflowEvents()
+    {
+        var actualEvents = await Workflow
+            .Start(
+                createWorkflow: (int n) => Some.Workflow.FromEvents(Some.Events(howMany: n)),
+                arg: 3)
+            .ToListAsync();
+
+        actualEvents.Should().Equal(Some.Events(howMany: 3));
+    }
 }
