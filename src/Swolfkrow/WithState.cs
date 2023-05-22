@@ -39,6 +39,18 @@ public static partial class Workflow
 
         return workflow.Then(() => createContinuation(argSelector(statefulWorkflow.State)));
     }
+
+    /// <summary>
+    /// Chains an existing stateful asynchronous workflow to the asynchronous workflow created by a factory function that takes the computed state as argument. 
+    /// </summary>
+    /// <param name="workflow">An existing stateful asynchronous workflow.</param>
+    /// <param name="createContinuation">A factory function that takes one argument and returns an asynchronous workflow that is to be executed as continuation to the given <paramref name="workflow"/>.</param>
+    /// <typeparam name="TState">The type of the injected state.</typeparam>
+    /// <typeparam name="TEvent">The (base) type of the events yielded by both chained asynchronous workflows.</typeparam>
+    /// <returns>An asynchronous workflow composed of the given stateful asynchronous <paramref name="workflow"/>, followed by an asynchronous workflow that calls the given <paramref name="createContinuation"/> factory function with the computed state as argument.</returns>
+    public static IAsyncEnumerable<TEvent> Then<TState, TEvent>(this IAsyncEnumerable<TEvent> workflow,
+        Func<TState, IAsyncEnumerable<TEvent>> createContinuation)
+        => workflow.Then<TState, TState, TEvent>(createContinuation, argSelector: state => state);
 }
 
 /// <summary>
