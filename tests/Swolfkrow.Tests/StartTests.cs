@@ -6,7 +6,7 @@ namespace Swolfkrow.Tests;
 public class StartTests
 {
     [Test]
-    public async Task StartExistingWorkflowYieldsWorkflowEvents()
+    public async Task StartExistingWorkflowYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 2).ToList();
 
@@ -18,7 +18,7 @@ public class StartTests
     }
 
     [Test]
-    public async Task StartWorkflowFromFactoryFunctionYieldsWorkflowEvents()
+    public async Task StartWorkflowFromFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 2).ToList();
 
@@ -30,12 +30,39 @@ public class StartTests
     }
 
     [Test]
-    public async Task StartWorkflowFromFactoryFunctionWithArgumentYieldsWorkflowEvents()
+    public async Task StartWorkflowFromFactoryWithOneArgumentYieldsAllEvents()
     {
         var actualEvents = await Workflow
             .Start(
                 createWorkflow: (int n) => Some.Workflow.FromEvents(Some.Events(howMany: n)),
                 arg: 3)
+            .ToListAsync();
+
+        actualEvents.Should().Equal(Some.Events(howMany: 3));
+    }
+
+    [Test]
+    public async Task StartWorkflowFromFactoryWithTwoArgumentsYieldsAllEvents()
+    {
+        var actualEvents = await Workflow
+            .Start(
+                createWorkflow: (int n, string s) => Some.Workflow.FromEvents(Some.Events(howMany: n)),
+                arg1: 3,
+                arg2: "some second argument")
+            .ToListAsync();
+
+        actualEvents.Should().Equal(Some.Events(howMany: 3));
+    }
+
+    [Test]
+    public async Task StartWorkflowFromFactoryWithThreeArgumentsYieldsAllEvents()
+    {
+        var actualEvents = await Workflow
+            .Start(
+                createWorkflow: (int n, string s, long l) => Some.Workflow.FromEvents(Some.Events(howMany: n)),
+                arg1: 3,
+                arg2: "some second argument",
+                arg3: 42L)
             .ToListAsync();
 
         actualEvents.Should().Equal(Some.Events(howMany: 3));
