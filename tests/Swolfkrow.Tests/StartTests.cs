@@ -53,4 +53,18 @@ public class StartTests
 
         actualEvents.Should().Equal(Some.Events(howMany: 3));
     }
+
+    [Test]
+    public async Task StartWorkflowFromFactoryFunctionWithThreeArgumentsYieldsWorkflowEvents()
+    {
+        var actualEvents = await Workflow
+            .Start(
+                createWorkflow: (int n, string s, long l) => Some.Workflow.FromEvents(Some.Events(howMany: n)),
+                arg1: 3,
+                arg2: "some second argument",
+                arg3: 42L)
+            .ToListAsync();
+
+        actualEvents.Should().Equal(Some.Events(howMany: 3));
+    }
 }
