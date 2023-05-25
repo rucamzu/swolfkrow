@@ -6,7 +6,7 @@ namespace Swolfkrow.Tests;
 public class StartTests
 {
     [Test]
-    public async Task StartExistingWorkflowYieldsWorkflowEvents()
+    public async Task StartExistingWorkflowYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 2).ToList();
 
@@ -18,7 +18,7 @@ public class StartTests
     }
 
     [Test]
-    public async Task StartWorkflowFromFactoryFunctionYieldsWorkflowEvents()
+    public async Task StartWorkflowFromFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 2).ToList();
 
@@ -30,7 +30,7 @@ public class StartTests
     }
 
     [Test]
-    public async Task StartWorkflowFromFactoryFunctionWithOneArgumentYieldsWorkflowEvents()
+    public async Task StartWorkflowFromFactoryWithOneArgumentYieldsAllEvents()
     {
         var actualEvents = await Workflow
             .Start(
@@ -42,7 +42,7 @@ public class StartTests
     }
 
     [Test]
-    public async Task StartWorkflowFromFactoryFunctionWithTwoArgumentsYieldsWorkflowEvents()
+    public async Task StartWorkflowFromFactoryWithTwoArgumentsYieldsAllEvents()
     {
         var actualEvents = await Workflow
             .Start(
@@ -55,7 +55,7 @@ public class StartTests
     }
 
     [Test]
-    public async Task StartWorkflowFromFactoryFunctionWithThreeArgumentsYieldsWorkflowEvents()
+    public async Task StartWorkflowFromFactoryWithThreeArgumentsYieldsAllEvents()
     {
         var actualEvents = await Workflow
             .Start(

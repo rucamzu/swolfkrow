@@ -6,7 +6,7 @@ namespace Swolfkrow.Tests;
 public class ThenTests
 {
     [Test]
-    public async Task ChainedExistingWorkflowsYieldsAllEventsFromBothWorkflows()
+    public async Task ContinuationFromExistingWorkflowYieldsAllEventsFromBothWorkflows()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -19,12 +19,12 @@ public class ThenTests
     }
 
     [Test]
-    public async Task ChainedWorkflowFactoriesYieldAllEventsFromBothWorkflows()
+    public async Task ContinuationFromFactoryYieldsAllEventsFromBothWorkflows()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
         var actualEvents = await Workflow
-            .Start(() => Some.Workflow.FromEvents(expectedEvents.Take(2)))
+            .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
             .Then(() => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(2)))
             .ToListAsync();
 
@@ -32,7 +32,7 @@ public class ThenTests
     }
 
     [Test]
-    public async Task ChainedWorkflowFactoryWithOneArgumentYieldsAllEventsFromBothWorkflows()
+    public async Task ContinuationFromFactoryWithOneArgumentYieldsAllEventsFromBothWorkflows()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -47,7 +47,7 @@ public class ThenTests
     }
 
     [Test]
-    public async Task ChainedWorkflowFactoryWithTwoArgumentsYieldsAllEventsFromBothWorkflows()
+    public async Task ContinuationFromFactoryWithTwoArgumentsYieldsAllEventsFromBothWorkflows()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -63,7 +63,7 @@ public class ThenTests
     }
 
     [Test]
-    public async Task ChainedWorkflowFactoryWithThreeArgumentsYieldsAllEventsFromBothWorkflows()
+    public async Task ContinuationFromFactoryWithThreeArgumentsYieldsAllEventsFromBothWorkflows()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
