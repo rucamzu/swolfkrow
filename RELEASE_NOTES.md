@@ -1,3 +1,6 @@
+# 0.1.2 (???)
+- Added `Start` and `Then` overloads with additional arguments
+
 # 0.1.1 (2023-05-22)
 
 - Added stateful continuations.
