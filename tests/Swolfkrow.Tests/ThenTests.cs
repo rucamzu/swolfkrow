@@ -31,9 +31,8 @@ public class ThenTests
         actualEvents.Should().Equal(expectedEvents);
     }
 
-
     [Test]
-    public async Task ChainedWorkflowFactoryWithArgumentYieldsAllEventsFromBothWorkflows()
+    public async Task ChainedWorkflowFactoryWithOneArgumentYieldsAllEventsFromBothWorkflows()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -42,6 +41,22 @@ public class ThenTests
             .Then(
                 createContinuation: (int n) => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(n)),
                 arg: 2)
+            .ToListAsync();
+
+        actualEvents.Should().Equal(expectedEvents);
+    }
+
+    [Test]
+    public async Task ChainedWorkflowFactoryWithTwoArgumentsYieldsAllEventsFromBothWorkflows()
+    {
+        var expectedEvents = Some.Events(howMany: 4).ToList();
+
+        var actualEvents = await Workflow
+            .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
+            .Then(
+                createContinuation: (int n, string s) => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(n)),
+                arg1: 2,
+                arg2: "some second argument")
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
