@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: publish
+on:
+  push:
+    tags:
+    - "v[0-9]+.[0-9]+.[0-9]+"
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  BUILD_CONFIGURATION: 'Release'
+  NUGET_OUTPUT: ${{ github.workspace }}/nuget
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+
+    # Checks out the repository
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    # Installs the .NET SDK
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        global-json-file: global.json
+
+    # Restores dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Builds the software
+    - name: Build software  
+      run: dotnet build --configuration ${{env.BUILD_CONFIGURATION}} --no-restore
+
+    # Runs the tests
+    - name: Run tests
+      run: dotnet test --configuration ${{env.BUILD_CONFIGURATION}} --no-restore --no-build
+
+    # Extracts the NuGet package version number from the tag name
+    - name: Extract version from tag
+      run: echo "PACKAGE_VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+
+    # Creates the NuGet package
+    - name: Create NuGet package
+      run: dotnet pack --configuration Release -p:PackageVersion=${PACKAGE_VERSION} --output ${{env.NUGET_OUTPUT}} --no-restore --no-build
+
+    # Publishes the NuGet package
+    - name: Publish NuGet package
+      run: dotnet nuget push ${{env.NUGET_OUTPUT}}/*.nupkg --source https://api.nuget.org/v3/index.json --api-key {{secrets.NUGET_API_KEY}}
