@@ -30,12 +30,25 @@ public class StartTests
     }
 
     [Test]
-    public async Task StartWorkflowFromFactoryFunctionWithArgumentYieldsWorkflowEvents()
+    public async Task StartWorkflowFromFactoryFunctionWithOneArgumentYieldsWorkflowEvents()
     {
         var actualEvents = await Workflow
             .Start(
                 createWorkflow: (int n) => Some.Workflow.FromEvents(Some.Events(howMany: n)),
                 arg: 3)
+            .ToListAsync();
+
+        actualEvents.Should().Equal(Some.Events(howMany: 3));
+    }
+
+    [Test]
+    public async Task StartWorkflowFromFactoryFunctionWithTwoArgumentsYieldsWorkflowEvents()
+    {
+        var actualEvents = await Workflow
+            .Start(
+                createWorkflow: (int n, string s) => Some.Workflow.FromEvents(Some.Events(howMany: n)),
+                arg1: 3,
+                arg2: "some second argument")
             .ToListAsync();
 
         actualEvents.Should().Equal(Some.Events(howMany: 3));
