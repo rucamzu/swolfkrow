@@ -49,4 +49,4 @@ jobs:
 
     # Publishes the NuGet package
     - name: Publish NuGet package
-      run: dotnet nuget push ${{env.NUGET_OUTPUT}}/*.nupkg --source https://api.nuget.org/v3/index.json --api-key {{secrets.NUGET_API_KEY}}
+      run: dotnet nuget push ${{env.NUGET_OUTPUT}}/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}}
