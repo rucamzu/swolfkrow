@@ -1,0 +1,62 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "src/Swolfkrow/bin/Release/**/Swolfkrow.dll"
+          ],
+          "src": "../"
+        }
+      ],
+      "dest": "api",
+      "includePrivateMembers": false,
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false,
+      "noRestore": false,
+      "namespaceLayout": "flattened",
+      "memberLayout": "samePage",
+      "allowCompilationErrors": false
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "toc.yml",
+          "*.md"
+        ]
+      },
+      {
+        "files": [
+          "api/index.md",
+          "api/**.yml"
+        ]
+      },
+      {
+        "files": [
+          "README.md"
+        ],
+        "src": "../",
+        "dest": ""
+      }
+    ],
+    "resource": [],
+    "output": "_site",
+    "globalMetadata": {
+      "_appTitle": "Swolfkrow documentation",
+      "_appName": "Swolfkrow",
+      "_appFooter": "<span>Swolfkrow is licensed under the <a href=\"https://github.com/rucamzu/swolfkrow/blob/main/LICENSE\" target=”_blank”>MIT</a> license. Copyright © <a href=\"mailto:ruben.campos.zurriaga@gmail.com\" target=”_blank”>Rubén Campos Zurriaga</a> 2023. Made with <a href=\"https://dotnet.github.io/docfx\" target=”_blank”>docfx</a>.</span>",
+      "_disableContribution": true
+    },
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+      "default",
+      "modern"
+    ],
+    "postProcessors": [],
+    "keepFileLink": false,
+    "disableGitFeatures": false
+  }
+}

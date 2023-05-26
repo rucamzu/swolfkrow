@@ -1,3 +1,8 @@
 # Build outputs
 [Oo]bj/
 [Bb]in/
+
+# DocFx
+docs/_site/
+docs/api/*.yml
+docs/api/*.manifest
