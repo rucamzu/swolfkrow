@@ -9,7 +9,7 @@ public static partial class Workflow
     /// Injects a side effect in an asynchronous workflow.
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
-    /// <param name="sideEffect">An action encapsulating a side effect that takes the next event from the given asynchronous <paramref="workflow"/> as only argument.</param>
+    /// <param name="sideEffect">An action encapsulating a side effect that takes the next event from the given asynchronous <paramref name="workflow"/> as only argument.</param>
     /// <typeparam name="TEvent">The (base) type of the events yielded by the given asynchronous <paramref name="workflow"/>.</typeparam>
     /// <returns>An asynchronous workflow that yields the events from the given asynchronous <paramref name="workflow"/> after executing the given side effect on them.</returns>
     public static async IAsyncEnumerable<TEvent> WithSideEffect<TEvent>(this IAsyncEnumerable<TEvent> workflow,

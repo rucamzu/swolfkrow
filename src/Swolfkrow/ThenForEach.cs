@@ -33,7 +33,7 @@ public static partial class Workflow
     /// Continues each one of the events of the given subtype yielded by an existing asynchronous workflow with an intercalated asynchronous workflow created by a factory function.
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
-    /// <param name="createEventContinuation">A factory function that creates a continuation workflow from each one of the events of the given <paramref name="TContinuedEvent"> subtype yielded by the given asynchronous <paramref name="workflow"/>.</param>
+    /// <param name="createEventContinuation">A factory function that creates a continuation workflow from each one of the events of the given <typeparamref name="TContinuedEvent"/> subtype yielded by the given asynchronous <paramref name="workflow"/>.</param>
     /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflows.</typeparam>
     /// <typeparam name="TContinuedEvent">The type of the events that are to be continued.</typeparam>
     /// <returns>The asynchronous workflow resulting from continuing each of the events of the given subtype yielded by the given asynchronous <paramref name="workflow"/> with the asynchronous workflow produced by the given factory function.</returns>
@@ -49,7 +49,7 @@ public static partial class Workflow
     /// Continues each one of the events of the given subtype yielded by an existing asynchronous workflow that satisfy a given predicate with an intercalated asynchronous workflow created by a factory function.
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
-    /// <param name="createEventContinuation">A factory function that creates a continuation workflow from each one of the events of the given <paramref name="TContinuedEvent"> subtype yielded by the given asynchronous <paramref name="workflow"/>.</param>
+    /// <param name="createEventContinuation">A factory function that creates a continuation workflow from each one of the events of the given <typeparamref name="TContinuedEvent"/> subtype yielded by the given asynchronous <paramref name="workflow"/>.</param>
     /// <param name="predicate">A predicate computed for each event of the given subtype yielded by the given asynchronous <paramref name="workflow"/>.</param>
     /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflows.</typeparam>
     /// <typeparam name="TContinuedEvent">The type of the events that are to be continued.</typeparam>
