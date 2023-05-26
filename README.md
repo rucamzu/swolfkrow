@@ -8,9 +8,9 @@ In the context of this library, an asynchronous workflow is defined as a functio
 
 ## Usage
 
-### Simple continuations
+### Workflow continuations
 
-Asynchronous workflows can be composed as sequences of simpler workflows:
+Asynchronous workflows can be composed as sequences of simpler workflows, where one workflow is continued by another:
 
 ```csharp
 public record SomeEvent(string Description);
@@ -22,6 +22,39 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
     => Workflow
         .Start(Step1)
         .Then(Step2, 42);
+```
+
+### Event continuations
+
+Individual events yielded by an asynchronous workflow can be continued by other workflows that are intercalated right after:
+
+```csharp
+public record SomeEvent(string Description);
+
+IAsyncEnumerable<SomeEvent> Step1() { ... }
+IAsyncEnumerable<SomeEvent> Step2(SomeEvent someEvent) { ... }
+
+IAsyncEnumerable<SomeEvent> ComposedWorkflow()
+    => Workflow
+        .Start(Step1)
+        .ThenForEach(Step2);
+```
+
+Optionally, it is possible to continue only events of a specific sub-type and/or that satisfy a predicate:
+
+```csharp
+public record SomeEvent(string Description);
+public record SomeSpecificEvent(string Description, ...) : SomeEvent(Description);
+
+IAsyncEnumerable<SomeEvent> Step1() { ... }
+IAsyncEnumerable<SomeEvent> Step2(SomeSpecificEvent someSpecificEvent) { ... }
+
+bool ContinueIf(SomeSpecificEvent someSpecificEvent) { ... }
+
+IAsyncEnumerable<SomeEvent> ComposedWorkflow()
+    => Workflow
+        .Start(Step1)
+        .ThenForEach(Step2, ContinueIf);
 ```
 
 ### Side effects
