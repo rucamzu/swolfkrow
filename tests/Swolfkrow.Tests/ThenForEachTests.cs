@@ -15,10 +15,30 @@ public class ThenForEachTests
             .ThenForEach(_ => Workflow.Start(expectedEvents.Skip(3)))
             .ToListAsync();
 
-        actualEvents.Should().Equal(new[]{
+        actualEvents.Should().Equal(new[] {
             expectedEvents[0], expectedEvents[3], expectedEvents[4],
             expectedEvents[1], expectedEvents[3], expectedEvents[4],
             expectedEvents[2], expectedEvents[3], expectedEvents[4],
+        });
+    }
+
+    [Test]
+    public async Task SubEventContinuationFromFactoryYieldsAllEvents()
+    {
+        var actualEvents = await Workflow
+            .Start(
+                new Some.Event("Some event #1"),
+                new Some.SpecificEvent("Some specific event #2"),
+                new Some.Event("Some event #3"))
+            .ThenForEach((Some.SpecificEvent specificEvent) =>
+                 Workflow.Start<Some.Event>(new Some.Event($"Continuation from '{specificEvent.Description}'")))
+            .ToListAsync();
+
+        actualEvents.Should().Equal(new[] {
+            new Some.Event("Some event #1"),
+            new Some.SpecificEvent("Some specific event #2"),
+            new Some.Event($"Continuation from 'Some specific event #2'"),
+            new Some.Event("Some event #3")
         });
     }
 }
