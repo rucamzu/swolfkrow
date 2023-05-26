@@ -1,4 +1,9 @@
-# 0.1.2 (???)
+# 0.1.3 (2023-05-26)
+
+- Added event continuations
+
+# 0.1.2 (2023-05-25)
+
 - Added `Start` and `Then` overloads with additional arguments
 
 # 0.1.1 (2023-05-22)
@@ -8,4 +13,4 @@
 # 0.1.0 (2023-05-21)
 
 - Initial Version.
-- Added simple continuation of asynchronous workflows.
+- Added workflow continuations.

@@ -6,6 +6,18 @@ namespace Swolfkrow.Tests;
 public class StartTests
 {
     [Test]
+    public async Task StartFromExistingEventsYieldsAllEvents()
+    {
+        var expectedEvents = Some.Events(howMany: 3).ToList();
+
+        var actualEvents = await Workflow
+            .Start(expectedEvents[0], expectedEvents[1], expectedEvents[2])
+            .ToListAsync();
+
+        actualEvents.Should().Equal(expectedEvents);
+    }
+
+    [Test]
     public async Task StartExistingWorkflowYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 2).ToList();
