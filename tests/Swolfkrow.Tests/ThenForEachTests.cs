@@ -60,4 +60,26 @@ public class ThenForEachTests
             new Some.Event("Some event #3")
         });
     }
+
+    [Test]
+    public async Task ConditionalSubEventContinuationFromFactoryYieldsAllEvents()
+    {
+        var actualEvents = await Workflow
+            .Start(
+                new Some.Event("Some event #1"),
+                new Some.SpecificEvent("Some specific event #2"),
+                new Some.Event("Some event #3"),
+                new Some.SpecificEvent("Some specific event #4"))
+            .ThenForEach(
+                (Some.SpecificEvent specificEvent) => Workflow.Start<Some.Event>(new Some.Event($"Continuation from '{specificEvent.Description}'")),
+                (Some.SpecificEvent specificEvent) => specificEvent.Description.Contains("2"))
+            .ToListAsync();
+
+        actualEvents.Should().Equal(new[] {
+            new Some.Event("Some event #1"),
+            new Some.SpecificEvent("Some specific event #2"), new Some.Event($"Continuation from 'Some specific event #2'"),
+            new Some.Event("Some event #3"),
+            new Some.SpecificEvent("Some specific event #4"),
+        });
+    }
 }
