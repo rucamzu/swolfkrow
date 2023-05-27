@@ -13,7 +13,7 @@ public static partial class Workflow
     /// <param name="initialState">The initial state before any events have been yielded.</param>
     /// <typeparam name="TState">The type of the injected state.</typeparam>
     /// <typeparam name="TEvent">The (base) type of the events yielded by the given asynchronous <paramref name="workflow"/>.</typeparam>
-    /// <returns>An asynchronous workflow that yields the events yielded by the given asynchronous <paramref="workflow"/> and internally computes an updated state based on them.</returns>
+    /// <returns>An asynchronous workflow that yields the events yielded by the given asynchronous <paramref name="workflow"/> and internally computes an updated state based on them.</returns>
     /// <remarks>
     /// Injected state can subsequently be used to chain asynchronous workflow continuations based on it.
     /// </remarks>
