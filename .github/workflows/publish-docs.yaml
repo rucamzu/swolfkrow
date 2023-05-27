@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: publish-docs
+on:
+  push:
+    tags:
+    - "v[0-9]+.[0-9]+.[0-9]+"
+  workflow_dispatch:
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  BUILD_CONFIGURATION: 'Release'
+  NUGET_OUTPUT: ${{ github.workspace }}/nuget
+
+jobs:
+  publish-docs:
+    runs-on: ubuntu-latest
+    steps:
+
+    # Checks out the repository
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    # Installs the .NET SDK
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        global-json-file: global.json
+
+    # Restores local .NET tools
+    - name: Restore tools
+      run: dotnet tool restore
+
+    # Restores dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Builds the software
+    - name: Build software  
+      run: dotnet build --configuration ${{env.BUILD_CONFIGURATION}} --no-restore
+
+    # Builds the documentation site
+    - name: Build documentation
+      working-directory: docs
+      run: dotnet docfx docfx.json
+      continue-on-error: false
+
+    # publishes the documentation site
+    - name: Publish documentation
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/_site
+        force_orphan: true
+
