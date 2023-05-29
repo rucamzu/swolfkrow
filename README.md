@@ -97,11 +97,5 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
         .WithSideEffect(LogEvent);
 ```
 
-## License and copyright notice
-
-This library is licensed under the [MIT](./LICENSE) license.
-
-This library is copyright © Rubén Campos Zurriaga 2023. All rights reserved.
-
 
 [system.collections.generic.iasyncenumerable]: https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1
