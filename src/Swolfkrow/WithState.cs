@@ -22,15 +22,15 @@ public static partial class Workflow
         => new StatefulWorkflow<TState, TEvent>(workflow, stateFolder, initialState);
 
     /// <summary>
-    /// Chains an existing stateful asynchronous workflow to the asynchronous workflow created by a factory function that takes an argument based on the computed state. 
+    /// Chains an existing stateful asynchronous workflow to the asynchronous workflow created by a factory that takes an argument based on the computed state. 
     /// </summary>
     /// <param name="workflow">An existing stateful asynchronous workflow.</param>
-    /// <param name="createContinuation">A factory function that takes one argument and returns an asynchronous workflow that is to be executed as continuation to the given <paramref name="workflow"/>.</param>
-    /// <param name="argSelector">A function that computes the argument passed to the given <paramref name="createContinuation"/> factory function based on the computed state.</param>
+    /// <param name="createContinuation">A factory that takes one argument and returns an asynchronous workflow that is to be executed as continuation to the given <paramref name="workflow"/>.</param>
+    /// <param name="argSelector">A function that computes the argument passed to the given <paramref name="createContinuation"/> factory based on the computed state.</param>
     /// <typeparam name="TState">The type of the injected state.</typeparam>
-    /// <typeparam name="TArg">The type of the argument passed to the given <paramref name="createContinuation"/> factory function.</typeparam>
+    /// <typeparam name="TArg">The type of the argument passed to the given <paramref name="createContinuation"/> factory.</typeparam>
     /// <typeparam name="TEvent">The (base) type of the events yielded by both chained asynchronous workflows.</typeparam>
-    /// <returns>An asynchronous workflow composed of the given stateful asynchronous <paramref name="workflow"/>, followed by an asynchronous workflow that calls the given <paramref name="createContinuation"/> factory function with an argument computed by the given <paramref name="argSelector"/> function.</returns>
+    /// <returns>An asynchronous workflow composed of the given stateful asynchronous <paramref name="workflow"/>, followed by an asynchronous workflow that calls the given <paramref name="createContinuation"/> factory with an argument computed by the given <paramref name="argSelector"/> function.</returns>
     public static IAsyncEnumerable<TEvent> Then<TState, TArg, TEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TArg, IAsyncEnumerable<TEvent>> createContinuation, Func<TState, TArg> argSelector)
     {
@@ -41,13 +41,13 @@ public static partial class Workflow
     }
 
     /// <summary>
-    /// Chains an existing stateful asynchronous workflow to the asynchronous workflow created by a factory function that takes the computed state as argument. 
+    /// Chains an existing stateful asynchronous workflow to the asynchronous workflow created by a factory that takes the computed state as argument. 
     /// </summary>
     /// <param name="workflow">An existing stateful asynchronous workflow.</param>
-    /// <param name="createContinuation">A factory function that takes one argument and returns an asynchronous workflow that is to be executed as continuation to the given <paramref name="workflow"/>.</param>
+    /// <param name="createContinuation">A factory that takes one argument and returns an asynchronous workflow that is to be executed as continuation to the given <paramref name="workflow"/>.</param>
     /// <typeparam name="TState">The type of the injected state.</typeparam>
     /// <typeparam name="TEvent">The (base) type of the events yielded by both chained asynchronous workflows.</typeparam>
-    /// <returns>An asynchronous workflow composed of the given stateful asynchronous <paramref name="workflow"/>, followed by an asynchronous workflow that calls the given <paramref name="createContinuation"/> factory function with the computed state as argument.</returns>
+    /// <returns>An asynchronous workflow composed of the given stateful asynchronous <paramref name="workflow"/>, followed by an asynchronous workflow that calls the given <paramref name="createContinuation"/> factory with the computed state as argument.</returns>
     public static IAsyncEnumerable<TEvent> Then<TState, TEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TState, IAsyncEnumerable<TEvent>> createContinuation)
         => workflow.Then<TState, TState, TEvent>(createContinuation, argSelector: state => state);

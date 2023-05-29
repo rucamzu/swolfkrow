@@ -3,24 +3,24 @@ namespace Swolfkrow;
 public static partial class Workflow
 {
     /// <summary>
-    /// Continues each one of the events yielded by an existing asynchronous workflow with an intercalated asynchronous workflow created by a factory function.
+    /// Continues each event yielded by an existing asynchronous workflow with an intercalated asynchronous workflow created by a factory.
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
-    /// <param name="createEventContinuation">A factory function that creates a continuation workflow from each one of the events yielded by the given asynchronous <paramref name="workflow"/>.</param>
-    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflows.</typeparam>
-    /// <returns>The asynchronous workflow resulting from continuing each of the events yielded by the given asynchronous <paramref name="workflow"/> with the asynchronous workflow produced by the given factory function.</returns>
+    /// <param name="createEventContinuation">A factory that creates a continuation workflow from each event yielded by the given asynchronous <paramref name="workflow"/>.</param>
+    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
+    /// <returns>An asynchronous workflow that yields all events yielded by the given asynchronous <paramref name="workflow"/> and continues each one with the asynchronous workflow produced by the given <paramref name="createEventContinuation"/> factory.</returns>
     public static IAsyncEnumerable<TEvent> ThenForEach<TEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, IAsyncEnumerable<TEvent>> createEventContinuation)
         => workflow.SelectMany(nextEvent => Workflow.Start(nextEvent).Then(createEventContinuation, nextEvent));
 
     /// <summary>
-    /// Continues each one of the events yielded by an existing asynchronous workflow that satisfy a given predicate with an intercalated asynchronous workflow created by a factory function.
+    /// Continues each event yielded by an existing asynchronous workflow that satisfies a given predicate with an intercalated asynchronous workflow created by a factory.
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
-    /// <param name="createEventContinuation">A factory function that creates a continuation workflow from each one of the events yielded by the given asynchronous <paramref name="workflow"/>.</param>
+    /// <param name="createEventContinuation">A factory that creates a continuation workflow from each event yielded by the given asynchronous <paramref name="workflow"/>.</param>
     /// <param name="predicate">A predicate computed for each event yielded by the given asynchronous <paramref name="workflow"/>.</param>
-    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflows.</typeparam>
-    /// <returns>The asynchronous workflow resulting from continuing each of the events yielded by the given asynchronous <paramref name="workflow"/> that satisfy the given <paramref name="predicate"/> with the asynchronous workflow produced by the given factory function.</returns>
+    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
+    /// <returns>An asynchronous workflow that yields all events yielded by the given asynchronous <paramref name="workflow"/> and continues each one that satisfies the given <paramref name="predicate"/> with the asynchronous workflow produced by the given <paramref name="createEventContinuation"/> factory.</returns>
     public static IAsyncEnumerable<TEvent> ThenForEach<TEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, IAsyncEnumerable<TEvent>> createEventContinuation,
         Func<TEvent, bool> predicate)
@@ -30,13 +30,13 @@ public static partial class Workflow
                 : Workflow.Start(nextEvent));
 
     /// <summary>
-    /// Continues each one of the events of the given subtype yielded by an existing asynchronous workflow with an intercalated asynchronous workflow created by a factory function.
+    /// Continues each event of the given subtype yielded by an existing asynchronous workflow with an intercalated asynchronous workflow created by a factory.
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
-    /// <param name="createEventContinuation">A factory function that creates a continuation workflow from each one of the events of the given <typeparamref name="TContinuedEvent"/> subtype yielded by the given asynchronous <paramref name="workflow"/>.</param>
-    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflows.</typeparam>
-    /// <typeparam name="TContinuedEvent">The type of the events that are to be continued.</typeparam>
-    /// <returns>The asynchronous workflow resulting from continuing each of the events of the given subtype yielded by the given asynchronous <paramref name="workflow"/> with the asynchronous workflow produced by the given factory function.</returns>
+    /// <param name="createEventContinuation">A factory that creates a continuation workflow from each event of the given <typeparamref name="TContinuedEvent"/> subtype yielded by the given asynchronous <paramref name="workflow"/>.</param>
+    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
+    /// <typeparam name="TContinuedEvent">The type of the continued events.</typeparam>
+    /// <returns>An asynchronous workflow that yields all events yielded by the given asynchronous <paramref name="workflow"/> and continues each of the given subtype with the asynchronous workflow produced by the given <paramref name="createEventContinuation"/> factory.</returns>
     public static IAsyncEnumerable<TEvent> ThenForEach<TEvent, TContinuedEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TContinuedEvent, IAsyncEnumerable<TEvent>> createEventContinuation)
         where TContinuedEvent : TEvent
@@ -46,14 +46,14 @@ public static partial class Workflow
         });
 
     /// <summary>
-    /// Continues each one of the events of the given subtype yielded by an existing asynchronous workflow that satisfy a given predicate with an intercalated asynchronous workflow created by a factory function.
+    /// Continues each event of the given subtype yielded by an existing asynchronous workflow that satisfies a given predicate with an intercalated asynchronous workflow created by a factory.
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
-    /// <param name="createEventContinuation">A factory function that creates a continuation workflow from each one of the events of the given <typeparamref name="TContinuedEvent"/> subtype yielded by the given asynchronous <paramref name="workflow"/>.</param>
+    /// <param name="createEventContinuation">A factory that creates a continuation workflow from each event of the given <typeparamref name="TContinuedEvent"/> subtype yielded by the given asynchronous <paramref name="workflow"/>.</param>
     /// <param name="predicate">A predicate computed for each event of the given subtype yielded by the given asynchronous <paramref name="workflow"/>.</param>
-    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflows.</typeparam>
-    /// <typeparam name="TContinuedEvent">The type of the events that are to be continued.</typeparam>
-    /// <returns>The asynchronous workflow resulting from continuing each of the events of the given subtype yielded by the given asynchronous <paramref name="workflow"/> with the asynchronous workflow produced by the given factory function.</returns>
+    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
+    /// <typeparam name="TContinuedEvent">The type of the continued events.</typeparam>
+    /// <returns>An asynchronous workflow that yields all events yielded by the given asynchronous <paramref name="workflow"/> and continues each of the given subtype that satisfies the given <paramref name="predicate"/> with the asynchronous workflow produced by the given <paramref name="createEventContinuation"/> factory.</returns>
     public static IAsyncEnumerable<TEvent> ThenForEach<TEvent, TContinuedEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TContinuedEvent, IAsyncEnumerable<TEvent>> createEventContinuation,
         Func<TContinuedEvent, bool> predicate)
