@@ -1,3 +1,7 @@
+# 0.2.0 (2023-05-29)
+
+- Simplified stateful continuations.
+
 # 0.1.3 (2023-05-26)
 
 - Added event continuations
