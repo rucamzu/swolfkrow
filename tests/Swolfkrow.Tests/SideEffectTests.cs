@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
-public class WithSideEffectTests
+public class SideEffectTests
 {
     [Test]
     public async Task WorkflowWithSyncSideEffectYieldsWorkflowEvents()

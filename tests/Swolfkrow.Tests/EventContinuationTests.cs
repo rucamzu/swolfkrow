@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
-public class ThenForEachTests
+public class EventContinuationTests
 {
     [Test]
     public async Task EventContinuationFromFactoryYieldsAllEvents()

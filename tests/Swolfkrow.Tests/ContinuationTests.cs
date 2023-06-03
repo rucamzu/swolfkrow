@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
-public class ThenTests
+public class ContinuationTests
 {
     [Test]
     public async Task ContinuationFromExistingWorkflowYieldsAllEventsFromBothWorkflows()
