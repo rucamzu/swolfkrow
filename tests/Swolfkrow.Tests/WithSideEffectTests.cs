@@ -68,4 +68,36 @@ public class WithSideEffectTests
 
         sideEffectExecutions.Should().Be(expectedEvents.Count());
     }
+
+    [Test]
+    public async Task WorkflowWithValueTaskSideEffectYieldsWorkflowEvents()
+    {
+        var expectedEvents = Some.Events(howMany: 3).ToList();
+        var sideEffectExecutions = 0;
+
+        async ValueTask IncrementExecutions(Some.Event _) => await Task.Run(() => sideEffectExecutions++);
+
+        var actualEvents = await Workflow
+            .Start(Some.Workflow.FromEvents(expectedEvents))
+            .WithSideEffect(IncrementExecutions)
+            .ToListAsync();
+
+        actualEvents.Should().Equal(expectedEvents);
+    }
+
+    [Test]
+    public async Task WorkflowWithValueTaskSideEffectExecutesSideEffectOncePerEvent()
+    {
+        var expectedEvents = Some.Events(howMany: 3).ToList();
+        var sideEffectExecutions = 0;
+
+        async ValueTask IncrementExecutions(Some.Event _) => await Task.Run(() => sideEffectExecutions++);
+
+        var actualEvents = await Workflow
+            .Start(Some.Workflow.FromEvents(expectedEvents))
+            .WithSideEffect(IncrementExecutions)
+            .ToListAsync();
+
+        sideEffectExecutions.Should().Be(expectedEvents.Count());
+    }
 }
