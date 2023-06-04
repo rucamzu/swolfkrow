@@ -1,3 +1,7 @@
+# 0.2.1 (2023-06-04)
+
+- Start/continue asynchronous workflows from `Task` and `ValueTask`
+
 # 0.2.0 (2023-05-29)
 
 - Simplified stateful continuations.
