@@ -53,7 +53,7 @@ public static partial class Workflow
         => workflow.Concat(Workflow.Start(createContinuation, arg1, arg2));
 
     /// <summary>
-    /// Continues an existing asynchronous workflow with a task created by a factory that takes two arguments.
+    /// Continues an existing asynchronous workflow with a task created by a factory that takes three arguments.
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
     /// <param name="createContinuation">A factory that takes three arguments and returns a task that returns an <typeparamref name="TEvent"/>.</param>

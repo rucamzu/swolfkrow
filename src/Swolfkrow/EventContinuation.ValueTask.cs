@@ -21,7 +21,6 @@ public static partial class Workflow
     /// <param name="predicate">A predicate computed for each event yielded by the given asynchronous <paramref name="workflow"/>.</param>
     /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous <paramref name="workflow"/>.</typeparam>
     /// <returns>An asynchronous workflow that yields all events yielded by the given asynchronous <paramref name="workflow"/>, intercalating after each one that satisfies the given <paramref name="predicate"/> the <typeparamref name="TEvent"/> returned by the task created by the given <paramref name="createEventContinuation"/> factory.</returns>
-    /// <returns>An asynchronous workflow that yields all events yielded by the given asynchronous <paramref name="workflow"/>, intercalating after each one that satisfies the given <paramref name="predicate"/> the asynchronous workflow produced by the given <paramref name="createEventContinuation"/> factory.</returns>
     public static IAsyncEnumerable<TEvent> ThenForEach<TEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, ValueTask<TEvent>> createEventContinuation,
         Func<TEvent, bool> predicate)
