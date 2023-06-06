@@ -1,3 +1,7 @@
+# 0.2.2 (2023-06-07)
+
+- Added synchronous continuations.
+
 # 0.2.1 (2023-06-04)
 
 - Start/continue asynchronous workflows from `Task` and `ValueTask`
