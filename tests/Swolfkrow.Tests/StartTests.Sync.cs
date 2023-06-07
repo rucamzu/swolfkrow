@@ -7,7 +7,7 @@ namespace Swolfkrow.Tests;
 public partial class Start
 {
     [Test]
-    public async Task FromEventsEnumerableYieldsAllEvents()
+    public async Task FromEventEnumerableYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
@@ -19,7 +19,7 @@ public partial class Start
     }
 
     [Test]
-    public async Task FromEventsParamsYieldsAllEvents()
+    public async Task FromEventParamsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
