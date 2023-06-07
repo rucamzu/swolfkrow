@@ -3,7 +3,7 @@
 public static partial class Workflow
 {
     /// <summary>
-    /// Starts an asynchronous workflow from a synchronous event factory.
+    /// Starts an asynchronous workflow from an event factory.
     /// </summary>
     /// <param name="createEvent">A factory that returns an <typeparamref name="TEvent"/>.</param>
     /// <typeparam name="TEvent">The (base) type of the event yielded by the asynchronous workflow.</typeparam>

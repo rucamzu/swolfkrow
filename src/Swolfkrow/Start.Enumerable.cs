@@ -31,7 +31,7 @@ public static partial class Workflow
     /// </summary>
     /// <param name="createWorkflow">A factory that returns a synchronous workflow.</param>
     /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that yields the events yielded by the synchronous workflow returned by the given <paramref name="createWorkflow"/> factory in order.</returns>
+    /// <returns>An asynchronous workflow that calls the given <paramref name="createWorkflow"/> factory and yields the events yielded by the resulting synchronous workflow in order.</returns>
     /// <remarks>
     /// This function serves as entry point to the DSL.
     /// </remarks>
@@ -46,7 +46,7 @@ public static partial class Workflow
     /// <param name="arg">The argument passed to the given <paramref name="createWorkflow"/> factory.</param>
     /// <typeparam name="TArg">The type of the argument passed to the given <paramref name="createWorkflow"/> factory.</typeparam>
     /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that yields the events yielded by the synchronous workflow returned by the given <paramref name="createWorkflow"/> factory in order.</returns>
+    /// <returns>An asynchronous workflow that calls the given <paramref name="createWorkflow"/> factory with the given <paramref name="arg"/>ument and yields the events yielded by the resulting synchronous workflow in order.</returns>
     /// <remarks>
     /// This function serves as entry point to the DSL.
     /// </remarks>
@@ -64,7 +64,7 @@ public static partial class Workflow
     /// <typeparam name="TArg1">The type of the first argument passed to the given <paramref name="createWorkflow"/> factory.</typeparam>
     /// <typeparam name="TArg2">The type of the second argument passed to the given <paramref name="createWorkflow"/> factory.</typeparam>
     /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that yields the events yielded by the synchronous workflow returned by the given <paramref name="createWorkflow"/> factory in order.</returns>
+    /// <returns>An asynchronous workflow that calls the given <paramref name="createWorkflow"/> factory with the given arguments and yields the events yielded by the resulting synchronous workflow in order.</returns>
     /// <remarks>
     /// This function serves as entry point to the DSL.
     /// </remarks>
@@ -84,7 +84,7 @@ public static partial class Workflow
     /// <typeparam name="TArg2">The type of the second argument passed to the given <paramref name="createWorkflow"/> factory.</typeparam>
     /// <typeparam name="TArg3">The type of the third argument passed to the given <paramref name="createWorkflow"/> factory.</typeparam>
     /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that yields the events yielded by the synchronous workflow returned by the given <paramref name="createWorkflow"/> factory in order.</returns>
+    /// <returns>An asynchronous workflow that calls the given <paramref name="createWorkflow"/> factory with the given arguments and yields the events yielded by the resulting synchronous workflow in order.</returns>
     /// <remarks>
     /// This function serves as entry point to the DSL.
     /// </remarks>
