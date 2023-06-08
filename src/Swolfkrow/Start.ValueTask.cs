@@ -7,7 +7,7 @@ public static partial class Workflow
     /// </summary>
     /// <param name="task">A task that returns an <typeparamref name="TEvent"/>.</param>
     /// <typeparam name="TEvent">The (base) type of the event yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that yields the result of the given <paramref name="task"/> as its only event.</returns>
+    /// <returns>An asynchronous workflow that yields the event returned by awaiting the given <paramref name="task"/>.</returns>
     /// <remarks>
     /// This function serves as entry point to the DSL.
     /// </remarks>
@@ -21,7 +21,7 @@ public static partial class Workflow
     /// </summary>
     /// <param name="createTask">A factory that returns a task that returns an <typeparamref name="TEvent"/>.</param>
     /// <typeparam name="TEvent">The (base) type of the event yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that calls the given <paramref name="createTask"/> factory and yields the result of the resulting task as its only event.</returns>
+    /// <returns>An asynchronous workflow that yields the event returned by awaiting the task returned by calling the given <paramref name="createTask"/> factory.</returns>
     /// <remarks>
     /// This function serves as entry point to the DSL.
     /// </remarks>
@@ -33,11 +33,11 @@ public static partial class Workflow
     /// <summary>
     /// Starts an asynchronous workflow from a task factory that takes one argument.
     /// </summary>
-    /// <param name="createTask">A factory that returns a task that returns an <typeparamref name="TEvent"/>.</param>
+    /// <param name="createTask">A factory that takes one argument and returns a task that returns an <typeparamref name="TEvent"/>.</param>
     /// <param name="arg">The argument passed to the given <paramref name="createTask"/> factory.</param>
     /// <typeparam name="TArg">The type of the argument passed to the given <paramref name="createTask"/> factory.</typeparam>
     /// <typeparam name="TEvent">The (base) type of the event yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that calls the given <paramref name="createTask"/> factory with the given <paramref name="arg"/>uments and yields the result of the resulting task as its only event.</returns>
+    /// <returns>An asynchronous workflow that yields the event returned by awaiting the task returned by calling the given <paramref name="createTask"/> factory with the given <paramref name="arg"/>ument.</returns>
     /// <remarks>
     /// This function serves as entry point to the DSL.
     /// </remarks>
@@ -56,7 +56,7 @@ public static partial class Workflow
     /// <typeparam name="TArg1">The type of the first argument passed to the given <paramref name="createTask"/> factory.</typeparam>
     /// <typeparam name="TArg2">The type of the second argument passed to the given <paramref name="createTask"/> factory.</typeparam>
     /// <typeparam name="TEvent">The (base) type of the event yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that calls the given <paramref name="createTask"/> factory with the given arguments and yields the result of the resulting task as its only event.</returns>
+    /// <returns>An asynchronous workflow that yields the event returned by awaiting the task returned by calling the given <paramref name="createTask"/> factory with the given arguments.</returns>
     /// <remarks>
     /// This function serves as entry point to the DSL.
     /// </remarks>
@@ -77,7 +77,7 @@ public static partial class Workflow
     /// <typeparam name="TArg2">The type of the second argument passed to the given <paramref name="createTask"/> factory.</typeparam>
     /// <typeparam name="TArg3">The type of the third argument passed to the given <paramref name="createTask"/> factory.</typeparam>
     /// <typeparam name="TEvent">The (base) type of the event yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that calls the given <paramref name="createTask"/> factory with the given arguments and yields the result of the resulting task as its only event.</returns>
+    /// <returns>An asynchronous workflow that yields the event returned by awaiting the task returned by calling the given <paramref name="createTask"/> factory with the given arguments.</returns>
     /// <remarks>
     /// This function serves as entry point to the DSL.
     /// </remarks>
