@@ -3,10 +3,10 @@ using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
-public partial class ContinuationTests
+public partial class Continue
 {
     [Test]
-    public async Task ContinuationFromExistingWorkflowYieldsAllEventsFromBothWorkflows()
+    public async Task WithEventAsyncEnumerableYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -19,7 +19,7 @@ public partial class ContinuationTests
     }
 
     [Test]
-    public async Task ContinuationFromFactoryYieldsAllEventsFromBothWorkflows()
+    public async Task WithEventAsyncEnumerableFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -32,7 +32,7 @@ public partial class ContinuationTests
     }
 
     [Test]
-    public async Task ContinuationFromFactoryWithOneArgumentYieldsAllEventsFromBothWorkflows()
+    public async Task WithEventAsyncEnumerableFactoryWithOneArgumentYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -47,7 +47,7 @@ public partial class ContinuationTests
     }
 
     [Test]
-    public async Task ContinuationFromFactoryWithTwoArgumentsYieldsAllEventsFromBothWorkflows()
+    public async Task WithEventAsyncEnumerableFactoryWithTwoArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -63,7 +63,7 @@ public partial class ContinuationTests
     }
 
     [Test]
-    public async Task ContinuationFromFactoryWithThreeArgumentsYieldsAllEventsFromBothWorkflows()
+    public async Task WithEventAsyncEnumerableFactoryWithThreeArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
