@@ -7,24 +7,24 @@ namespace Swolfkrow.Tests;
 public partial class Start
 {
     [Test]
-    public async Task FromEventEnumerableYieldsAllEvents()
-    {
-        var expectedEvents = Some.Events(howMany: 3).ToList();
-
-        var actualEvents = await Workflow
-            .Start(expectedEvents)
-            .ToListAsync();
-
-        actualEvents.Should().Equal(expectedEvents);
-    }
-
-    [Test]
     public async Task FromEventParamsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
         var actualEvents = await Workflow
             .Start(expectedEvents[0], expectedEvents[1], expectedEvents[2])
+            .ToListAsync();
+
+        actualEvents.Should().Equal(expectedEvents);
+    }
+
+    [Test]
+    public async Task FromEventEnumerableYieldsAllEvents()
+    {
+        var expectedEvents = Some.Events(howMany: 3).ToList();
+
+        var actualEvents = await Workflow
+            .Start(expectedEvents)
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
