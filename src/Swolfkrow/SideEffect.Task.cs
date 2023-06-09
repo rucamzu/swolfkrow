@@ -1,6 +1,6 @@
 ﻿namespace Swolfkrow;
 
-public static partial class Workflow
+public static partial class SideEffect
 {
     /// <summary>
     /// Injects an asynchronous side effect into an asynchronous workflow.

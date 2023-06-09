@@ -1,6 +1,9 @@
 ﻿namespace Swolfkrow;
 
-public static partial class Workflow
+/// <summary>
+/// Extension methods to continue asynchronous workflows with concatenated asynchronous workflows computed from folded state.
+/// </summary>
+public static partial class StatefulContinuation
 {
     /// <summary>
     /// Continues an asynchronous workflow with an asynchronous workflow factory that takes a state folded from the yielded events. 

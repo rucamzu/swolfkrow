@@ -1,6 +1,9 @@
 ﻿namespace Swolfkrow;
 
-public static partial class Workflow
+/// <summary>
+/// Extension methods to inject side effects in asynchronous workflows.
+/// </summary>
+public static partial class SideEffect
 {
     /// <summary>
     /// Injects a synchronous side effect into an asynchronous workflow.

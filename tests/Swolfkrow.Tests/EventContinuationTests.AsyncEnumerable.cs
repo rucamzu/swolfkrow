@@ -7,7 +7,7 @@ namespace Swolfkrow.Tests;
 public partial class EventContinuation
 {
     [Test]
-    public async Task FromAsyncEnumerableFactoryYieldsAllEvents()
+    public async Task FromEventAsyncEnumerableFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 5).ToList();
 
@@ -27,7 +27,7 @@ public partial class EventContinuation
     }
 
     [Test]
-    public async Task FromAsyncEnumerableWithPredicateFactoryYieldsAllEvents()
+    public async Task FromEventAsyncEnumerableWithPredicateFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 5).ToList();
 
@@ -50,7 +50,7 @@ public partial class EventContinuation
     }
 
     [Test]
-    public async Task FromAsyncEnumerableFactoryOnSubeventsYieldsAllEvents()
+    public async Task FromEventAsyncEnumerableFactoryOnSubeventsYieldsAllEvents()
     {
         IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory(Some.SpecificEvent specificEvent)
             => Some.Workflow.FromEvents(new Some.Event($"Continuation from '{specificEvent.Description}'"));
@@ -71,7 +71,7 @@ public partial class EventContinuation
     }
 
     [Test]
-    public async Task FromAsyncEnumerableFactoryOnSubeventsWithPredicateYieldsAllEvents()
+    public async Task FromEventAsyncEnumerableFactoryOnSubeventsWithPredicateYieldsAllEvents()
     {
         IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory(Some.SpecificEvent specificEvent)
             => Some.Workflow.FromEvents(new Some.Event($"Continuation from '{specificEvent.Description}'"));

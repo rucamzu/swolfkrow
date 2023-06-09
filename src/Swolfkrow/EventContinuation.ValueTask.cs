@@ -1,6 +1,6 @@
 namespace Swolfkrow;
 
-public static partial class Workflow
+public static partial class EventContinuation
 {
     /// <summary>
     /// Continues asynchronous workflow events with an intercalated task factory.

@@ -1,6 +1,9 @@
 ﻿namespace Swolfkrow;
 
-public static partial class Workflow
+/// <summary>
+/// Extension methods to continue asynchronous workflows with concatenated asynchronous workflows.
+/// </summary>
+public static partial class Continuation
 {
     /// <summary>
     /// Continues an asynchronous workflow with a second asynchronous workflow. 
