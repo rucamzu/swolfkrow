@@ -11,7 +11,7 @@ public static partial class Workflow
     /// <returns>An asynchronous workflow that yields the events yielded by the given asynchronous <paramref name="workflow"/>, followed by the event returned by calling the given <paramref name="createContinuation"/> factory.</returns>
     public static IAsyncEnumerable<TEvent> Then<TEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TEvent> createContinuation)
-        => workflow.Then(Workflow.Start(createContinuation));
+        => workflow.Concat(Workflow.Start(createContinuation));
 
     /// <summary>
     /// Continues an asynchronous workflow with an event factory that takes one argument.
@@ -24,7 +24,7 @@ public static partial class Workflow
     /// <returns>An asynchronous workflow that yields the events yielded by the given asynchronous <paramref name="workflow"/>, followed by the event returned by calling the given <paramref name="createContinuation"/> factory. with the given <paramref name="arg"/>ument.</returns>
     public static IAsyncEnumerable<TEvent> Then<TArg, TEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TArg, TEvent> createContinuation, TArg arg)
-        => workflow.Then(Workflow.Start(createContinuation, arg));
+        => workflow.Concat(Workflow.Start(createContinuation, arg));
 
     /// <summary>
     /// Continues an asynchronous workflow with an event factory that takes two arguments.
@@ -39,7 +39,7 @@ public static partial class Workflow
     /// <returns>An asynchronous workflow that yields the events yielded by the given asynchronous <paramref name="workflow"/>, followed by the event returned by calling the given <paramref name="createContinuation"/> factory. with the given arguments.</returns>
     public static IAsyncEnumerable<TEvent> Then<TArg1, TArg2, TEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, TEvent> createContinuation, TArg1 arg1, TArg2 arg2)
-        => workflow.Then(Workflow.Start(createContinuation, arg1, arg2));
+        => workflow.Concat(Workflow.Start(createContinuation, arg1, arg2));
 
     /// <summary>
     /// Continues an asynchronous workflow with an event factory that takes three arguments.
@@ -56,5 +56,5 @@ public static partial class Workflow
     /// <returns>An asynchronous workflow that yields the events yielded by the given asynchronous <paramref name="workflow"/>, followed by the event returned by calling the given <paramref name="createContinuation"/> factory. with the given arguments.</returns>
     public static IAsyncEnumerable<TEvent> Then<TArg1, TArg2, TArg3, TEvent>(this IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, TArg3, TEvent> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => workflow.Then(Workflow.Start(createContinuation, arg1, arg2, arg3));
+        => workflow.Concat(Workflow.Start(createContinuation, arg1, arg2, arg3));
 }
