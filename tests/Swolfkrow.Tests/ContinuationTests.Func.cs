@@ -4,10 +4,10 @@ using NUnit.Framework;
 namespace Swolfkrow.Tests;
 
 [TestFixture]
-public partial class Continue
+public partial class Continuation
 {
     [Test]
-    public async Task WithEventFactoryYieldsAllEvents()
+    public async Task FromEventFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
@@ -22,7 +22,7 @@ public partial class Continue
     }
 
     [Test]
-    public async Task WithEventFactoryWithOneArgumentYieldsAllEvents()
+    public async Task FromEventFactoryWithOneArgumentYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
@@ -37,7 +37,7 @@ public partial class Continue
     }
 
     [Test]
-    public async Task WithEventFactoryWithTwoArgumentsYieldsAllEvents()
+    public async Task FromEventFactoryWithTwoArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
@@ -52,7 +52,7 @@ public partial class Continue
     }
 
     [Test]
-    public async Task WithEventFactoryWithThreeArgumentsYieldsAllEvents()
+    public async Task FromEventFactoryWithThreeArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 

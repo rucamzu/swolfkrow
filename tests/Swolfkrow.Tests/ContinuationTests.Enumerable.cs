@@ -3,10 +3,10 @@ using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
-public partial class Continue
+public partial class Continuation
 {
     [Test]
-    public async Task WithEventParamsYieldsAllEvents()
+    public async Task FromEventParamsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -19,7 +19,7 @@ public partial class Continue
     }
 
     [Test]
-    public async Task WithEventEnumerableYieldsAllEvents()
+    public async Task FromEventEnumerableYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -32,7 +32,7 @@ public partial class Continue
     }
 
     [Test]
-    public async Task WithEventEnumerableFactoryYieldsAllEvents()
+    public async Task FromEventEnumerableFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -48,7 +48,7 @@ public partial class Continue
     }
 
     [Test]
-    public async Task WithEventEnumerableFactoryWithOneArgumentYieldsAllEvents()
+    public async Task FromEventEnumerableFactoryWithOneArgumentYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -64,7 +64,7 @@ public partial class Continue
     }
 
     [Test]
-    public async Task WithEventEnumerableFactoryWithTwoArgumentsYieldsAllEvents()
+    public async Task FromEventEnumerableFactoryWithTwoArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -80,7 +80,7 @@ public partial class Continue
     }
 
     [Test]
-    public async Task WithEventEnumerableFactoryWithThreeArgumentsYieldsAllEvents()
+    public async Task FromEventEnumerableFactoryWithThreeArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
