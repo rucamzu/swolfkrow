@@ -1,7 +1,7 @@
 ﻿namespace Swolfkrow;
 
 /// <summary>
-/// Factory methods and extension methods to compose asynchronous workflows based on <see cref="IAsyncEnumerable{T}"/>.
+/// Factory methods to compose asynchronous workflows based on <see cref="IAsyncEnumerable{T}"/>.
 /// </summary>
 public static partial class Workflow
 {
@@ -65,7 +65,7 @@ public static partial class Workflow
     /// <summary>
     /// Starts an asynchronous workflow from a factory that takes three arguments.
     /// </summary>
-    /// <param name="createWorkflow">A factory that takes two arguments and returns an asynchronous workflow.</param>
+    /// <param name="createWorkflow">A factory that takes three arguments and returns an asynchronous workflow.</param>
     /// <param name="arg1">The first argument passed to the given <paramref name="createWorkflow"/> factory.</param>
     /// <param name="arg2">The second argument passed to the given <paramref name="createWorkflow"/> factory.</param>
     /// <param name="arg3">The third argument passed to the given <paramref name="createWorkflow"/> factory.</param>

@@ -1,3 +1,8 @@
+# 0.2.3 (2023-06-10)
+
+- Full review of the comment-based documentation.
+- Added `IEnumerable` based overloads of start, continuation, and event continuation operators.
+
 # 0.2.2 (2023-06-07)
 
 - Added synchronous continuations.

@@ -3,10 +3,10 @@ using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
-public partial class ContinuationTests
+public partial class Continuation
 {
     [Test]
-    public async Task ContinuationFromExistingWorkflowYieldsAllEventsFromBothWorkflows()
+    public async Task FromEventAsyncEnumerableYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
@@ -19,61 +19,64 @@ public partial class ContinuationTests
     }
 
     [Test]
-    public async Task ContinuationFromFactoryYieldsAllEventsFromBothWorkflows()
+    public async Task FromEventAsyncEnumerableFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
+        IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory()
+            => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(2));
+
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(() => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(2)))
+            .Then(EventAsyncEnumerableFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task ContinuationFromFactoryWithOneArgumentYieldsAllEventsFromBothWorkflows()
+    public async Task FromEventAsyncEnumerableFactoryWithOneArgumentYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
+        IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory(int arg1)
+            => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(2));
+
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(
-                createContinuation: (int n) => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(n)),
-                arg: 2)
+            .Then(EventAsyncEnumerableFactory, 42)
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task ContinuationFromFactoryWithTwoArgumentsYieldsAllEventsFromBothWorkflows()
+    public async Task FromEventAsyncEnumerableFactoryWithTwoArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
+        IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory(int arg1, string arg2)
+            => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(2));
+
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(
-                createContinuation: (int n, string s) => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(n)),
-                arg1: 2,
-                arg2: "some second argument")
+            .Then(EventAsyncEnumerableFactory, 42, "42")
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task ContinuationFromFactoryWithThreeArgumentsYieldsAllEventsFromBothWorkflows()
+    public async Task FromEventAsyncEnumerableFactoryWithThreeArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
+        IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory(int arg1, string arg2, long arg3)
+            => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(2));
+
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(
-                createContinuation: (int n, string s, long l) => Some.Workflow.FromEvents(expectedEvents.Skip(2).Take(n)),
-                arg1: 2,
-                arg2: "some second argument",
-                arg3: 42L)
+            .Then(EventAsyncEnumerableFactory, 42, "42", 42L)
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);

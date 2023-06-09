@@ -3,31 +3,7 @@
 public static partial class Workflow
 {
     /// <summary>
-    /// Starts an asynchronous workflow that yields a given sequence of <paramref name="events"/>.
-    /// </summary>
-    /// <param name="events">An existing sequence of events.</param>
-    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that yields the given events in order.</returns>
-    /// <remarks>
-    /// This function serves as entry point to the DSL.
-    /// </remarks>
-    public static IAsyncEnumerable<TEvent> Start<TEvent>(params TEvent[] events)
-        => Start((IEnumerable<TEvent>)events);
-
-    /// <summary>
-    /// Starts an asynchronous workflow that yields a given sequence of <paramref name="events"/>.
-    /// </summary>
-    /// <param name="events">An existing sequence of events.</param>
-    /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>
-    /// <returns>An asynchronous workflow that yields the given events in order.</returns>
-    /// <remarks>
-    /// This function serves as entry point to the DSL.
-    /// </remarks>
-    public static IAsyncEnumerable<TEvent> Start<TEvent>(IEnumerable<TEvent> events)
-        => events.ToAsyncEnumerable();
-
-    /// <summary>
-    /// Starts an asynchronous workflow from a synchronous event factory.
+    /// Starts an asynchronous workflow from an event factory.
     /// </summary>
     /// <param name="createEvent">A factory that returns an <typeparamref name="TEvent"/>.</param>
     /// <typeparam name="TEvent">The (base) type of the event yielded by the asynchronous workflow.</typeparam>

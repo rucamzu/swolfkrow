@@ -3,83 +3,81 @@ using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
-public partial class ContinuationTests
+[TestFixture]
+public partial class Continuation
 {
     [Test]
-    public async ValueTask ContinuationFromValueTaskYieldsAllEvents()
+    public async ValueTask FromEventValueTaskYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
-        async ValueTask<Some.Event> CreateContinuation()
-            => await ValueTask.FromResult(expectedEvents!.Last());
-
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(CreateContinuation())
+            .Then(ValueTask.FromResult(expectedEvents!.Last()))
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async ValueTask ContinuationFromValueTaskFactoryYieldsAllEvents()
+    public async ValueTask FromEventValueTaskFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
-        async ValueTask<Some.Event> CreateContinuation()
+        async ValueTask<Some.Event> EventValueTaskFactory()
             => await ValueTask.FromResult(expectedEvents!.Last());
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(CreateContinuation)
+            .Then(EventValueTaskFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async ValueTask ContinuationFromValueTaskFactoryWithOneArgumentYieldsAllEvents()
+    public async ValueTask FromEventValueTaskFactoryWithOneArgumentYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
-        async ValueTask<Some.Event> CreateContinuation(int _)
+        async ValueTask<Some.Event> EventValueTaskFactory(int arg1)
             => await ValueTask.FromResult(expectedEvents!.Last());
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(CreateContinuation, 7)
+            .Then(EventValueTaskFactory, 42)
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async ValueTask ContinuationFromValueTaskFactoryWithTwoArgumentsYieldsAllEvents()
+    public async ValueTask FromEventValueTaskFactoryWithTwoArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
-        async ValueTask<Some.Event> CreateContinuation(int _, string __)
+        async ValueTask<Some.Event> EventValueTaskFactory(int arg1, string arg2)
             => await ValueTask.FromResult(expectedEvents!.Last());
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(CreateContinuation, 7, "hello")
+            .Then(EventValueTaskFactory, 42, "42")
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async ValueTask ContinuationFromValueTaskFactoryWithThreeArgumentsYieldsAllEvents()
+    public async ValueTask FromEventValueTaskFactoryWithThreeArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
-        async ValueTask<Some.Event> CreateContinuation(int _, string __, long ___)
+        async ValueTask<Some.Event> EventValueTaskFactory(int arg1, string arg2, long arg3)
             => await ValueTask.FromResult(expectedEvents!.Last());
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(CreateContinuation, 7, "hello", 42L)
+            .Then(EventValueTaskFactory, 42, "42", 42L)
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);

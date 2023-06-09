@@ -3,83 +3,81 @@ using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
-public partial class ContinuationTests
+[TestFixture]
+public partial class Continuation
 {
     [Test]
-    public async Task ContinuationFromTaskYieldsAllEvents()
+    public async Task FromEventTaskYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
-        async Task<Some.Event> CreateContinuation()
-            => await Task.FromResult(expectedEvents!.Last());
-
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(CreateContinuation())
+            .Then(Task.FromResult(expectedEvents!.Last()))
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task ContinuationFromTaskFactoryYieldsAllEvents()
+    public async Task FromEventTaskFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
-        async Task<Some.Event> CreateContinuation()
+        async Task<Some.Event> EventTaskFactory()
             => await Task.FromResult(expectedEvents!.Last());
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(CreateContinuation)
+            .Then(EventTaskFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task ContinuationFromTaskFactoryWithOneArgumentYieldsAllEvents()
+    public async Task FromEventTaskFactoryWithOneArgumentYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
-        async Task<Some.Event> CreateContinuation(int _)
+        async Task<Some.Event> EventTaskFactory(int arg1)
             => await Task.FromResult(expectedEvents!.Last());
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(CreateContinuation, 7)
+            .Then(EventTaskFactory, 42)
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task ContinuationFromTaskFactoryWithTwoArgumentsYieldsAllEvents()
+    public async Task FromEventTaskFactoryWithTwoArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
-        async Task<Some.Event> CreateContinuation(int _, string __)
+        async Task<Some.Event> EventTaskFactory(int arg1, string arg2)
             => await Task.FromResult(expectedEvents!.Last());
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(CreateContinuation, 7, "hello")
+            .Then(EventTaskFactory, 42, "42")
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task ContinuationFromTaskFactoryWithThreeArgumentsYieldsAllEvents()
+    public async Task FromEventTaskFactoryWithThreeArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
-        async Task<Some.Event> CreateContinuation(int _, string __, long ___)
+        async Task<Some.Event> EventTaskFactory(int arg1, string arg2, long arg3)
             => await Task.FromResult(expectedEvents!.Last());
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(2)))
-            .Then(CreateContinuation, 7, "hello", 42L)
+            .Then(EventTaskFactory, 42, "42", 42L)
             .ToListAsync();
 
         actualEvents.Should().Equal(expectedEvents);
