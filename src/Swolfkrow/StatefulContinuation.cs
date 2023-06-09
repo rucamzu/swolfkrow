@@ -3,7 +3,7 @@
 public static partial class Workflow
 {
     /// <summary>
-    /// Continues an existing asynchronous workflow with an asynchronous workflow created by a factory that takes a state folded from the yielded events. 
+    /// Continues an existing asynchronous workflow with an asynchronous workflow factory that takes a state folded from the yielded events. 
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
     /// <param name="createContinuation">A factory that takes a state folded from all events yielded by the given asynchronous <paramref name="workflow"/> and returns an asynchronous workflow that is to be executed as continuation.</param>
@@ -28,7 +28,7 @@ public static partial class Workflow
     }
 
     /// <summary>
-    /// Continues an existing asynchronous workflow with an asynchronous workflow created by a factory that takes a state folded from the yielded events. 
+    /// Continues an existing asynchronous workflow with an asynchronous workflow factory that takes a state folded from the yielded events. 
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
     /// <param name="createContinuation">A factory that takes a state folded from all events yielded by the given asynchronous <paramref name="workflow"/> and returns an asynchronous workflow that is to be executed as continuation.</param>
@@ -53,7 +53,7 @@ public static partial class Workflow
     }
 
     /// <summary>
-    /// Continues an existing asynchronous workflow with an asynchronous workflow created by a factory that takes a state folded from the yielded events. 
+    /// Continues an existing asynchronous workflow with an asynchronous workflow factory that takes a state folded from the yielded events. 
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
     /// <param name="createContinuation">A factory that takes a state folded from all events yielded by the given asynchronous <paramref name="workflow"/> and returns an asynchronous workflow that is to be executed as continuation.</param>
