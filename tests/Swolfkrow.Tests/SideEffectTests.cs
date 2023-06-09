@@ -3,101 +3,108 @@ using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
-public class SideEffectTests
+[TestFixture]
+public class SideEffect
 {
     [Test]
-    public async Task WorkflowWithSyncSideEffectYieldsWorkflowEvents()
+    public async Task FromActionExecutesOncePerEvent()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
-        var sideEffectExecutions = 0;
+        var effectedEvents = new List<Some.Event>();
 
-        void IncrementExecutions(Some.Event _) => sideEffectExecutions++;
+        void SideEffect(Some.Event nextEvent)
+            => effectedEvents!.Add(nextEvent);
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents))
-            .WithSideEffect(IncrementExecutions)
+            .WithSideEffect(SideEffect)
             .ToListAsync();
 
-        actualEvents.Should().Equal(expectedEvents);
+        effectedEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task WorkflowWithSyncSideEffectExecutesSideEffectOncePerEvent()
+    public async Task FromActionPreservesEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
-        var sideEffectExecutions = 0;
+        var effectedEvents = new List<Some.Event>();
 
-        void IncrementExecutions(Some.Event _) => sideEffectExecutions++;
+        void SideEffect(Some.Event nextEvent)
+            => effectedEvents!.Add(nextEvent);
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents))
-            .WithSideEffect(IncrementExecutions)
+            .WithSideEffect(SideEffect)
             .ToListAsync();
 
-        sideEffectExecutions.Should().Be(expectedEvents.Count());
+        expectedEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task WorkflowWithTaskSideEffectYieldsWorkflowEvents()
+    public async Task FromTaskExecutesOncePerEvent()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
-        var sideEffectExecutions = 0;
+        var effectedEvents = new List<Some.Event>();
 
-        async Task IncrementExecutions(Some.Event _) => await Task.Run(() => sideEffectExecutions++);
+        async Task SideEffect(Some.Event nextEvent)
+            => await Task.Run(() => effectedEvents!.Add(nextEvent));
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents))
-            .WithSideEffect(IncrementExecutions)
+            .WithSideEffect(SideEffect)
             .ToListAsync();
 
-        actualEvents.Should().Equal(expectedEvents);
+        effectedEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task WorkflowWithTaskSideEffectExecutesSideEffectOncePerEvent()
+    public async Task FromTaskPreservesEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
-        var sideEffectExecutions = 0;
+        var effectedEvents = new List<Some.Event>();
 
-        async Task IncrementExecutions(Some.Event _) => await Task.Run(() => sideEffectExecutions++);
+        async Task SideEffect(Some.Event nextEvent)
+            => await Task.Run(() => effectedEvents!.Add(nextEvent));
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents))
-            .WithSideEffect(IncrementExecutions)
+            .WithSideEffect(SideEffect)
             .ToListAsync();
 
-        sideEffectExecutions.Should().Be(expectedEvents.Count());
+        expectedEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task WorkflowWithValueTaskSideEffectYieldsWorkflowEvents()
+    public async Task FromValueTaskExecutesOncePerEvent()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
-        var sideEffectExecutions = 0;
+        var effectedEvents = new List<Some.Event>();
 
-        async ValueTask IncrementExecutions(Some.Event _) => await Task.Run(() => sideEffectExecutions++);
+        async ValueTask SideEffect(Some.Event nextEvent)
+            => effectedEvents!.Add(await new ValueTask<Some.Event>(nextEvent));
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents))
-            .WithSideEffect(IncrementExecutions)
+            .WithSideEffect(SideEffect)
             .ToListAsync();
 
-        actualEvents.Should().Equal(expectedEvents);
+        effectedEvents.Should().Equal(expectedEvents);
     }
 
     [Test]
-    public async Task WorkflowWithValueTaskSideEffectExecutesSideEffectOncePerEvent()
+    public async Task FromValueTaskPreservesEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
-        var sideEffectExecutions = 0;
+        var effectedEvents = new List<Some.Event>();
 
-        async ValueTask IncrementExecutions(Some.Event _) => await Task.Run(() => sideEffectExecutions++);
+        async ValueTask SideEffect(Some.Event nextEvent)
+            => effectedEvents!.Add(await new ValueTask<Some.Event>(nextEvent));
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents))
-            .WithSideEffect(IncrementExecutions)
+            .WithSideEffect(SideEffect)
             .ToListAsync();
 
-        sideEffectExecutions.Should().Be(expectedEvents.Count());
+        expectedEvents.Should().Equal(expectedEvents);
     }
 }

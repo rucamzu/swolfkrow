@@ -1,11 +1,7 @@
 ﻿namespace Swolfkrow;
 
-/// <summary>
-/// Factory methods and extension methods to compose asynchronous workflows based on <see cref="IAsyncEnumerable{T}"/>.
-/// </summary>
 public static partial class Workflow
 {
-
     /// <summary>
     /// Injects a synchronous side effect into an asynchronous workflow.
     /// </summary>
