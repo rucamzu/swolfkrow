@@ -3,16 +3,20 @@ using NUnit.Framework;
 
 namespace Swolfkrow.Tests;
 
-public partial class EventContinuationTests
+[TestFixture]
+public partial class EventContinuation
 {
     [Test]
-    public async Task EventContinuationFromFactoryYieldsAllEvents()
+    public async Task FromAsyncEnumerableFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 5).ToList();
 
+        IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory(Some.Event _)
+            => Some.Workflow.FromEvents(expectedEvents.Skip(3));
+
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(3)))
-            .ThenForEach(_ => Workflow.Start(expectedEvents.Skip(3)))
+            .ThenForEach(EventAsyncEnumerableFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
@@ -23,15 +27,19 @@ public partial class EventContinuationTests
     }
 
     [Test]
-    public async Task ConditionalEventContinuationFromFactoryYieldsAllEvents()
+    public async Task FromAsyncEnumerableWithPredicateFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 5).ToList();
 
+        IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory(Some.Event _)
+            => Some.Workflow.FromEvents(expectedEvents.Skip(3));
+
+        bool Predicate(Some.Event nextEvent)
+            => nextEvent.Description.Contains("2");
+
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(3)))
-            .ThenForEach(
-                _ => Workflow.Start(expectedEvents.Skip(3)),
-                nextEvent => nextEvent.Description.Contains("2"))
+            .ThenForEach(EventAsyncEnumerableFactory, Predicate)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
@@ -42,37 +50,42 @@ public partial class EventContinuationTests
     }
 
     [Test]
-    public async Task SubEventContinuationFromFactoryYieldsAllEvents()
+    public async Task FromAsyncEnumerableFactoryOnSubeventsYieldsAllEvents()
     {
+        IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory(Some.SpecificEvent specificEvent)
+            => Some.Workflow.FromEvents(new Some.Event($"Continuation from '{specificEvent.Description}'"));
+
         var actualEvents = await Workflow
             .Start(
                 new Some.Event("Some event #1"),
                 new Some.SpecificEvent("Some specific event #2"),
                 new Some.Event("Some event #3"))
-            .ThenForEach((Some.SpecificEvent specificEvent) =>
-                 Workflow.Start<Some.Event>(new Some.Event($"Continuation from '{specificEvent.Description}'")))
+            .ThenForEach<Some.Event, Some.SpecificEvent>(EventAsyncEnumerableFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
             new Some.Event("Some event #1"),
-            new Some.SpecificEvent("Some specific event #2"),
-            new Some.Event($"Continuation from 'Some specific event #2'"),
+            new Some.SpecificEvent("Some specific event #2"), new Some.Event($"Continuation from 'Some specific event #2'"),
             new Some.Event("Some event #3")
         });
     }
 
     [Test]
-    public async Task ConditionalSubEventContinuationFromFactoryYieldsAllEvents()
+    public async Task FromAsyncEnumerableFactoryOnSubeventsWithPredicateYieldsAllEvents()
     {
+        IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory(Some.SpecificEvent specificEvent)
+            => Some.Workflow.FromEvents(new Some.Event($"Continuation from '{specificEvent.Description}'"));
+
+        bool Predicate(Some.SpecificEvent specificEvent)
+            => specificEvent.Description.Contains("2");
+
         var actualEvents = await Workflow
             .Start(
                 new Some.Event("Some event #1"),
                 new Some.SpecificEvent("Some specific event #2"),
                 new Some.Event("Some event #3"),
                 new Some.SpecificEvent("Some specific event #4"))
-            .ThenForEach(
-                (Some.SpecificEvent specificEvent) => Workflow.Start<Some.Event>(new Some.Event($"Continuation from '{specificEvent.Description}'")),
-                (Some.SpecificEvent specificEvent) => specificEvent.Description.Contains("2"))
+            .ThenForEach<Some.Event, Some.SpecificEvent>(EventAsyncEnumerableFactory, Predicate)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
