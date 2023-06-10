@@ -96,5 +96,25 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
         .WithSideEffect(LogEvent);
 ```
 
+### Interruptions
+
+Asynchronous workflows can be interrupted based on a condition computed on each of the yielded events:
+
+```csharp
+public record SomeEvent(string Description);
+public record SomeError(string Description, Exception Exception) : SomeEvent(Description);
+
+IAsyncEnumerable<SomeEvent> Step1() { ... }
+IAsyncEnumerable<SomeEvent> Step2(int someInfo) { ... }
+
+bool IsError(SomeEvent nextEvent) => nextEvent is SomeError;
+
+IAsyncEnumerable<SomeEvent> ComposedWorkflow()
+    => Workflow
+        .Start(Step1)
+        .Then(Step2, 42)
+        .Until(IsError);
+```
+
 
 [system.collections.generic.iasyncenumerable]: https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1
