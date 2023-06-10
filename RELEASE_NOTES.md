@@ -1,3 +1,7 @@
+# 0.2.4 (2023-06-dd)
+
+- Added interruptions.
+
 # 0.2.3 (2023-06-10)
 
 - Full review of the comment-based documentation.
