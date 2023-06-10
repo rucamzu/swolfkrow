@@ -29,7 +29,7 @@ public partial class Interruption
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
         bool Predicate(Some.Event nextEvent)
-            => !nextEvent.Description.Contains("3");
+            => nextEvent.Description.Contains("3");
 
         var actualEvents = await Workflow
             .Start(Some.Events(howMany: 4))

@@ -22,7 +22,7 @@ public static partial class Interruption
     }
 
     /// <summary>
-    /// Interupts an asynchronous workflow right after the first event that does not satisfy an asynchronous predicate.
+    /// Interupts an asynchronous workflow right after the first event that satisfies an asynchronous predicate.
     /// </summary>
     /// <param name="workflow">An asynchronous workflow.</param>
     /// <param name="predicate">An asynchronous predicate that takes an <typeparamref name="TEvent"/>.</param>
@@ -35,7 +35,7 @@ public static partial class Interruption
         {
             yield return nextEvent;
 
-            if (!await predicate(nextEvent))
+            if (await predicate(nextEvent))
                 yield break;
         }        
     }
