@@ -12,6 +12,8 @@ internal static class Some
 
     public record SpecificEvent(string Description) : Some.Event(Description);
 
+    public record OtherSpecificEvent(string Description) : Some.Event(Description);
+
     public static class Workflow
     {
         public static IAsyncEnumerable<Event> FromEvents(params Event[] events)
