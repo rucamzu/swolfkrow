@@ -95,4 +95,31 @@ public partial class EventContinuation
             new Some.SpecificEvent("Some specific event #4"),
         });
     }
+
+    [Test]
+    public async Task FromEventAsyncEnumerableFactoryOnTwoSubeventsYieldsAllEvents()
+    {
+        IAsyncEnumerable<Some.Event> EventAsyncEnumerableFactory(Some.SpecificEvent _, Some.OtherSpecificEvent __)
+            => Some.Workflow.FromEvents(new Some.Event($"from continuation"));
+
+        var actualEvents = await Workflow
+            .Start(
+                new Some.Event("Some event #1"),
+                new Some.OtherSpecificEvent("Some other specific event #2"),
+                new Some.Event("Some event #3"),
+                new Some.SpecificEvent("Some specific event #4"),
+                new Some.Event("Some event #5"),
+                new Some.Event("Some event #6"))
+            .ThenForEach<Some.Event, Some.SpecificEvent, Some.OtherSpecificEvent>(EventAsyncEnumerableFactory)
+            .ToListAsync();
+
+        actualEvents.Should().Equal(new[] {
+                new Some.Event("Some event #1"),
+                new Some.OtherSpecificEvent("Some other specific event #2"),
+                new Some.Event("Some event #3"),
+                new Some.SpecificEvent("Some specific event #4"), new Some.Event("from continuation"),
+                new Some.Event("Some event #5"),
+                new Some.Event("Some event #6")
+            });
+    }
 }
