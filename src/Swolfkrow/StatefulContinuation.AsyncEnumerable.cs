@@ -1,4 +1,6 @@
-﻿namespace Swolfkrow;
+﻿using Swolfkrow.Impl;
+
+namespace Swolfkrow;
 
 /// <summary>
 /// Extension methods to continue asynchronous workflows with concatenated asynchronous workflows computed from folded state.
@@ -27,6 +29,7 @@ public static partial class StatefulContinuation
 
         return workflow
             .WithSideEffect(UpdateCurrentState)
+            .ToWorkflow()
             .Then(() => createContinuation(currentState));
     }
 
@@ -52,6 +55,7 @@ public static partial class StatefulContinuation
 
         return workflow
             .WithSideEffect(UpdateCurrentState)
+            .ToWorkflow()
             .Then(() => createContinuation(currentState));
     }
 
@@ -77,6 +81,7 @@ public static partial class StatefulContinuation
 
         return workflow
             .WithSideEffect(UpdateCurrentState)
+            .ToWorkflow()
             .Then(() => createContinuation(currentState));
     }
 }

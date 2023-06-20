@@ -8,7 +8,7 @@ namespace Swolfkrow;
 public static partial class Workflow
 {
     /// <summary>
-    /// Starts an asynchronous <paramref name="workflow"/> from an asynchronous workflow.
+    /// Starts an asynchronous <see cref="Workflow{TEvent}"/> from an asynchronous workflow.
     /// </summary>
     /// <param name="workflow">An existing asynchronous workflow.</param>
     /// <typeparam name="TEvent">The (base) type of the events yielded by the asynchronous workflow.</typeparam>

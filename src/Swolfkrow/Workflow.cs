@@ -1,13 +1,13 @@
 namespace Swolfkrow;
 
 /// <summary>
-/// An asynchronous workflow that yields events.
+/// An asynchronous workflow that performs arbitrary computations and yields events.
 /// </summary>
-/// <typeparam name="TEvent">The type of the events yielded by the workflow.</typeparam>
+/// <typeparam name="TEvent">The type of the events yielded by the asynchronous workflow.</typeparam>
 public partial class Workflow<TEvent> : IAsyncEnumerable<TEvent>
 {
     /// The wrapped enumerable that implements the asynchronous workflow.
-    private IAsyncEnumerable<TEvent> _workflow;
+    private readonly IAsyncEnumerable<TEvent> _workflow;
 
     /// Builds a <see cref="Workflow{TEvent}"/> object by wrapping an existing <see cref="IAsyncEnumerable{T}"/> instance.
     internal Workflow(IAsyncEnumerable<TEvent> workflow)
