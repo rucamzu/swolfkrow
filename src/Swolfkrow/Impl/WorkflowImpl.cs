@@ -221,4 +221,82 @@ internal static partial class WorkflowImpl
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, TArg3, ValueTask<TEvent>> createValueTask, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => ThenFromAsyncEnumerable(workflow, StartFromValueTaskFactory3(createValueTask, arg1, arg2, arg3));
+
+    public static async IAsyncEnumerable<TEvent> WhileFromPredicate<TEvent>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, bool> predicate)
+    {
+        await foreach (var nextEvent in workflow)
+        {
+            if (!predicate(nextEvent))
+                yield break;
+
+            yield return nextEvent;
+        }        
+    }
+
+    public static async IAsyncEnumerable<TEvent> WhileFromTaskPredicate<TEvent>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, Task<bool>> predicate)
+    {
+        await foreach (var nextEvent in workflow)
+        {
+            if (!await predicate(nextEvent))
+                yield break;
+
+            yield return nextEvent;
+        }        
+    }
+
+    public static async IAsyncEnumerable<TEvent> WhileFromValueTaskPredicate<TEvent>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, ValueTask<bool>> predicate)
+    {
+        await foreach (var nextEvent in workflow)
+        {
+            if (!await predicate(nextEvent))
+                yield break;
+
+            yield return nextEvent;
+        }        
+    }
+
+    public static async IAsyncEnumerable<TEvent> UntilFromPredicate<TEvent>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, bool> predicate)
+    {
+        await foreach (var nextEvent in workflow)
+        {
+            yield return nextEvent;
+
+            if (predicate(nextEvent))
+                yield break;
+        }        
+    }    
+
+    public static async IAsyncEnumerable<TEvent> UntilFromTaskPredicate<TEvent>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, Task<bool>> predicate)
+    {
+        await foreach (var nextEvent in workflow)
+        {
+            yield return nextEvent;
+
+            if (await predicate(nextEvent))
+                yield break;
+        }        
+    }    
+
+    public static async IAsyncEnumerable<TEvent> UntilFromValueTaskPredicate<TEvent>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, ValueTask<bool>> predicate)
+    {
+        await foreach (var nextEvent in workflow)
+        {
+            yield return nextEvent;
+
+            if (await predicate(nextEvent))
+                yield break;
+        }        
+    }    
 }
