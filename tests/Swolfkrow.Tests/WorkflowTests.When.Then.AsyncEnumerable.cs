@@ -110,7 +110,7 @@ public partial class WhenThen
                 new Some.SpecificEvent("Some specific event #4"),
                 new Some.Event("Some event #5"),
                 new Some.Event("Some event #6"))
-            .ThenForEach<Some.Event, Some.SpecificEvent, Some.OtherSpecificEvent>(EventAsyncEnumerableFactory)
+            .When<Some.SpecificEvent, Some.OtherSpecificEvent>().Then(EventAsyncEnumerableFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {

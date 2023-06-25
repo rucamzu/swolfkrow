@@ -62,6 +62,9 @@ internal static class Predicate1
 /// </summary>
 internal static class Predicate2
 {
+    public static Task<bool> Always<TEvent1, TEvent2>(TEvent1 _, TEvent2 __)
+    => Task.FromResult(true);
+
     public static Func<TEvent1, TEvent2, Task<bool>> FromTaskPredicate<TEvent1, TEvent2>(
         Func<TEvent1, TEvent2, Task<bool>> predicate)
         => predicate;
