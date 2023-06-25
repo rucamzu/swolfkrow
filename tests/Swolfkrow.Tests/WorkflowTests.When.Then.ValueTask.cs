@@ -4,19 +4,19 @@ using NUnit.Framework;
 namespace Swolfkrow.Tests;
 
 [TestFixture]
-public partial class EventContinuation
+public partial class WhenThen
 {
     [Test]
-    public async Task FromEventTaskFactoryYieldsAllEvents()
+    public async Task FromEventValueTaskFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
-        async Task<Some.Event> EventTaskFactory(Some.Event _)
-            => await Task.FromResult(expectedEvents.Last());
+        async ValueTask<Some.Event> EventValueTaskFactory(Some.Event _)
+            => await ValueTask.FromResult(expectedEvents.Last());
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(3)))
-            .ThenForEach(EventTaskFactory)
+            .When<Some.Event>().Then(EventValueTaskFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
@@ -27,19 +27,19 @@ public partial class EventContinuation
     }
 
     [Test]
-    public async Task FromEventTaskFactoryWithPredicateYieldsAllEvents()
+    public async Task FromEventValueTaskFactoryWithPredicateYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 4).ToList();
 
-        async Task<Some.Event> EventTaskFactory(Some.Event _)
-            => await Task.FromResult(expectedEvents!.Last());
+        async ValueTask<Some.Event> EventValueTaskFactory(Some.Event _)
+            => await ValueTask.FromResult(expectedEvents!.Last());
 
         bool Predicate(Some.Event nextEvent)
             => nextEvent.Description.Contains("2");
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(3)))
-            .ThenForEach(EventTaskFactory, Predicate)
+            .When<Some.Event>(Predicate).Then(EventValueTaskFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
@@ -50,17 +50,17 @@ public partial class EventContinuation
     }
 
     [Test]
-    public async Task FromEventTaskFactoryOnSubeventsYieldsAllEvents()
+    public async Task FromEventValueTaskFactoryOnSubeventsYieldsAllEvents()
     {
-        async Task<Some.Event> EventTaskFactory(Some.SpecificEvent specificEvent)
-            => await Task.FromResult(new Some.Event($"Continuation from '{specificEvent.Description}'"));
+        async ValueTask<Some.Event> EventValueTaskFactory(Some.SpecificEvent specificEvent)
+            => await ValueTask.FromResult(new Some.Event($"Continuation from '{specificEvent.Description}'"));
             
         var actualEvents = await Workflow
             .Start(
                 new Some.Event("Some event #1"),
                 new Some.SpecificEvent("Some specific event #2"),
                 new Some.Event("Some event #3"))
-            .ThenForEach<Some.Event, Some.SpecificEvent>(EventTaskFactory)
+            .When<Some.SpecificEvent>().Then(EventValueTaskFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
@@ -71,10 +71,10 @@ public partial class EventContinuation
     }
 
     [Test]
-    public async Task FromEventTaskFactoryOnSubeventsWithPredicateYieldsAllEvents()
+    public async Task FromEventValueTaskFactoryOnSubeventsWithPredicateYieldsAllEvents()
     {
-        async Task<Some.Event> EventTaskFactory(Some.SpecificEvent specificEvent)
-            => await Task.FromResult(new Some.Event($"Continuation from '{specificEvent.Description}'"));
+        async ValueTask<Some.Event> EventValueTaskFactory(Some.SpecificEvent specificEvent)
+            => await ValueTask.FromResult(new Some.Event($"Continuation from '{specificEvent.Description}'"));
 
         bool Predicate(Some.SpecificEvent specificEvent)
             => specificEvent.Description.Contains("2");
@@ -85,7 +85,7 @@ public partial class EventContinuation
                 new Some.SpecificEvent("Some specific event #2"),
                 new Some.Event("Some event #3"),
                 new Some.SpecificEvent("Some specific event #4"))
-            .ThenForEach<Some.Event, Some.SpecificEvent>(EventTaskFactory, Predicate)
+            .When<Some.SpecificEvent>(Predicate).Then(EventValueTaskFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {

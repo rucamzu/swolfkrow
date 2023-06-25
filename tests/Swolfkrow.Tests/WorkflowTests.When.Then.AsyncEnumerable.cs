@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Swolfkrow.Tests;
 
 [TestFixture]
-public partial class EventContinuation
+public partial class WhenThen
 {
     [Test]
     public async Task FromEventAsyncEnumerableFactoryYieldsAllEvents()
@@ -16,7 +16,7 @@ public partial class EventContinuation
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(3)))
-            .ThenForEach(EventAsyncEnumerableFactory)
+            .When<Some.Event>().Then(EventAsyncEnumerableFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
@@ -39,7 +39,7 @@ public partial class EventContinuation
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents.Take(3)))
-            .ThenForEach(EventAsyncEnumerableFactory, Predicate)
+            .When<Some.Event>(Predicate).Then(EventAsyncEnumerableFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
@@ -60,7 +60,7 @@ public partial class EventContinuation
                 new Some.Event("Some event #1"),
                 new Some.SpecificEvent("Some specific event #2"),
                 new Some.Event("Some event #3"))
-            .ThenForEach<Some.Event, Some.SpecificEvent>(EventAsyncEnumerableFactory)
+            .When<Some.SpecificEvent>().Then(EventAsyncEnumerableFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
@@ -85,7 +85,7 @@ public partial class EventContinuation
                 new Some.SpecificEvent("Some specific event #2"),
                 new Some.Event("Some event #3"),
                 new Some.SpecificEvent("Some specific event #4"))
-            .ThenForEach<Some.Event, Some.SpecificEvent>(EventAsyncEnumerableFactory, Predicate)
+            .When<Some.SpecificEvent>(Predicate).Then(EventAsyncEnumerableFactory)
             .ToListAsync();
 
         actualEvents.Should().Equal(new[] {
