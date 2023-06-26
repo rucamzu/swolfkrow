@@ -1,10 +1,10 @@
 namespace Swolfkrow;
 
 /// <summary>
-/// The prelude to a conditional composition on an asynchronous workflow that depends on one yielded event.
+/// The prelude to a two-step conditional composition triggered by events of type <typeparamref name="TTriggerEvent"/> yielded by an asynchronous workflow.
 /// </summary>
 /// <typeparam name="TEvent">The type of the events yielded by the asynchronous workflow.</typeparam>
-/// <typeparam name="TTriggerEvent">The type of the event that trigger the composition.</typeparam>
+/// <typeparam name="TTriggerEvent">The type of the events that trigger the composition.</typeparam>
 /// <remarks>The <see cref="Trigger{TEvent, TTriggerEvent}"/> class enables the declaration of two-step conditional compositions on asynchronous workflows, by storing the information relative to the triggering condition as specified in the initial call to any of the 'When' method overloads, and exposing in turn methods that allow defining the triggered action.</remarks>
 public partial class Trigger<TEvent, TTriggerEvent>
     where TTriggerEvent : TEvent
@@ -22,7 +22,7 @@ public partial class Trigger<TEvent, TTriggerEvent>
 }
 
 /// <summary>
-/// The prelude to a conditional composition on an asynchronous workflow that depends on two yielded events.
+/// The prelude to a two-step conditional composition triggered by events of type <typeparamref name="TTriggerEvent1"/> and <typeparamref name="TTriggerEvent2"/> yielded by an asynchronous workflow.
 /// </summary>
 /// <typeparam name="TEvent">The type of the events yielded by the asynchronous workflow.</typeparam>
 /// <typeparam name="TTriggerEvent1">The type of the first event that triggers the composition.</typeparam>
