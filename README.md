@@ -93,7 +93,7 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
     => Workflow
         .Start(Step1)
         .Then(Step2, 42)
-        .WithSideEffect(LogEvent);
+        .Do(LogEvent);
 ```
 
 ### Interruptions

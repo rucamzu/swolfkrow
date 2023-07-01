@@ -699,4 +699,290 @@ internal static partial class WorkflowImpl
         where TTriggerEvent2 : TEvent
        => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
             (triggerEvent1, triggerEvent2) => StartFromValueTaskFactory5(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2, arg3));
+
+    public static IAsyncEnumerable<TEvent> DoFromAction<TEvent>(
+        IAsyncEnumerable<TEvent> workflow, Action<TEvent> effect)
+        => workflow.Select(nextEvent => { effect(nextEvent); return nextEvent; });
+
+    public static IAsyncEnumerable<TEvent> DoFromAction1<TEvent, TArg>(
+        IAsyncEnumerable<TEvent> workflow, Action<TEvent, TArg> effect, TArg arg)
+        => DoFromAction(workflow, nextEvent => effect(nextEvent, arg));
+
+    public static IAsyncEnumerable<TEvent> DoFromAction2<TEvent, TArg1, TArg2>(
+        IAsyncEnumerable<TEvent> workflow, Action<TEvent, TArg1, TArg2> effect, TArg1 arg1, TArg2 arg2)
+        => DoFromAction(workflow, nextEvent => effect(nextEvent, arg1, arg2));
+
+    public static IAsyncEnumerable<TEvent> DoFromAction3<TEvent, TArg1, TArg2, TArg3>(
+        IAsyncEnumerable<TEvent> workflow, Action<TEvent, TArg1, TArg2, TArg3> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        => DoFromAction(workflow, nextEvent => effect(nextEvent, arg1, arg2, arg3));
+
+    public static IAsyncEnumerable<TEvent> DoFromTask<TEvent>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, Task> effect)
+        => workflow.SelectAwait(async nextEvent => { await effect(nextEvent); return nextEvent; });
+
+    public static IAsyncEnumerable<TEvent> DoFromTask1<TEvent, TArg>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, TArg, Task> effect, TArg arg)
+        => DoFromTask(workflow, nextEvent => effect(nextEvent, arg));
+
+    public static IAsyncEnumerable<TEvent> DoFromTask2<TEvent, TArg1, TArg2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
+        => DoFromTask(workflow, nextEvent => effect(nextEvent, arg1, arg2));
+
+    public static IAsyncEnumerable<TEvent> DoFromTask3<TEvent, TArg1, TArg2, TArg3>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        => DoFromTask(workflow, nextEvent => effect(nextEvent, arg1, arg2, arg3));
+
+    public static IAsyncEnumerable<TEvent> DoFromValueTask<TEvent>(
+        IAsyncEnumerable<TEvent> workflow, Func<TEvent, ValueTask> effect)
+        => workflow.SelectAwait(async nextEvent => { await effect(nextEvent); return nextEvent; });
+
+    public static IAsyncEnumerable<TEvent> DoFromValueTask1<TEvent, TArg>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, TArg, ValueTask> effect, TArg arg)
+        => DoFromValueTask(workflow, nextEvent => effect(nextEvent, arg));
+
+    public static IAsyncEnumerable<TEvent> DoFromValueTask2<TEvent, TArg1, TArg2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, TArg1, TArg2, ValueTask> effect, TArg1 arg1, TArg2 arg2)
+        => DoFromValueTask(workflow, nextEvent => effect(nextEvent, arg1, arg2));
+
+    public static IAsyncEnumerable<TEvent> DoFromValueTask3<TEvent, TArg1, TArg2, TArg3>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TEvent, TArg1, TArg2, TArg3, ValueTask> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        => DoFromValueTask(workflow, nextEvent => effect(nextEvent, arg1, arg2, arg3));
+
+    public static async IAsyncEnumerable<TEvent> DoFromTriggered1Action<TEvent, TTriggerEvent>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Action<TTriggerEvent> effect)
+    {
+        await foreach (var nextEvent in workflow)
+        {
+            if (nextEvent is TTriggerEvent triggerEvent && await predicate(triggerEvent))
+                effect(triggerEvent);
+
+            yield return nextEvent;
+        }
+    }
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered1Action1<TEvent, TTriggerEvent, TArg>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Action<TTriggerEvent, TArg> effect, TArg arg)
+        => DoFromTriggered1Action(workflow, predicate, triggerEvent => effect(triggerEvent, arg));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered1Action2<TEvent, TTriggerEvent, TArg1, TArg2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Action<TTriggerEvent, TArg1, TArg2> effect, TArg1 arg1, TArg2 arg2)
+        => DoFromTriggered1Action(workflow, predicate, triggerEvent => effect(triggerEvent, arg1, arg2));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered1Action3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Action<TTriggerEvent, TArg1, TArg2, TArg3> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        => DoFromTriggered1Action(workflow, predicate, triggerEvent => effect(triggerEvent, arg1, arg2, arg3));
+
+    public static async IAsyncEnumerable<TEvent> DoFromTriggered1Task<TEvent, TTriggerEvent>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Func<TTriggerEvent, Task> effect)
+    {
+        await foreach (var nextEvent in workflow)
+        {
+            if (nextEvent is TTriggerEvent triggerEvent && await predicate(triggerEvent))
+                await effect(triggerEvent);
+
+            yield return nextEvent;
+        }
+    }
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered1Task1<TEvent, TTriggerEvent, TArg>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Func<TTriggerEvent, TArg, Task> effect, TArg arg)
+        => DoFromTriggered1Task(workflow, predicate, triggerEvent => effect(triggerEvent, arg));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered1Task2<TEvent, TTriggerEvent, TArg1, TArg2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Func<TTriggerEvent, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
+        => DoFromTriggered1Task(workflow, predicate, triggerEvent => effect(triggerEvent, arg1, arg2));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered1Task3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Func<TTriggerEvent, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        => DoFromTriggered1Task(workflow, predicate, triggerEvent => effect(triggerEvent, arg1, arg2, arg3));
+
+    public static async IAsyncEnumerable<TEvent> DoFromTriggered1ValueTask<TEvent, TTriggerEvent>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Func<TTriggerEvent, ValueTask> effect)
+    {
+        await foreach (var nextEvent in workflow)
+        {
+            if (nextEvent is TTriggerEvent triggerEvent && await predicate(triggerEvent))
+                await effect(triggerEvent);
+
+            yield return nextEvent;
+        }
+    }
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered1ValueTask1<TEvent, TTriggerEvent, TArg>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Func<TTriggerEvent, TArg, ValueTask> effect, TArg arg)
+        => DoFromTriggered1ValueTask(workflow, predicate, triggerEvent => effect(triggerEvent, arg));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered1ValueTask2<TEvent, TTriggerEvent, TArg1, TArg2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Func<TTriggerEvent, TArg1, TArg2, ValueTask> effect, TArg1 arg1, TArg2 arg2)
+        => DoFromTriggered1ValueTask(workflow, predicate, triggerEvent => effect(triggerEvent, arg1, arg2));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered1ValueTask3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent, Task<bool>> predicate,
+        Func<TTriggerEvent, TArg1, TArg2, TArg3, ValueTask> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        => DoFromTriggered1ValueTask(workflow, predicate, triggerEvent => effect(triggerEvent, arg1, arg2, arg3));
+
+    public static async IAsyncEnumerable<TEvent> DoFromTriggered2Action<TEvent, TTriggerEvent1, TTriggerEvent2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Action<TTriggerEvent1, TTriggerEvent2> effect)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+    {
+        EventCache2<TEvent, TTriggerEvent1, TTriggerEvent2> cached = new();
+
+        await foreach (var nextEvent in workflow)
+        {
+            if (cached.Cache(nextEvent) && cached.IsCached && await predicate(cached.Event1!, cached.Event2!))
+                effect(cached.Event1!, cached.Event2!);
+
+            yield return nextEvent;
+        }
+    }
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered2Action1<TEvent, TTriggerEvent1, TTriggerEvent2, TArg>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Action<TTriggerEvent1, TTriggerEvent2, TArg> effect, TArg arg)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+        => DoFromTriggered2Action(workflow, predicate,
+            (triggerEvent1, triggerEvent2) => effect(triggerEvent1, triggerEvent2, arg));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered2Action2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Action<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2> effect, TArg1 arg1, TArg2 arg2)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+        => DoFromTriggered2Action(workflow, predicate,
+            (triggerEvent1, triggerEvent2) => effect(triggerEvent1, triggerEvent2, arg1, arg2));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered2Action3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Action<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+        => DoFromTriggered2Action(workflow, predicate,
+            (triggerEvent1, triggerEvent2) => effect(triggerEvent1, triggerEvent2, arg1, arg2, arg3));
+
+    public static async IAsyncEnumerable<TEvent> DoFromTriggered2Task<TEvent, TTriggerEvent1, TTriggerEvent2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Func<TTriggerEvent1, TTriggerEvent2, Task> effect)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+    {
+        EventCache2<TEvent, TTriggerEvent1, TTriggerEvent2> cached = new();
+
+        await foreach (var nextEvent in workflow)
+        {
+            if (cached.Cache(nextEvent) && cached.IsCached && await predicate(cached.Event1!, cached.Event2!))
+                await effect(cached.Event1!, cached.Event2!);
+
+            yield return nextEvent;
+        }
+    }
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered2Task1<TEvent, TTriggerEvent1, TTriggerEvent2, TArg>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Func<TTriggerEvent1, TTriggerEvent2, TArg, Task> effect, TArg arg)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+        => DoFromTriggered2Task(workflow, predicate,
+            (triggerEvent1, triggerEvent2) => effect(triggerEvent1, triggerEvent2, arg));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered2Task2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Func<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+        => DoFromTriggered2Task(workflow, predicate,
+            (triggerEvent1, triggerEvent2) => effect(triggerEvent1, triggerEvent2, arg1, arg2));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered2Task3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Func<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+        => DoFromTriggered2Task(workflow, predicate,
+            (triggerEvent1, triggerEvent2) => effect(triggerEvent1, triggerEvent2, arg1, arg2, arg3));
+
+    public static async IAsyncEnumerable<TEvent> DoFromTriggered2ValueTask<TEvent, TTriggerEvent1, TTriggerEvent2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Func<TTriggerEvent1, TTriggerEvent2, ValueTask> effect)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+    {
+        EventCache2<TEvent, TTriggerEvent1, TTriggerEvent2> cached = new();
+
+        await foreach (var nextEvent in workflow)
+        {
+            if (cached.Cache(nextEvent) && cached.IsCached && await predicate(cached.Event1!, cached.Event2!))
+                await effect(cached.Event1!, cached.Event2!);
+
+            yield return nextEvent;
+        }
+    }
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered2ValueTask1<TEvent, TTriggerEvent1, TTriggerEvent2, TArg>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Func<TTriggerEvent1, TTriggerEvent2, TArg, ValueTask> effect, TArg arg)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+        => DoFromTriggered2ValueTask(workflow, predicate,
+            (triggerEvent1, triggerEvent2) => effect(triggerEvent1, triggerEvent2, arg));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered2ValueTask2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Func<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, ValueTask> effect, TArg1 arg1, TArg2 arg2)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+        => DoFromTriggered2ValueTask(workflow, predicate,
+            (triggerEvent1, triggerEvent2) => effect(triggerEvent1, triggerEvent2, arg1, arg2));
+
+    public static IAsyncEnumerable<TEvent> DoFromTriggered2ValueTask3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
+        Func<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3, ValueTask> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        where TTriggerEvent1 : TEvent
+        where TTriggerEvent2 : TEvent
+        => DoFromTriggered2ValueTask(workflow, predicate,
+            (triggerEvent1, triggerEvent2) => effect(triggerEvent1, triggerEvent2, arg1, arg2, arg3));
 }

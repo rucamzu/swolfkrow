@@ -27,8 +27,9 @@ public static partial class StatefulContinuation
         void UpdateCurrentState(TEvent nextEvent)
             => currentState = computeNextState(currentState, nextEvent);
 
-        return workflow
-            .WithSideEffect(UpdateCurrentState)
+        return Workflow
+            .Start(workflow)
+            .Do(UpdateCurrentState)
             .ToWorkflow()
             .Then(() => createContinuation(currentState));
     }
@@ -53,8 +54,9 @@ public static partial class StatefulContinuation
         async Task UpdateCurrentState(TEvent nextEvent)
             => currentState = await computeNextState(currentState, nextEvent);
 
-        return workflow
-            .WithSideEffect(UpdateCurrentState)
+        return Workflow
+            .Start(workflow)
+            .Do(UpdateCurrentState)
             .ToWorkflow()
             .Then(() => createContinuation(currentState));
     }
@@ -79,8 +81,9 @@ public static partial class StatefulContinuation
         async ValueTask UpdateCurrentState(TEvent nextEvent)
             => currentState = await computeNextState(currentState, nextEvent);
 
-        return workflow
-            .WithSideEffect(UpdateCurrentState)
+        return Workflow
+            .Start(workflow)
+            .Do(UpdateCurrentState)
             .ToWorkflow()
             .Then(() => createContinuation(currentState));
     }

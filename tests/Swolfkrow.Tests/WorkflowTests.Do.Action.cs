@@ -16,7 +16,7 @@ public partial class SideEffect
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents))
-            .WithSideEffect(SideEffect)
+            .Do(SideEffect)
             .ToListAsync();
 
         effectedEvents.Should().Equal(expectedEvents);
@@ -32,7 +32,7 @@ public partial class SideEffect
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents))
-            .WithSideEffect(SideEffect)
+            .Do(SideEffect)
             .ToListAsync();
 
         expectedEvents.Should().Equal(expectedEvents);
@@ -49,7 +49,7 @@ public partial class SideEffect
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents))
-            .WithSideEffect(SideEffect, Predicate)
+            .When<Some.Event>(Predicate).Do(SideEffect)
             .ToListAsync();
 
         effectedEvents.Should().Equal(expectedEvents.Where(Predicate));
@@ -66,7 +66,7 @@ public partial class SideEffect
 
         var actualEvents = await Workflow
             .Start(Some.Workflow.FromEvents(expectedEvents))
-            .WithSideEffect(SideEffect, Predicate)
+            .When<Some.Event>(Predicate).Do(SideEffect)
             .ToListAsync();
 
         expectedEvents.Should().Equal(expectedEvents);
