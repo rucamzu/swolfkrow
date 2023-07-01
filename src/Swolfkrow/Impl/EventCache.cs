@@ -1,5 +1,20 @@
 namespace Swolfkrow.Impl;
 
+internal class EventCache1<TEvent>
+{
+    private CachedEvent<TEvent> _cachedEvent = CachedEvent.Empty<TEvent>();
+
+    public bool Cache(TEvent nextEvent)
+    {
+        _cachedEvent = CachedEvent.Cached(nextEvent);
+        return true;
+    }
+
+    public bool IsCached => _cachedEvent.IsCached;
+
+    public TEvent? Event => _cachedEvent.Event;
+}
+
 internal class EventCache1<TEvent, TCachedEvent>
     where TCachedEvent : TEvent
 {
