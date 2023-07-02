@@ -1231,4 +1231,47 @@ internal static partial class WorkflowImpl
         where TTriggerEvent2 : TEvent
         => DoFromTriggered2ValueTask(workflow, predicate,
             (triggerEvent1, triggerEvent2) => effect(triggerEvent1, triggerEvent2, arg1, arg2, arg3));
+
+    public static IAsyncEnumerable<TEvent> ThenWithStateFromFactory<TEvent, TState>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TState, IAsyncEnumerable<TEvent>> createContinuation,
+        Func<TState, TEvent, TState> computeNextState,
+        TState initialState)
+        => ThenWithStateFromTaskFactory(
+            workflow,
+            createContinuation,
+            (state, nextEvent) => Task.FromResult(computeNextState(state, nextEvent)),
+            initialState);
+
+    public static async IAsyncEnumerable<TEvent> ThenWithStateFromTaskFactory<TEvent, TState>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TState, IAsyncEnumerable<TEvent>> createContinuation,
+        Func<TState, TEvent, Task<TState>> computeNextState,
+        TState initialState)
+    {
+        TState currentState = initialState;
+
+        await foreach (var nextEvent in workflow)
+        {
+            currentState = await computeNextState(currentState, nextEvent);
+
+            yield return nextEvent;
+        }
+
+        await foreach (var nextEvent in createContinuation(currentState))
+        {
+            yield return nextEvent;
+        }
+    }
+
+    public static IAsyncEnumerable<TEvent> ThenWithStateFromValueTaskFactory<TEvent, TState>(
+        IAsyncEnumerable<TEvent> workflow,
+        Func<TState, IAsyncEnumerable<TEvent>> createContinuation,
+        Func<TState, TEvent, ValueTask<TState>> computeNextState,
+        TState initialState)
+        => ThenWithStateFromTaskFactory(
+            workflow,
+            createContinuation,
+            (state, nextEvent) => computeNextState(state, nextEvent).AsTask(),
+            initialState);
 }
