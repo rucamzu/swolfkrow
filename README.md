@@ -1,27 +1,56 @@
-# Swolfkrow
+# *Swolfkrow*
 
-Swolfkrow (pronounced */ˈwɜː(r)kˌfləʊs/*) is a DSL designed to declaratively compose asynchronous workflows based on the [`IAsyncEnumerable<out T>`][system.collections.generic.iasyncenumerable] interface.
+*Swolfkrow* (pronounced */ˈwɜː(r)kˌfləʊs/*) is a Domain Specific Language (DSL) designed to declaratively compose [asynchronous workflows](#asynchronous-workflows) through a fluent API.
 
-## Workflows
+## Asynchronous workflows
 
-In the context of this library, an asynchronous workflow is defined as a function that takes any number of parameters, executes arbitrary business logic, and returns an asynchronous stream of events signaling progress, outcomes, and errors.
+Asynchronous workflows are asynchronous computations that yield an stream of *events* signaling progress, outcomes, and errors.
 
-## Usage
+In practice, asynchronous workflows are objects implementing the [`IAsyncEnumerable<out T>`][system.collections.generic.iasyncenumerable] interface, with a couple of particularities:
 
-### Workflow continuations
+- The generic type `T`, named `TEvent` across the *Swolfkrow* library, represents the base type from which the types of all events potentially yielded by the asynchronous workflow derive.
+- Yielded `TEvent` objects are meant to describe significant events occured during the workflow's execution.
+- When enumerated, asynchronous workflows can execute arbitrary asynchronous logic in between yielded `TEvent` objects.
 
-Asynchronous workflows can be composed as sequences of simpler workflows, where one workflow is continued by another:
+### The `Workflow<TEvent>` class
+
+Swolfkrow represents asynchronous workflows with an explicit [`Workflow<TEvent>`][swolfkrow.workflow] class that implements the [`IAsyncEnumerable<out T>`][system.collections.generic.iasyncenumerable] interface.
+
+The `Workflow<TEvent>` class exists both as a semantic anchor with a self-descriptive name, and as a convenient container for the fluent API. It is meaningful during the composition of asynchronous workflows, however the resulting workflow objects behave as expected from any object implementing the [`IAsyncEnumerable<out T>`][system.collections.generic.iasyncenumerable] interface, meaning they will execute their logic and yield events only when enumerated.
+
+
+## Overview
+
+The following subsections briefly describe the different types of asynchronous workflow compositions that can be performed through *Swolfkrow*'s fluent API operators.
+
+### Initiations
+
+The family of `Start` method overloads provides a single entry point to the DSL:
 
 ```csharp
-public record SomeEvent(string Description);
+record EventBase(string Description);
 
-IAsyncEnumerable<SomeEvent> Step1() { ... }
-IAsyncEnumerable<SomeEvent> Step2(int someInfo) { ... }
+IAsyncEnumerable<EventBase> Step1() { ... }
 
-IAsyncEnumerable<SomeEvent> ComposedWorkflow()
+IAsyncEnumerable<EventBase> ComposeWorkflow()
+    => Workflow
+        .Start(Step1);
+```
+
+### Continuations
+
+Asynchronous workflows can be composed as sequences of simpler workflows, where one workflow starts when the previous one finishes yielding events:
+
+```csharp
+record EventBase(string Description);
+
+IAsyncEnumerable<EventBase> Step1() { ... }
+IAsyncEnumerable<EventBase> Step2() { ... }
+
+IAsyncEnumerable<EventBase> ComposedWorkflow()
     => Workflow
         .Start(Step1)
-        .Then(Step2, 42);
+        .Then(Step2);
 ```
 
 ### Stateful continuations
@@ -29,12 +58,12 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
 Workflow continuations can be based on state explicitly folded from the events yielded by the workflow:
 
 ```csharp
-public record SomeEvent(string Description);
+record EventBase(string Description);
 
-IAsyncEnumerable<SomeEvent> Step1() { ... }
-IAsyncEnumerable<SomeEvent> Step2(int someInfo) { ... }
+IAsyncEnumerable<EventBase> Step1() { ... }
+IAsyncEnumerable<EventBase> Step2(int someInfo) { ... }
 
-IAsyncEnumerable<SomeEvent> ComposedWorkflow()
+IAsyncEnumerable<EventBase> ComposedWorkflow()
     => Workflow
         .Start(Step1)
         .Then(
@@ -43,37 +72,21 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
             initialState: 0);
 ```
 
-### Event continuations
+### Intercalations
 
-Individual events yielded by an asynchronous workflow can be continued by other workflows that are intercalated right after:
-
-```csharp
-public record SomeEvent(string Description);
-
-IAsyncEnumerable<SomeEvent> Step1() { ... }
-IAsyncEnumerable<SomeEvent> Step2(SomeEvent someEvent) { ... }
-
-IAsyncEnumerable<SomeEvent> ComposedWorkflow()
-    => Workflow
-        .Start(Step1)
-        .ThenForEach(Step2);
-```
-
-Optionally, it is possible to continue only events of a specific sub-type and/or that satisfy a predicate:
+Asynchronous workflows can be intercalated and executed in the middle of other asynchronous workflows, triggered by events of a specific type and/or satisfying a predicate:
 
 ```csharp
-public record SomeEvent(string Description);
-public record SomeSpecificEvent(string Description, ...) : SomeEvent(Description);
+record EventBase(string Description);
+record SomethingHappened(string Description) : EventBase(Description);
 
-IAsyncEnumerable<SomeEvent> Step1() { ... }
-IAsyncEnumerable<SomeEvent> Step2(SomeSpecificEvent someSpecificEvent) { ... }
+IAsyncEnumerable<EventBase> Step1() { ... }
+IAsyncEnumerable<EventBase> Step2(SomethingHappened somethingHappened) { ... }
 
-bool ContinueIf(SomeSpecificEvent someSpecificEvent) { ... }
-
-IAsyncEnumerable<SomeEvent> ComposedWorkflow()
+IAsyncEnumerable<EventBase> ComposedWorkflow()
     => Workflow
         .Start(Step1)
-        .ThenForEach(Step2, ContinueIf);
+        .When<SomethingHappened>().Then(Step2);
 ```
 
 ### Side effects
@@ -81,18 +94,18 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
 Side effects can be deliberately injected into an asynchronous workflow:
 
 ```csharp
-public record SomeEvent(string Description);
+record EventBase(string Description);
 
-IAsyncEnumerable<SomeEvent> Step1() { ... }
-IAsyncEnumerable<SomeEvent> Step2(int someInfo) { ... }
+IAsyncEnumerable<EventBase> Step1() { ... }
+IAsyncEnumerable<EventBase> Step2() { ... }
 
-void LogEvent(SomeEvent someEvent)
-    => Console.WriteLine($"Something happened: {SomeEvent}")
+void LogEvent(EventBase someEvent)
+    => Console.WriteLine($"Something happened: {EventBase}")
 
-IAsyncEnumerable<SomeEvent> ComposedWorkflow()
+IAsyncEnumerable<EventBase> ComposedWorkflow()
     => Workflow
         .Start(Step1)
-        .Then(Step2, 42)
+        .Then(Step2)
         .Do(LogEvent);
 ```
 
@@ -101,15 +114,15 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
 Asynchronous workflows can be interrupted based on a condition computed on each of the yielded events:
 
 ```csharp
-public record SomeEvent(string Description);
-public record SomeError(string Description, Exception Exception) : SomeEvent(Description);
+public record EventBase(string Description);
+public record SomeError(string Description, Exception Exception) : EventBase(Description);
 
-IAsyncEnumerable<SomeEvent> Step1() { ... }
-IAsyncEnumerable<SomeEvent> Step2(int someInfo) { ... }
+IAsyncEnumerable<EventBase> Step1() { ... }
+IAsyncEnumerable<EventBase> Step2(int someInfo) { ... }
 
-bool IsError(SomeEvent nextEvent) => nextEvent is SomeError;
+bool IsError(EventBase nextEvent) => nextEvent is SomeError;
 
-IAsyncEnumerable<SomeEvent> ComposedWorkflow()
+IAsyncEnumerable<EventBase> ComposedWorkflow()
     => Workflow
         .Start(Step1)
         .Then(Step2, 42)
@@ -118,3 +131,5 @@ IAsyncEnumerable<SomeEvent> ComposedWorkflow()
 
 
 [system.collections.generic.iasyncenumerable]: https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1
+
+[swolfkrow.workflow]: ./src/Swolfkrow/Workflow.cs
