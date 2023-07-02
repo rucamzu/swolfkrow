@@ -1,4 +1,13 @@
-# 0.2.4 (2023-06-dd)
+# 0.3.0 (2023-07-02)
+
+- BREAKING CHANGE: rewritten extension methods as members of a newly added `Workflow<TEvent>` class.
+- BREAKING CHANGE: rewritten intercalations as two-step compositions.
+
+# 0.2.5 (2023-06-19)
+
+- Added intercalation overloads.
+
+# 0.2.4 (2023-06-13)
 
 - Added interruptions.
 
