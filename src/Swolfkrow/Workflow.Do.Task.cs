@@ -9,7 +9,7 @@ public partial class Workflow<TEvent>
     /// </summary>
     /// <param name="effect">A function encapsulating an asynchronous side effect that takes an event of type <typeparamref name="TEvent"/> and returns a <see cref="Task"/>.</param>
     /// <returns>A new asynchronous <see cref="Workflow{TEvent}"/> that yields all the events yielded by the original, after executing the given asynchronous side <paramref name="effect"/> on each yielded event.</returns>
-    public IAsyncEnumerable<TEvent> Do(Func<TEvent, Task> effect)
+    public Workflow<TEvent> Do(Func<TEvent, Task> effect)
         => WorkflowImpl.DoFromTask(_workflow, effect).ToWorkflow();
 
     /// <summary>
@@ -19,7 +19,7 @@ public partial class Workflow<TEvent>
     /// <param name="arg">The argument passed to the given asynchronous side <paramref name="effect"/>.</param>
     /// <typeparam name="TArg">The type of the argument passed to the given asynchronous side <paramref name="effect"/>.</typeparam>
     /// <returns>A new asynchronous <see cref="Workflow{TEvent}"/> that yields all the events yielded by the original, after executing the given asynchronous side <paramref name="effect"/> on each yielded event.</returns>
-    public IAsyncEnumerable<TEvent> Do<TArg>(
+    public Workflow<TEvent> Do<TArg>(
         Func<TEvent, TArg, Task> effect, TArg arg)
         => WorkflowImpl.DoFromTask1(_workflow, effect, arg).ToWorkflow();
 
@@ -32,7 +32,7 @@ public partial class Workflow<TEvent>
     /// <typeparam name="TArg1">The type of the first argument passed to the given asynchronous side <paramref name="effect"/>.</typeparam>
     /// <typeparam name="TArg2">The type of the second argument passed to the given asynchronous side <paramref name="effect"/>.</typeparam>
     /// <returns>A new asynchronous <see cref="Workflow{TEvent}"/> that yields all the events yielded by the original, after executing the given asynchronous side <paramref name="effect"/> on each yielded event.</returns>
-    public IAsyncEnumerable<TEvent> Do<TArg1, TArg2>(
+    public Workflow<TEvent> Do<TArg1, TArg2>(
         Func<TEvent, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
         => WorkflowImpl.DoFromTask2(_workflow, effect, arg1, arg2).ToWorkflow();
 
@@ -47,7 +47,7 @@ public partial class Workflow<TEvent>
     /// <typeparam name="TArg2">The type of the second argument passed to the given asynchronous side <paramref name="effect"/>.</typeparam>
     /// <typeparam name="TArg3">The type of the third argument passed to the given asynchronous side <paramref name="effect"/>.</typeparam>
     /// <returns>A new asynchronous <see cref="Workflow{TEvent}"/> that yields all the events yielded by the original, after executing the given asynchronous side <paramref name="effect"/> on each yielded event.</returns>
-    public IAsyncEnumerable<TEvent> Do<TArg1, TArg2, TArg3>(
+    public Workflow<TEvent> Do<TArg1, TArg2, TArg3>(
         Func<TEvent, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => WorkflowImpl.DoFromTask3(_workflow, effect, arg1, arg2, arg3).ToWorkflow();
 }
