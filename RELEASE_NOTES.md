@@ -1,3 +1,7 @@
+# 0.3.1 (2023-07-04)
+
+- Fixed the return types of some public api methods.
+
 # 0.3.0 (2023-07-02)
 
 - BREAKING CHANGE: rewritten extension methods as members of a newly added `Workflow<TEvent>` class.
