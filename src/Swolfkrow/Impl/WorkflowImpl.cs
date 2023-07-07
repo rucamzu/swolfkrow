@@ -155,17 +155,17 @@ internal static partial class WorkflowImpl
     public static IAsyncEnumerable<TEvent> ThenFromAsyncEnumerableFactory1<TArg, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg, IAsyncEnumerable<TEvent>> createAsyncEnumerable, TArg arg)
-        => ThenFromAsyncEnumerable(workflow, StartFromAsyncEnumerableFactory1(createAsyncEnumerable, arg));
+        => ThenFromAsyncEnumerable(workflow, StartFromAsyncEnumerableFactory(createAsyncEnumerable.BindAll(arg)));
 
     public static IAsyncEnumerable<TEvent> ThenFromAsyncEnumerableFactory2<TArg1, TArg2, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, IAsyncEnumerable<TEvent>> createAsyncEnumerable, TArg1 arg1, TArg2 arg2)
-        => ThenFromAsyncEnumerable(workflow, StartFromAsyncEnumerableFactory2(createAsyncEnumerable, arg1, arg2));
+        => ThenFromAsyncEnumerable(workflow, StartFromAsyncEnumerableFactory(createAsyncEnumerable.BindAll(arg1, arg2)));
 
     public static IAsyncEnumerable<TEvent> ThenFromAsyncEnumerableFactory3<TArg1, TArg2, TArg3, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, TArg3, IAsyncEnumerable<TEvent>> createAsyncEnumerable, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => ThenFromAsyncEnumerable(workflow, StartFromAsyncEnumerableFactory3(createAsyncEnumerable, arg1, arg2, arg3));
+        => ThenFromAsyncEnumerable(workflow, StartFromAsyncEnumerableFactory(createAsyncEnumerable.BindAll(arg1, arg2, arg3)));
 
     public static IAsyncEnumerable<TEvent> ThenFromEnumerable<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -180,17 +180,17 @@ internal static partial class WorkflowImpl
     public static IAsyncEnumerable<TEvent> ThenFromEnumerableFactory1<TArg, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg, IEnumerable<TEvent>> createEnumerable, TArg arg)
-        => ThenFromAsyncEnumerable(workflow, StartFromEnumerableFactory1(createEnumerable, arg));
+        => ThenFromAsyncEnumerable(workflow, StartFromEnumerableFactory(createEnumerable.BindAll(arg)));
 
     public static IAsyncEnumerable<TEvent> ThenFromEnumerableFactory2<TArg1, TArg2, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, IEnumerable<TEvent>> createEnumerable, TArg1 arg1, TArg2 arg2)
-        => ThenFromAsyncEnumerable(workflow, StartFromEnumerableFactory2(createEnumerable, arg1, arg2));
+        => ThenFromAsyncEnumerable(workflow, StartFromEnumerableFactory(createEnumerable.BindAll(arg1, arg2)));
 
     public static IAsyncEnumerable<TEvent> ThenFromEnumerableFactory3<TArg1, TArg2, TArg3, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, TArg3, IEnumerable<TEvent>> createEnumerable, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => ThenFromAsyncEnumerable(workflow, StartFromEnumerableFactory3(createEnumerable, arg1, arg2, arg3));
+        => ThenFromAsyncEnumerable(workflow, StartFromEnumerableFactory(createEnumerable.BindAll(arg1, arg2, arg3)));
 
     public static IAsyncEnumerable<TEvent> ThenFromEventFactory<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -200,17 +200,17 @@ internal static partial class WorkflowImpl
     public static IAsyncEnumerable<TEvent> ThenFromEventFactory1<TArg, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg, TEvent> createEvent, TArg arg)
-        => ThenFromAsyncEnumerable(workflow, StartFromEventFactory1(createEvent, arg));
+        => ThenFromAsyncEnumerable(workflow, StartFromEventFactory(createEvent.BindAll(arg)));
 
     public static IAsyncEnumerable<TEvent> ThenFromEventFactory2<TArg1, TArg2, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, TEvent> createEvent, TArg1 arg1, TArg2 arg2)
-        => ThenFromAsyncEnumerable(workflow, StartFromEventFactory2(createEvent, arg1, arg2));
+        => ThenFromAsyncEnumerable(workflow, StartFromEventFactory(createEvent.BindAll(arg1, arg2)));
 
     public static IAsyncEnumerable<TEvent> ThenFromEventFactory3<TArg1, TArg2, TArg3, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, TArg3, TEvent> createEvent, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => ThenFromAsyncEnumerable(workflow, StartFromEventFactory3(createEvent, arg1, arg2, arg3));
+        => ThenFromAsyncEnumerable(workflow, StartFromEventFactory(createEvent.BindAll(arg1, arg2, arg3)));
 
     public static IAsyncEnumerable<TEvent> ThenFromTask<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -225,17 +225,17 @@ internal static partial class WorkflowImpl
     public static IAsyncEnumerable<TEvent> ThenFromTaskFactory1<TArg, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg, Task<TEvent>> createTask, TArg arg)
-        => ThenFromAsyncEnumerable(workflow, StartFromTaskFactory1(createTask, arg));
+        => ThenFromAsyncEnumerable(workflow, StartFromTaskFactory(createTask.BindAll(arg)));
 
     public static IAsyncEnumerable<TEvent> ThenFromTaskFactory2<TArg1, TArg2, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, Task<TEvent>> createTask, TArg1 arg1, TArg2 arg2)
-        => ThenFromAsyncEnumerable(workflow, StartFromTaskFactory2(createTask, arg1, arg2));
+        => ThenFromAsyncEnumerable(workflow, StartFromTaskFactory(createTask.BindAll(arg1, arg2)));
 
     public static IAsyncEnumerable<TEvent> ThenFromTaskFactory3<TArg1, TArg2, TArg3, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, TArg3, Task<TEvent>> createTask, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => ThenFromAsyncEnumerable(workflow, StartFromTaskFactory3(createTask, arg1, arg2, arg3));
+        => ThenFromAsyncEnumerable(workflow, StartFromTaskFactory(createTask.BindAll(arg1, arg2, arg3)));
 
     public static IAsyncEnumerable<TEvent> ThenFromValueTask<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -250,17 +250,17 @@ internal static partial class WorkflowImpl
     public static IAsyncEnumerable<TEvent> ThenFromValueTaskFactory1<TArg, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg, ValueTask<TEvent>> createValueTask, TArg arg)
-        => ThenFromAsyncEnumerable(workflow, StartFromValueTaskFactory1(createValueTask, arg));
+        => ThenFromAsyncEnumerable(workflow, StartFromValueTaskFactory(createValueTask.BindAll(arg)));
 
     public static IAsyncEnumerable<TEvent> ThenFromValueTaskFactory2<TArg1, TArg2, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, ValueTask<TEvent>> createValueTask, TArg1 arg1, TArg2 arg2)
-        => ThenFromAsyncEnumerable(workflow, StartFromValueTaskFactory2(createValueTask, arg1, arg2));
+        => ThenFromAsyncEnumerable(workflow, StartFromValueTaskFactory(createValueTask.BindAll(arg1, arg2)));
 
     public static IAsyncEnumerable<TEvent> ThenFromValueTaskFactory3<TArg1, TArg2, TArg3, TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TArg1, TArg2, TArg3, ValueTask<TEvent>> createValueTask, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => ThenFromAsyncEnumerable(workflow, StartFromValueTaskFactory3(createValueTask, arg1, arg2, arg3));
+        => ThenFromAsyncEnumerable(workflow, StartFromValueTaskFactory(createValueTask.BindAll(arg1, arg2, arg3)));
 
     public static async IAsyncEnumerable<TEvent> WhileFromPredicate<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
