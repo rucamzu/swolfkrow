@@ -362,21 +362,21 @@ internal static partial class WorkflowImpl
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg, IAsyncEnumerable<TEvent>> createContinuation, TArg arg)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromAsyncEnumerableFactory2(createContinuation, triggerEvent, arg));
+            triggerEvent => StartFromAsyncEnumerableFactory1(createContinuation.BindLast(arg), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0AsyncEnumerableFactory2<TEvent, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg1, TArg2, IAsyncEnumerable<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromAsyncEnumerableFactory3(createContinuation, triggerEvent, arg1, arg2));
+            triggerEvent => StartFromAsyncEnumerableFactory1(createContinuation.BindLast(arg1, arg2), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0AsyncEnumerableFactory3<TEvent, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg1, TArg2, TArg3, IAsyncEnumerable<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromAsyncEnumerableFactory4(createContinuation, triggerEvent, arg1, arg2, arg3));
+            triggerEvent => StartFromAsyncEnumerableFactory1(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0EnumerableFactory<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -390,21 +390,21 @@ internal static partial class WorkflowImpl
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg, IEnumerable<TEvent>> createContinuation, TArg arg)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEnumerableFactory2(createContinuation, triggerEvent, arg));
+            triggerEvent => StartFromEnumerableFactory1(createContinuation.BindLast(arg), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0EnumerableFactory2<TEvent, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg1, TArg2, IEnumerable<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEnumerableFactory3(createContinuation, triggerEvent, arg1, arg2));
+            triggerEvent => StartFromEnumerableFactory1(createContinuation.BindLast(arg1, arg2), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0EnumerableFactory3<TEvent, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg1, TArg2, TArg3, IEnumerable<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEnumerableFactory4(createContinuation, triggerEvent, arg1, arg2, arg3));
+            triggerEvent => StartFromEnumerableFactory1(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0EventFactory<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -418,21 +418,21 @@ internal static partial class WorkflowImpl
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg, TEvent> createContinuation, TArg arg)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEventFactory2(createContinuation, triggerEvent, arg));
+            triggerEvent => StartFromEventFactory1(createContinuation.BindLast(arg), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0EventFactory2<TEvent, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg1, TArg2, TEvent> createContinuation, TArg1 arg1, TArg2 arg2)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEventFactory3(createContinuation, triggerEvent, arg1, arg2));
+            triggerEvent => StartFromEventFactory1(createContinuation.BindLast(arg1, arg2), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0EventFactory3<TEvent, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg1, TArg2, TArg3, TEvent> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEventFactory4(createContinuation, triggerEvent, arg1, arg2, arg3));
+            triggerEvent => StartFromEventFactory1(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0TaskFactory<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -446,21 +446,21 @@ internal static partial class WorkflowImpl
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg, Task<TEvent>> createContinuation, TArg arg)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromTaskFactory2(createContinuation, triggerEvent, arg));
+            triggerEvent => StartFromTaskFactory1(createContinuation.BindLast(arg), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0TaskFactory2<TEvent, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg1, TArg2, Task<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromTaskFactory3(createContinuation, triggerEvent, arg1, arg2));
+            triggerEvent => StartFromTaskFactory1(createContinuation.BindLast(arg1, arg2), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0TaskFactory3<TEvent, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg1, TArg2, TArg3, Task<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromTaskFactory4(createContinuation, triggerEvent, arg1, arg2, arg3));
+            triggerEvent => StartFromTaskFactory1(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0ValueTaskFactory<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -474,21 +474,21 @@ internal static partial class WorkflowImpl
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg, ValueTask<TEvent>> createContinuation, TArg arg)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromValueTaskFactory2(createContinuation, triggerEvent, arg));
+            triggerEvent => StartFromValueTaskFactory1(createContinuation.BindLast(arg), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0ValueTaskFactory2<TEvent, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg1, TArg2, ValueTask<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromValueTaskFactory3(createContinuation, triggerEvent, arg1, arg2));
+            triggerEvent => StartFromValueTaskFactory1(createContinuation.BindLast(arg1, arg2), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered0ValueTaskFactory3<TEvent, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
         Func<TEvent, TArg1, TArg2, TArg3, ValueTask<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => ThenFromTriggered0AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromValueTaskFactory4(createContinuation, triggerEvent, arg1, arg2, arg3));
+            triggerEvent => StartFromValueTaskFactory1(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent));
 
     public static async IAsyncEnumerable<TEvent> ThenFromTriggered1AsyncEnumerableFactory<TEvent, TTriggerEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -514,7 +514,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg, IAsyncEnumerable<TEvent>> createContinuation, TArg arg)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromAsyncEnumerableFactory2(createContinuation, triggerEvent, arg));
+            triggerEvent => StartFromAsyncEnumerableFactory1(createContinuation.BindLast(arg), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1AsyncEnumerableFactory2<TEvent, TTriggerEvent, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -522,7 +522,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg1, TArg2, IAsyncEnumerable<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromAsyncEnumerableFactory3(createContinuation, triggerEvent, arg1, arg2));
+            triggerEvent => StartFromAsyncEnumerableFactory1(createContinuation.BindLast(arg1, arg2), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1AsyncEnumerableFactory3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
@@ -530,7 +530,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg1, TArg2, TArg3, IAsyncEnumerable<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromAsyncEnumerableFactory4(createContinuation, triggerEvent, arg1, arg2, arg3));
+            triggerEvent => StartFromAsyncEnumerableFactory1(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1EnumerableFactory<TEvent, TTriggerEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -546,7 +546,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg, IEnumerable<TEvent>> createContinuation, TArg arg)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEnumerableFactory2(createContinuation, triggerEvent, arg));
+            triggerEvent => StartFromEnumerableFactory1(createContinuation.BindLast(arg), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1EnumerableFactory2<TEvent, TTriggerEvent, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -554,7 +554,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg1, TArg2, IEnumerable<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEnumerableFactory3(createContinuation, triggerEvent, arg1, arg2));
+            triggerEvent => StartFromEnumerableFactory1(createContinuation.BindLast(arg1, arg2), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1EnumerableFactory3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
@@ -562,7 +562,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg1, TArg2, TArg3, IEnumerable<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEnumerableFactory4(createContinuation, triggerEvent, arg1, arg2, arg3));
+            triggerEvent => StartFromEnumerableFactory1(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1EventFactory<TEvent, TTriggerEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -578,7 +578,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg, TEvent> createContinuation, TArg arg)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEventFactory2(createContinuation, triggerEvent, arg));
+            triggerEvent => StartFromEventFactory1(createContinuation.BindLast(arg), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1EventFactory2<TEvent, TTriggerEvent, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -586,7 +586,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg1, TArg2, TEvent> createContinuation, TArg1 arg1, TArg2 arg2)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEventFactory3(createContinuation, triggerEvent, arg1, arg2));
+            triggerEvent => StartFromEventFactory1(createContinuation.BindLast(arg1, arg2), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1EventFactory3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
@@ -594,7 +594,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg1, TArg2, TArg3, TEvent> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromEventFactory4(createContinuation, triggerEvent, arg1, arg2, arg3));
+            triggerEvent => StartFromEventFactory1(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1TaskFactory<TEvent, TTriggerEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -610,7 +610,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg, Task<TEvent>> createContinuation, TArg arg)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromTaskFactory2(createContinuation, triggerEvent, arg));
+            triggerEvent => StartFromTaskFactory1(createContinuation.BindLast(arg), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1TaskFactory2<TEvent, TTriggerEvent, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -618,7 +618,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg1, TArg2, Task<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromTaskFactory3(createContinuation, triggerEvent, arg1, arg2));
+            triggerEvent => StartFromTaskFactory1(createContinuation.BindLast(arg1, arg2), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1TaskFactory3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
@@ -626,7 +626,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg1, TArg2, TArg3, Task<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromTaskFactory4(createContinuation, triggerEvent, arg1, arg2, arg3));
+            triggerEvent => StartFromTaskFactory1(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1ValueTaskFactory<TEvent, TTriggerEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -642,7 +642,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg, ValueTask<TEvent>> createContinuation, TArg arg)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromValueTaskFactory2(createContinuation, triggerEvent, arg));
+            triggerEvent => StartFromValueTaskFactory1(createContinuation.BindLast(arg), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1ValueTaskFactory2<TEvent, TTriggerEvent, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -650,7 +650,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg1, TArg2, ValueTask<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromValueTaskFactory3(createContinuation, triggerEvent, arg1, arg2));
+            triggerEvent => StartFromValueTaskFactory1(createContinuation.BindLast(arg1, arg2), triggerEvent));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered1ValueTaskFactory3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
@@ -658,7 +658,7 @@ internal static partial class WorkflowImpl
         Func<TTriggerEvent, TArg1, TArg2, TArg3, ValueTask<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         where TTriggerEvent : TEvent
         => ThenFromTriggered1AsyncEnumerableFactory(workflow, predicate,
-            triggerEvent => StartFromValueTaskFactory4(createContinuation, triggerEvent, arg1, arg2, arg3));
+            triggerEvent => StartFromValueTaskFactory1(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent));
 
     public static async IAsyncEnumerable<TEvent> ThenFromTriggered2AsyncEnumerableFactory<TEvent, TTriggerEvent1, TTriggerEvent2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -686,7 +686,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
         => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromAsyncEnumerableFactory3(createContinuation, triggerEvent1, triggerEvent2, arg));
+            (triggerEvent1, triggerEvent2) => StartFromAsyncEnumerableFactory2(createContinuation.BindLast(arg), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2AsyncEnumerableFactory2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -695,7 +695,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
         => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromAsyncEnumerableFactory4(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2));
+            (triggerEvent1, triggerEvent2) => StartFromAsyncEnumerableFactory2(createContinuation.BindLast(arg1, arg2), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2AsyncEnumerableFactory3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
@@ -704,7 +704,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
        => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromAsyncEnumerableFactory5(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2, arg3));
+            (triggerEvent1, triggerEvent2) => StartFromAsyncEnumerableFactory2(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2EnumerableFactory<TEvent, TTriggerEvent1, TTriggerEvent2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -722,7 +722,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
         => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromEnumerableFactory3(createContinuation, triggerEvent1, triggerEvent2, arg));
+            (triggerEvent1, triggerEvent2) => StartFromEnumerableFactory2(createContinuation.BindLast(arg), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2EnumerableFactory2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -731,7 +731,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
         => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromEnumerableFactory4(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2));
+            (triggerEvent1, triggerEvent2) => StartFromEnumerableFactory2(createContinuation.BindLast(arg1, arg2), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2EnumerableFactory3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
@@ -740,7 +740,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
        => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromEnumerableFactory5(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2, arg3));
+            (triggerEvent1, triggerEvent2) => StartFromEnumerableFactory2(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2EventFactory<TEvent, TTriggerEvent1, TTriggerEvent2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -758,7 +758,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
         => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromEventFactory3(createContinuation, triggerEvent1, triggerEvent2, arg));
+            (triggerEvent1, triggerEvent2) => StartFromEventFactory2(createContinuation.BindLast(arg), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2EventFactory2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -767,7 +767,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
         => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromEventFactory4(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2));
+            (triggerEvent1, triggerEvent2) => StartFromEventFactory2(createContinuation.BindLast(arg1, arg2), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2EventFactory3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
@@ -776,7 +776,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
        => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromEventFactory5(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2, arg3));
+            (triggerEvent1, triggerEvent2) => StartFromEventFactory2(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2TaskFactory<TEvent, TTriggerEvent1, TTriggerEvent2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -794,7 +794,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
         => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromTaskFactory3(createContinuation, triggerEvent1, triggerEvent2, arg));
+            (triggerEvent1, triggerEvent2) => StartFromTaskFactory2(createContinuation.BindLast(arg), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2TaskFactory2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -803,7 +803,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
         => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromTaskFactory4(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2));
+            (triggerEvent1, triggerEvent2) => StartFromTaskFactory2(createContinuation.BindLast(arg1, arg2), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2TaskFactory3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
@@ -812,7 +812,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
        => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromTaskFactory5(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2, arg3));
+            (triggerEvent1, triggerEvent2) => StartFromTaskFactory2(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2ValueTaskFactory<TEvent, TTriggerEvent1, TTriggerEvent2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -830,7 +830,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
         => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromValueTaskFactory3(createContinuation, triggerEvent1, triggerEvent2, arg));
+            (triggerEvent1, triggerEvent2) => StartFromValueTaskFactory2(createContinuation.BindLast(arg), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2ValueTaskFactory2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -839,7 +839,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
         => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromValueTaskFactory4(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2));
+            (triggerEvent1, triggerEvent2) => StartFromValueTaskFactory2(createContinuation.BindLast(arg1, arg2), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> ThenFromTriggered2ValueTaskFactory3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
         IAsyncEnumerable<TEvent> workflow,
@@ -848,7 +848,7 @@ internal static partial class WorkflowImpl
         where TTriggerEvent1 : TEvent
         where TTriggerEvent2 : TEvent
        => ThenFromTriggered2AsyncEnumerableFactory(workflow, predicate,
-            (triggerEvent1, triggerEvent2) => StartFromValueTaskFactory5(createContinuation, triggerEvent1, triggerEvent2, arg1, arg2, arg3));
+            (triggerEvent1, triggerEvent2) => StartFromValueTaskFactory2(createContinuation.BindLast(arg1, arg2, arg3), triggerEvent1, triggerEvent2));
 
     public static IAsyncEnumerable<TEvent> DoFromAction<TEvent>(
         IAsyncEnumerable<TEvent> workflow, Action<TEvent> effect)
