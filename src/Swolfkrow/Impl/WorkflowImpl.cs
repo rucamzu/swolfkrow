@@ -26,14 +26,6 @@ internal static partial class WorkflowImpl
         Func<TArg1, TArg2, TArg3, IAsyncEnumerable<TEvent>> createAsyncEnumerable, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => StartFromAsyncEnumerableFactory(createAsyncEnumerable.BindAll(arg1, arg2, arg3));
 
-    public static IAsyncEnumerable<TEvent> StartFromAsyncEnumerableFactory4<TArg1, TArg2, TArg3, TArg4, TEvent>(
-        Func<TArg1, TArg2, TArg3, TArg4, IAsyncEnumerable<TEvent>> createAsyncEnumerable, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
-        => StartFromAsyncEnumerableFactory(createAsyncEnumerable.BindAll(arg1, arg2, arg3, arg4));
-
-    public static IAsyncEnumerable<TEvent> StartFromAsyncEnumerableFactory5<TArg1, TArg2, TArg3, TArg4, TArg5, TEvent>(
-        Func<TArg1, TArg2, TArg3, TArg4, TArg5, IAsyncEnumerable<TEvent>> createAsyncEnumerable, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
-        => StartFromAsyncEnumerableFactory(createAsyncEnumerable.BindAll(arg1, arg2, arg3, arg4, arg5));
-
     public static IAsyncEnumerable<TEvent> StartFromEnumerable<TEvent>(
         IEnumerable<TEvent> enumerable)
         => enumerable.ToAsyncEnumerable();
@@ -54,14 +46,6 @@ internal static partial class WorkflowImpl
         Func<TArg1, TArg2, TArg3, IEnumerable<TEvent>> createEnumerable, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => StartFromEnumerableFactory(createEnumerable.BindAll(arg1, arg2, arg3));
 
-    public static IAsyncEnumerable<TEvent> StartFromEnumerableFactory4<TArg1, TArg2, TArg3, TArg4, TEvent>(
-        Func<TArg1, TArg2, TArg3, TArg4, IEnumerable<TEvent>> createEnumerable, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
-        => StartFromEnumerableFactory(createEnumerable.BindAll(arg1, arg2, arg3, arg4));
-
-    public static IAsyncEnumerable<TEvent> StartFromEnumerableFactory5<TArg1, TArg2, TArg3, TArg4, TArg5, TEvent>(
-        Func<TArg1, TArg2, TArg3, TArg4, TArg5, IEnumerable<TEvent>> createEnumerable, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
-        => StartFromEnumerableFactory(createEnumerable.BindAll(arg1, arg2, arg3, arg4, arg5));
-
     public static IAsyncEnumerable<TEvent> StartFromEventFactory<TEvent>(
         Func<TEvent> createEvent)
         => StartFromEnumerableFactory(() => Enumerable.Repeat(createEvent(), 1));
@@ -77,14 +61,6 @@ internal static partial class WorkflowImpl
     public static IAsyncEnumerable<TEvent> StartFromEventFactory3<TArg1, TArg2, TArg3, TEvent>(
         Func<TArg1, TArg2, TArg3, TEvent> createEvent, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => StartFromEventFactory(createEvent.BindAll(arg1, arg2, arg3));
-
-    public static IAsyncEnumerable<TEvent> StartFromEventFactory4<TArg1, TArg2, TArg3, TArg4, TEvent>(
-        Func<TArg1, TArg2, TArg3, TArg4, TEvent> createEvent, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
-        => StartFromEventFactory(createEvent.BindAll(arg1, arg2, arg3, arg4));
-
-    public static IAsyncEnumerable<TEvent> StartFromEventFactory5<TArg1, TArg2, TArg3, TArg4, TArg5, TEvent>(
-        Func<TArg1, TArg2, TArg3, TArg4, TArg5, TEvent> createEvent, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
-        => StartFromEventFactory(createEvent.BindAll(arg1, arg2, arg3, arg4, arg5));
 
     public static IAsyncEnumerable<TEvent> StartFromTask<TEvent>(
         Task<TEvent> task)
@@ -106,14 +82,6 @@ internal static partial class WorkflowImpl
         Func<TArg1, TArg2, TArg3, Task<TEvent>> createTask, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => StartFromTaskFactory(createTask.BindAll(arg1, arg2, arg3));
 
-    public static IAsyncEnumerable<TEvent> StartFromTaskFactory4<TArg1, TArg2, TArg3, TArg4, TEvent>(
-        Func<TArg1, TArg2, TArg3, TArg4, Task<TEvent>> createTask, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
-        => StartFromTaskFactory(createTask.BindAll(arg1, arg2, arg3, arg4));
-
-    public static IAsyncEnumerable<TEvent> StartFromTaskFactory5<TArg1, TArg2, TArg3, TArg4, TArg5, TEvent>(
-        Func<TArg1, TArg2, TArg3, TArg4, TArg5, Task<TEvent>> createTask, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
-        => StartFromTaskFactory(createTask.BindAll(arg1, arg2, arg3, arg4, arg5));
-
     public static IAsyncEnumerable<TEvent> StartFromValueTask<TEvent>(
         ValueTask<TEvent> valueTask)
         => StartFromTask(valueTask.AsTask());
@@ -133,14 +101,6 @@ internal static partial class WorkflowImpl
     public static IAsyncEnumerable<TEvent> StartFromValueTaskFactory3<TArg1, TArg2, TArg3, TEvent>(
         Func<TArg1, TArg2, TArg3, ValueTask<TEvent>> createValueTask, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         => StartFromValueTaskFactory(createValueTask.BindAll(arg1, arg2, arg3));
-
-    public static IAsyncEnumerable<TEvent> StartFromValueTaskFactory4<TArg1, TArg2, TArg3, TArg4, TEvent>(
-        Func<TArg1, TArg2, TArg3, TArg4, ValueTask<TEvent>> createValueTask, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
-        => StartFromValueTaskFactory(createValueTask.BindAll(arg1, arg2, arg3, arg4));
-
-    public static IAsyncEnumerable<TEvent> StartFromValueTaskFactory5<TArg1, TArg2, TArg3, TArg4, TArg5, TEvent>(
-        Func<TArg1, TArg2, TArg3, TArg4, TArg5, ValueTask<TEvent>> createValueTask, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
-        => StartFromValueTaskFactory(createValueTask.BindAll(arg1, arg2, arg3, arg4, arg5));
 
     public static IAsyncEnumerable<TEvent> ThenFromAsyncEnumerable<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
