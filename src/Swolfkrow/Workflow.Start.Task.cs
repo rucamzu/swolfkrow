@@ -41,7 +41,7 @@ public static partial class Workflow
     /// </remarks>
     public static Workflow<TEvent> Start<TArg, TEvent>(
         Func<TArg, Task<TEvent>> createTask, TArg arg)
-        => WorkflowImpl.StartFromTaskFactory1(createTask, arg).ToWorkflow();
+        => WorkflowImpl.StartFromTaskFactory(createTask.BindAll(arg)).ToWorkflow();
 
     /// <summary>
     /// Starts an asynchronous <see cref="Workflow{TEvent}"/> from a task factory that takes two arguments.
@@ -58,7 +58,7 @@ public static partial class Workflow
     /// </remarks>
     public static Workflow<TEvent> Start<TArg1, TArg2, TEvent>(
         Func<TArg1, TArg2, Task<TEvent>> createTask, TArg1 arg1, TArg2 arg2)
-        => WorkflowImpl.StartFromTaskFactory2(createTask, arg1, arg2).ToWorkflow();
+        => WorkflowImpl.StartFromTaskFactory(createTask.BindAll(arg1, arg2)).ToWorkflow();
 
     /// <summary>
     /// Starts an asynchronous <see cref="Workflow{TEvent}"/> from a task factory that takes three arguments.
@@ -77,5 +77,5 @@ public static partial class Workflow
     /// </remarks>
     public static Workflow<TEvent> Start<TArg1, TArg2, TArg3, TEvent>(
         Func<TArg1, TArg2, TArg3, Task<TEvent>> createTask, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => WorkflowImpl.StartFromTaskFactory3(createTask, arg1, arg2, arg3).ToWorkflow();
+        => WorkflowImpl.StartFromTaskFactory(createTask.BindAll(arg1, arg2, arg3)).ToWorkflow();
 }

@@ -41,7 +41,7 @@ public static partial class Workflow
     /// </remarks>
     public static Workflow<TEvent> Start<TArg, TEvent>(
         Func<TArg, ValueTask<TEvent>> createValueTask, TArg arg)
-        => WorkflowImpl.StartFromValueTaskFactory1(createValueTask, arg).ToWorkflow();
+        => WorkflowImpl.StartFromValueTaskFactory(createValueTask.BindAll(arg)).ToWorkflow();
 
     /// <summary>
     /// Starts an asynchronous <see cref="Workflow{TEvent}"/> from a task factory that takes two arguments.
@@ -58,7 +58,7 @@ public static partial class Workflow
     /// </remarks>
     public static Workflow<TEvent> Start<TArg1, TArg2, TEvent>(
         Func<TArg1, TArg2, ValueTask<TEvent>> createValueTask, TArg1 arg1, TArg2 arg2)
-        => WorkflowImpl.StartFromValueTaskFactory2(createValueTask, arg1, arg2).ToWorkflow();
+        => WorkflowImpl.StartFromValueTaskFactory(createValueTask.BindAll(arg1, arg2)).ToWorkflow();
 
     /// <summary>
     /// Starts an asynchronous <see cref="Workflow{TEvent}"/> from a task factory that takes three arguments.
@@ -77,5 +77,5 @@ public static partial class Workflow
     /// </remarks>
     public static Workflow<TEvent> Start<TArg1, TArg2, TArg3, TEvent>(
         Func<TArg1, TArg2, TArg3, ValueTask<TEvent>> createValueTask, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => WorkflowImpl.StartFromValueTaskFactory3(createValueTask, arg1, arg2, arg3).ToWorkflow();
+        => WorkflowImpl.StartFromValueTaskFactory(createValueTask.BindAll(arg1, arg2, arg3)).ToWorkflow();
 }
