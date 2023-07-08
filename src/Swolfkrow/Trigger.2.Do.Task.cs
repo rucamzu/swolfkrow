@@ -25,8 +25,7 @@ public partial class Trigger<TEvent, TTriggerEvent1, TTriggerEvent2>
     /// <remarks>The triggering events are those of types <typeparamref name="TTriggerEvent1"/> and <typeparamref name="TTriggerEvent2"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Do<TArg>(
         Func<TTriggerEvent1, TTriggerEvent2, TArg, Task> effect, TArg arg)
-        => WorkflowImpl.DoFromTriggered2Task1(
-            _workflow, _predicate, effect, arg).ToWorkflow();
+        => WorkflowImpl.DoFromTriggered2Task(_workflow, _predicate, effect.BindLast(arg)).ToWorkflow();
 
     /// <summary>
     /// Injects an asynchronous side effect executed on every pair of yielded triggering events.
@@ -40,8 +39,7 @@ public partial class Trigger<TEvent, TTriggerEvent1, TTriggerEvent2>
     /// <remarks>The triggering events are those of types <typeparamref name="TTriggerEvent1"/> and <typeparamref name="TTriggerEvent2"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Do<TArg1, TArg2>(
         Func<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
-        => WorkflowImpl.DoFromTriggered2Task2(
-            _workflow, _predicate, effect, arg1, arg2).ToWorkflow();
+        => WorkflowImpl.DoFromTriggered2Task(_workflow, _predicate, effect.BindLast(arg1, arg2)).ToWorkflow();
 
     /// <summary>
     /// Injects an asynchronous side effect executed on every pair of yielded triggering events.
@@ -57,6 +55,5 @@ public partial class Trigger<TEvent, TTriggerEvent1, TTriggerEvent2>
     /// <remarks>The triggering events are those of types <typeparamref name="TTriggerEvent1"/> and <typeparamref name="TTriggerEvent2"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Do<TArg1, TArg2, TArg3>(
         Func<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => WorkflowImpl.DoFromTriggered2Task3(
-            _workflow, _predicate, effect, arg1, arg2, arg3).ToWorkflow();
+        => WorkflowImpl.DoFromTriggered2Task(_workflow, _predicate, effect.BindLast(arg1, arg2, arg3)).ToWorkflow();
 }
