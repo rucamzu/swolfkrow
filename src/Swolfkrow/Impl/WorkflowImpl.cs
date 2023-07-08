@@ -719,56 +719,14 @@ internal static partial class WorkflowImpl
         IAsyncEnumerable<TEvent> workflow, Action<TEvent> effect)
         => workflow.Select(nextEvent => { effect(nextEvent); return nextEvent; });
 
-    public static IAsyncEnumerable<TEvent> DoFromAction1<TEvent, TArg>(
-        IAsyncEnumerable<TEvent> workflow, Action<TEvent, TArg> effect, TArg arg)
-        => DoFromAction(workflow, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromAction2<TEvent, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow, Action<TEvent, TArg1, TArg2> effect, TArg1 arg1, TArg2 arg2)
-        => DoFromAction(workflow, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromAction3<TEvent, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow, Action<TEvent, TArg1, TArg2, TArg3> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => DoFromAction(workflow, effect.BindLast(arg1, arg2, arg3));
-
     public static IAsyncEnumerable<TEvent> DoFromTask<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task> effect)
         => workflow.SelectAwait(async nextEvent => { await effect(nextEvent); return nextEvent; });
 
-    public static IAsyncEnumerable<TEvent> DoFromTask1<TEvent, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, TArg, Task> effect, TArg arg)
-        => DoFromTask(workflow, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromTask2<TEvent, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
-        => DoFromTask(workflow, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromTask3<TEvent, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => DoFromTask(workflow, effect.BindLast(arg1, arg2, arg3));
-
     public static IAsyncEnumerable<TEvent> DoFromValueTask<TEvent>(
         IAsyncEnumerable<TEvent> workflow, Func<TEvent, ValueTask> effect)
         => workflow.SelectAwait(async nextEvent => { await effect(nextEvent); return nextEvent; });
-
-    public static IAsyncEnumerable<TEvent> DoFromValueTask1<TEvent, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, TArg, ValueTask> effect, TArg arg)
-        => DoFromValueTask(workflow, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromValueTask2<TEvent, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, TArg1, TArg2, ValueTask> effect, TArg1 arg1, TArg2 arg2)
-        => DoFromValueTask(workflow, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromValueTask3<TEvent, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, TArg1, TArg2, TArg3, ValueTask> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => DoFromValueTask(workflow, effect.BindLast(arg1, arg2, arg3));
 
     public static async IAsyncEnumerable<TEvent> DoFromTriggered0Action<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
