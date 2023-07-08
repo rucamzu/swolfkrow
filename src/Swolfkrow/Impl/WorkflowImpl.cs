@@ -14,14 +14,6 @@ internal static partial class WorkflowImpl
         => AsyncEnumerable.Create(cancellationToken =>
             createAsyncEnumerable().GetAsyncEnumerator(cancellationToken));
 
-    public static IAsyncEnumerable<TEvent> StartFromAsyncEnumerableFactory1<TArg, TEvent>(
-        Func<TArg, IAsyncEnumerable<TEvent>> createAsyncEnumerable, TArg arg)
-        => StartFromAsyncEnumerableFactory(createAsyncEnumerable.BindAll(arg));
-
-    public static IAsyncEnumerable<TEvent> StartFromAsyncEnumerableFactory2<TArg1, TArg2, TEvent>(
-        Func<TArg1, TArg2, IAsyncEnumerable<TEvent>> createAsyncEnumerable, TArg1 arg1, TArg2 arg2)
-        => StartFromAsyncEnumerableFactory(createAsyncEnumerable.BindAll(arg1, arg2));
-
     public static IAsyncEnumerable<TEvent> StartFromEnumerable<TEvent>(
         IEnumerable<TEvent> enumerable)
         => enumerable.ToAsyncEnumerable();
