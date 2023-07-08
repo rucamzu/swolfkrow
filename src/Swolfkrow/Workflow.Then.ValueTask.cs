@@ -31,7 +31,7 @@ public partial class Workflow<TEvent>
     /// <returns>A new asynchronous <see cref="Workflow{TEvent}"/> that yields the events yielded by <see langword="this"/> asynchronous workflow, followed by the event returned by awaiting the task returned by calling the given <paramref name="createContinuation"/> factory with the given <paramref name="arg"/>ument.</returns>
     public Workflow<TEvent> Then<TArg>(
         Func<TArg, ValueTask<TEvent>> createContinuation, TArg arg)
-        => WorkflowImpl.ThenFromValueTaskFactory1(_workflow, createContinuation, arg).ToWorkflow();
+        => WorkflowImpl.ThenFromValueTaskFactory(_workflow, createContinuation.BindAll(arg)).ToWorkflow();
 
     /// <summary>
     /// Continues the asynchronous <see cref="Workflow{TEvent}"/> with a task factory that takes two arguments.
@@ -44,7 +44,7 @@ public partial class Workflow<TEvent>
     /// <returns>A new asynchronous <see cref="Workflow{TEvent}"/> that yields the events yielded by <see langword="this"/> asynchronous workflow, followed by the event returned by awaiting the task returned by calling the given <paramref name="createContinuation"/> factory with the given arguments.</returns>
     public Workflow<TEvent> Then<TArg1, TArg2>(
         Func<TArg1, TArg2, ValueTask<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2)
-        => WorkflowImpl.ThenFromValueTaskFactory2(_workflow, createContinuation, arg1, arg2).ToWorkflow();
+        => WorkflowImpl.ThenFromValueTaskFactory(_workflow, createContinuation.BindAll(arg1, arg2)).ToWorkflow();
 
     /// <summary>
     /// Continues the asynchronous <see cref="Workflow{TEvent}"/> with a task factory that takes three arguments.
@@ -59,5 +59,5 @@ public partial class Workflow<TEvent>
     /// <returns>A new asynchronous <see cref="Workflow{TEvent}"/> that yields the events yielded by <see langword="this"/> asynchronous workflow, followed by the event returned by awaiting the task returned by calling the given <paramref name="createContinuation"/> factory with the given arguments.</returns>
     public Workflow<TEvent> Then<TArg1, TArg2, TArg3>(
         Func<TArg1, TArg2, TArg3, ValueTask<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => WorkflowImpl.ThenFromValueTaskFactory3(_workflow, createContinuation, arg1, arg2, arg3).ToWorkflow();
+        => WorkflowImpl.ThenFromValueTaskFactory(_workflow, createContinuation.BindAll(arg1, arg2, arg3)).ToWorkflow();
 }
