@@ -382,24 +382,6 @@ internal static partial class WorkflowImpl
         }
     }
 
-    public static IAsyncEnumerable<TEvent> DoFromTriggered0Action1<TEvent, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, Task<bool>> predicate,
-        Action<TEvent, TArg> effect, TArg arg)
-        => DoFromTriggered0Action(workflow, predicate, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered0Action2<TEvent, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, Task<bool>> predicate,
-        Action<TEvent, TArg1, TArg2> effect, TArg1 arg1, TArg2 arg2)
-        => DoFromTriggered0Action(workflow, predicate, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered0Action3<TEvent, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, Task<bool>> predicate,
-        Action<TEvent, TArg1, TArg2, TArg3> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => DoFromTriggered0Action(workflow, predicate, effect.BindLast(arg1, arg2, arg3));
-
     public static async IAsyncEnumerable<TEvent> DoFromTriggered0Task<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TEvent, Task<bool>> predicate,
@@ -413,24 +395,6 @@ internal static partial class WorkflowImpl
             yield return nextEvent;
         }
     }
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered0Task1<TEvent, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, Task<bool>> predicate,
-        Func<TEvent, TArg, Task> effect, TArg arg)
-        => DoFromTriggered0Task(workflow, predicate, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered0Task2<TEvent, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, Task<bool>> predicate,
-        Func<TEvent, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
-        => DoFromTriggered0Task(workflow, predicate, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered0Task3<TEvent, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, Task<bool>> predicate,
-        Func<TEvent, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => DoFromTriggered0Task(workflow, predicate, effect.BindLast(arg1, arg2, arg3));
 
     public static async IAsyncEnumerable<TEvent> DoFromTriggered0ValueTask<TEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -446,24 +410,6 @@ internal static partial class WorkflowImpl
         }
     }
 
-    public static IAsyncEnumerable<TEvent> DoFromTriggered0ValueTask1<TEvent, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, Task<bool>> predicate,
-        Func<TEvent, TArg, ValueTask> effect, TArg arg)
-        => DoFromTriggered0ValueTask(workflow, predicate, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered0ValueTask2<TEvent, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, Task<bool>> predicate,
-        Func<TEvent, TArg1, TArg2, ValueTask> effect, TArg1 arg1, TArg2 arg2)
-        => DoFromTriggered0ValueTask(workflow, predicate, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered0ValueTask3<TEvent, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TEvent, Task<bool>> predicate,
-        Func<TEvent, TArg1, TArg2, TArg3, ValueTask> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => DoFromTriggered0ValueTask(workflow, predicate, effect.BindLast(arg1, arg2, arg3));
-
     public static async IAsyncEnumerable<TEvent> DoFromTriggered1Action<TEvent, TTriggerEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TTriggerEvent, Task<bool>> predicate,
@@ -477,24 +423,6 @@ internal static partial class WorkflowImpl
             yield return nextEvent;
         }
     }
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered1Action1<TEvent, TTriggerEvent, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent, Task<bool>> predicate,
-        Action<TTriggerEvent, TArg> effect, TArg arg)
-        => DoFromTriggered1Action(workflow, predicate, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered1Action2<TEvent, TTriggerEvent, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent, Task<bool>> predicate,
-        Action<TTriggerEvent, TArg1, TArg2> effect, TArg1 arg1, TArg2 arg2)
-        => DoFromTriggered1Action(workflow, predicate, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered1Action3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent, Task<bool>> predicate,
-        Action<TTriggerEvent, TArg1, TArg2, TArg3> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => DoFromTriggered1Action(workflow, predicate, effect.BindLast(arg1, arg2, arg3));
 
     public static async IAsyncEnumerable<TEvent> DoFromTriggered1Task<TEvent, TTriggerEvent>(
         IAsyncEnumerable<TEvent> workflow,
@@ -510,24 +438,6 @@ internal static partial class WorkflowImpl
         }
     }
 
-    public static IAsyncEnumerable<TEvent> DoFromTriggered1Task1<TEvent, TTriggerEvent, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent, Task<bool>> predicate,
-        Func<TTriggerEvent, TArg, Task> effect, TArg arg)
-        => DoFromTriggered1Task(workflow, predicate, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered1Task2<TEvent, TTriggerEvent, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent, Task<bool>> predicate,
-        Func<TTriggerEvent, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
-        => DoFromTriggered1Task(workflow, predicate, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered1Task3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent, Task<bool>> predicate,
-        Func<TTriggerEvent, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => DoFromTriggered1Task(workflow, predicate, effect.BindLast(arg1, arg2, arg3));
-
     public static async IAsyncEnumerable<TEvent> DoFromTriggered1ValueTask<TEvent, TTriggerEvent>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TTriggerEvent, Task<bool>> predicate,
@@ -541,24 +451,6 @@ internal static partial class WorkflowImpl
             yield return nextEvent;
         }
     }
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered1ValueTask1<TEvent, TTriggerEvent, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent, Task<bool>> predicate,
-        Func<TTriggerEvent, TArg, ValueTask> effect, TArg arg)
-        => DoFromTriggered1ValueTask(workflow, predicate, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered1ValueTask2<TEvent, TTriggerEvent, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent, Task<bool>> predicate,
-        Func<TTriggerEvent, TArg1, TArg2, ValueTask> effect, TArg1 arg1, TArg2 arg2)
-        => DoFromTriggered1ValueTask(workflow, predicate, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered1ValueTask3<TEvent, TTriggerEvent, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent, Task<bool>> predicate,
-        Func<TTriggerEvent, TArg1, TArg2, TArg3, ValueTask> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => DoFromTriggered1ValueTask(workflow, predicate, effect.BindLast(arg1, arg2, arg3));
 
     public static async IAsyncEnumerable<TEvent> DoFromTriggered2Action<TEvent, TTriggerEvent1, TTriggerEvent2>(
         IAsyncEnumerable<TEvent> workflow,
@@ -578,30 +470,6 @@ internal static partial class WorkflowImpl
         }
     }
 
-    public static IAsyncEnumerable<TEvent> DoFromTriggered2Action1<TEvent, TTriggerEvent1, TTriggerEvent2, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
-        Action<TTriggerEvent1, TTriggerEvent2, TArg> effect, TArg arg)
-        where TTriggerEvent1 : TEvent
-        where TTriggerEvent2 : TEvent
-        => DoFromTriggered2Action(workflow, predicate, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered2Action2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
-        Action<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2> effect, TArg1 arg1, TArg2 arg2)
-        where TTriggerEvent1 : TEvent
-        where TTriggerEvent2 : TEvent
-        => DoFromTriggered2Action(workflow, predicate, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered2Action3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
-        Action<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        where TTriggerEvent1 : TEvent
-        where TTriggerEvent2 : TEvent
-        => DoFromTriggered2Action(workflow, predicate, effect.BindLast(arg1, arg2, arg3));
-
     public static async IAsyncEnumerable<TEvent> DoFromTriggered2Task<TEvent, TTriggerEvent1, TTriggerEvent2>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
@@ -620,30 +488,6 @@ internal static partial class WorkflowImpl
         }
     }
 
-    public static IAsyncEnumerable<TEvent> DoFromTriggered2Task1<TEvent, TTriggerEvent1, TTriggerEvent2, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
-        Func<TTriggerEvent1, TTriggerEvent2, TArg, Task> effect, TArg arg)
-        where TTriggerEvent1 : TEvent
-        where TTriggerEvent2 : TEvent
-        => DoFromTriggered2Task(workflow, predicate, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered2Task2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
-        Func<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
-        where TTriggerEvent1 : TEvent
-        where TTriggerEvent2 : TEvent
-        => DoFromTriggered2Task(workflow, predicate, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered2Task3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
-        Func<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        where TTriggerEvent1 : TEvent
-        where TTriggerEvent2 : TEvent
-        => DoFromTriggered2Task(workflow, predicate, effect.BindLast(arg1, arg2, arg3));
-
     public static async IAsyncEnumerable<TEvent> DoFromTriggered2ValueTask<TEvent, TTriggerEvent1, TTriggerEvent2>(
         IAsyncEnumerable<TEvent> workflow,
         Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
@@ -661,30 +505,6 @@ internal static partial class WorkflowImpl
             yield return nextEvent;
         }
     }
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered2ValueTask1<TEvent, TTriggerEvent1, TTriggerEvent2, TArg>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
-        Func<TTriggerEvent1, TTriggerEvent2, TArg, ValueTask> effect, TArg arg)
-        where TTriggerEvent1 : TEvent
-        where TTriggerEvent2 : TEvent
-        => DoFromTriggered2ValueTask(workflow, predicate, effect.BindLast(arg));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered2ValueTask2<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
-        Func<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, ValueTask> effect, TArg1 arg1, TArg2 arg2)
-        where TTriggerEvent1 : TEvent
-        where TTriggerEvent2 : TEvent
-        => DoFromTriggered2ValueTask(workflow, predicate, effect.BindLast(arg1, arg2));
-
-    public static IAsyncEnumerable<TEvent> DoFromTriggered2ValueTask3<TEvent, TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3>(
-        IAsyncEnumerable<TEvent> workflow,
-        Func<TTriggerEvent1, TTriggerEvent2, Task<bool>> predicate,
-        Func<TTriggerEvent1, TTriggerEvent2, TArg1, TArg2, TArg3, ValueTask> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        where TTriggerEvent1 : TEvent
-        where TTriggerEvent2 : TEvent
-        => DoFromTriggered2ValueTask(workflow, predicate, effect.BindLast(arg1, arg2, arg3));
 
     public static IAsyncEnumerable<TEvent> ThenWithStateFromFactory<TEvent, TState>(
         IAsyncEnumerable<TEvent> workflow,
