@@ -21,7 +21,7 @@ public partial class Workflow<TEvent>
     /// <returns>A new asynchronous <see cref="Workflow{TEvent}"/> that yields all the events yielded by the original, after executing the given asynchronous side <paramref name="effect"/> on each yielded event.</returns>
     public Workflow<TEvent> Do<TArg>(
         Func<TEvent, TArg, Task> effect, TArg arg)
-        => WorkflowImpl.DoFromTask1(_workflow, effect, arg).ToWorkflow();
+        => WorkflowImpl.DoFromTask(_workflow, effect.BindLast(arg)).ToWorkflow();
 
     /// <summary>
     /// Injects an asynchronous side effect executed on every yielded event.
@@ -34,7 +34,7 @@ public partial class Workflow<TEvent>
     /// <returns>A new asynchronous <see cref="Workflow{TEvent}"/> that yields all the events yielded by the original, after executing the given asynchronous side <paramref name="effect"/> on each yielded event.</returns>
     public Workflow<TEvent> Do<TArg1, TArg2>(
         Func<TEvent, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
-        => WorkflowImpl.DoFromTask2(_workflow, effect, arg1, arg2).ToWorkflow();
+        => WorkflowImpl.DoFromTask(_workflow, effect.BindLast(arg1, arg2)).ToWorkflow();
 
     /// <summary>
     /// Injects an asynchronous side effect executed on every yielded event.
@@ -49,5 +49,5 @@ public partial class Workflow<TEvent>
     /// <returns>A new asynchronous <see cref="Workflow{TEvent}"/> that yields all the events yielded by the original, after executing the given asynchronous side <paramref name="effect"/> on each yielded event.</returns>
     public Workflow<TEvent> Do<TArg1, TArg2, TArg3>(
         Func<TEvent, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => WorkflowImpl.DoFromTask3(_workflow, effect, arg1, arg2, arg3).ToWorkflow();
+        => WorkflowImpl.DoFromTask(_workflow, effect.BindLast(arg1, arg2, arg3)).ToWorkflow();
 }
