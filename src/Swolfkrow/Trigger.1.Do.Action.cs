@@ -25,8 +25,7 @@ public partial class Trigger<TEvent, TTriggerEvent>
     /// <remarks>The triggering events are those of type <typeparamref name="TTriggerEvent"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Do<TArg>(
         Action<TTriggerEvent, TArg> effect, TArg arg)
-        => WorkflowImpl.DoFromTriggered1Action1(
-            _workflow, _predicate, effect, arg).ToWorkflow();
+        => WorkflowImpl.DoFromTriggered1Action(_workflow, _predicate, effect.BindLast(arg)).ToWorkflow();
 
     /// <summary>
     /// Injects a synchronous side effect executed on every yielded triggering event.
@@ -40,8 +39,7 @@ public partial class Trigger<TEvent, TTriggerEvent>
     /// <remarks>The triggering events are those of type <typeparamref name="TTriggerEvent"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Do<TArg1, TArg2>(
         Action<TTriggerEvent, TArg1, TArg2> effect, TArg1 arg1, TArg2 arg2)
-        => WorkflowImpl.DoFromTriggered1Action2(
-            _workflow, _predicate, effect, arg1, arg2).ToWorkflow();
+        => WorkflowImpl.DoFromTriggered1Action(_workflow, _predicate, effect.BindLast(arg1, arg2)).ToWorkflow();
 
     /// <summary>
     /// Injects a synchronous side effect executed on every yielded triggering event.
@@ -57,6 +55,5 @@ public partial class Trigger<TEvent, TTriggerEvent>
     /// <remarks>The triggering events are those of type <typeparamref name="TTriggerEvent"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Do<TArg1, TArg2, TArg3>(
         Action<TTriggerEvent, TArg1, TArg2, TArg3> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => WorkflowImpl.DoFromTriggered1Action3(
-            _workflow, _predicate, effect, arg1, arg2, arg3).ToWorkflow();
+        => WorkflowImpl.DoFromTriggered1Action(_workflow, _predicate, effect.BindLast(arg1, arg2, arg3)).ToWorkflow();
 }

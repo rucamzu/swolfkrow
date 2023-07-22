@@ -25,8 +25,7 @@ public partial class Trigger<TEvent, TTriggerEvent>
     /// <remarks>The triggering events are those of type <typeparamref name="TTriggerEvent"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Then<TArg>(
         Func<TTriggerEvent, TArg, Task<TEvent>> createContinuation, TArg arg)
-        => WorkflowImpl.ThenFromTriggered1TaskFactory1(
-            _workflow, _predicate, createContinuation, arg).ToWorkflow();
+        => WorkflowImpl.ThenFromTriggered1TaskFactory(_workflow, _predicate, createContinuation.BindLast(arg)).ToWorkflow();
 
     /// <summary>
     /// Continues triggering events with one single intercalated event produced by an asynchronous factory that takes the yielded triggering event and two additional arguments.
@@ -40,8 +39,7 @@ public partial class Trigger<TEvent, TTriggerEvent>
     /// <remarks>The triggering events are those of type <typeparamref name="TTriggerEvent"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Then<TArg1, TArg2>(
         Func<TTriggerEvent, TArg1, TArg2, Task<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2)
-        => WorkflowImpl.ThenFromTriggered1TaskFactory2(
-            _workflow, _predicate, createContinuation, arg1, arg2).ToWorkflow();
+        => WorkflowImpl.ThenFromTriggered1TaskFactory(_workflow, _predicate, createContinuation.BindLast(arg1, arg2)).ToWorkflow();
 
     /// <summary>
     /// Continues triggering events with one single intercalated event produced by an asynchronous factory that takes the yielded triggering event and three additional arguments.
@@ -57,6 +55,5 @@ public partial class Trigger<TEvent, TTriggerEvent>
     /// <remarks>The triggering events are those of type <typeparamref name="TTriggerEvent"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Then<TArg1, TArg2, TArg3>(
         Func<TTriggerEvent, TArg1, TArg2, TArg3, Task<TEvent>> createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => WorkflowImpl.ThenFromTriggered1TaskFactory3(
-            _workflow, _predicate, createContinuation, arg1, arg2, arg3).ToWorkflow();
+        => WorkflowImpl.ThenFromTriggered1TaskFactory(_workflow, _predicate, createContinuation.BindLast(arg1, arg2, arg3)).ToWorkflow();
 }

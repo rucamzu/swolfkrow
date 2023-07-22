@@ -25,8 +25,7 @@ public partial class Trigger<TEvent, TTriggerEvent>
     /// <remarks>The triggering events are those of type <typeparamref name="TTriggerEvent"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Do<TArg>(
         Func<TTriggerEvent, TArg, Task> effect, TArg arg)
-        => WorkflowImpl.DoFromTriggered1Task1(
-            _workflow, _predicate, effect, arg).ToWorkflow();
+        => WorkflowImpl.DoFromTriggered1Task(_workflow, _predicate, effect.BindLast(arg)).ToWorkflow();
 
     /// <summary>
     /// Injects an asynchronous side effect executed on every yielded triggering event.
@@ -40,8 +39,7 @@ public partial class Trigger<TEvent, TTriggerEvent>
     /// <remarks>The triggering events are those of type <typeparamref name="TTriggerEvent"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Do<TArg1, TArg2>(
         Func<TTriggerEvent, TArg1, TArg2, Task> effect, TArg1 arg1, TArg2 arg2)
-        => WorkflowImpl.DoFromTriggered1Task2(
-            _workflow, _predicate, effect, arg1, arg2).ToWorkflow();
+        => WorkflowImpl.DoFromTriggered1Task(_workflow, _predicate, effect.BindLast(arg1, arg2)).ToWorkflow();
 
     /// <summary>
     /// Injects an asynchronous side effect executed on every yielded triggering event.
@@ -57,6 +55,5 @@ public partial class Trigger<TEvent, TTriggerEvent>
     /// <remarks>The triggering events are those of type <typeparamref name="TTriggerEvent"/> that satisfy the triggering condition defined by the preceeding 'When' operator.</remarks>
     public Workflow<TEvent> Do<TArg1, TArg2, TArg3>(
         Func<TTriggerEvent, TArg1, TArg2, TArg3, Task> effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => WorkflowImpl.DoFromTriggered1Task3(
-            _workflow, _predicate, effect, arg1, arg2, arg3).ToWorkflow();
+        => WorkflowImpl.DoFromTriggered1Task(_workflow, _predicate, effect.BindLast(arg1, arg2, arg3)).ToWorkflow();
 }

@@ -44,7 +44,7 @@ public static partial class Workflow
     /// </remarks>
     public static Workflow<TEvent> Start<TArg, TEvent>(
         Func<TArg, IAsyncEnumerable<TEvent>> createWorkflow, TArg arg)
-        => WorkflowImpl.StartFromAsyncEnumerableFactory1(createWorkflow, arg).ToWorkflow();
+        => WorkflowImpl.StartFromAsyncEnumerableFactory(createWorkflow.BindAll(arg)).ToWorkflow();
 
     /// <summary>
     /// Starts an asynchronous <see cref="Workflow{TEvent}"/> from a factory that takes two arguments.
@@ -61,7 +61,7 @@ public static partial class Workflow
     /// </remarks>
     public static Workflow<TEvent> Start<TArg1, TArg2, TEvent>(
         Func<TArg1, TArg2, IAsyncEnumerable<TEvent>> createWorkflow, TArg1 arg1, TArg2 arg2)
-        => WorkflowImpl.StartFromAsyncEnumerableFactory2(createWorkflow, arg1, arg2).ToWorkflow();
+        => WorkflowImpl.StartFromAsyncEnumerableFactory(createWorkflow.BindAll(arg1, arg2)).ToWorkflow();
 
     /// <summary>
     /// Starts an asynchronous <see cref="Workflow{TEvent}"/> from a factory that takes three arguments.
@@ -80,5 +80,5 @@ public static partial class Workflow
     /// </remarks>
     public static Workflow<TEvent> Start<TArg1, TArg2, TArg3, TEvent>(
         Func<TArg1, TArg2, TArg3, IAsyncEnumerable<TEvent>> createWorkflow, TArg1 arg1, TArg2 arg2, TArg3 arg3)
-        => WorkflowImpl.StartFromAsyncEnumerableFactory3(createWorkflow, arg1, arg2, arg3).ToWorkflow();
+        => WorkflowImpl.StartFromAsyncEnumerableFactory(createWorkflow.BindAll(arg1, arg2, arg3)).ToWorkflow();
 }

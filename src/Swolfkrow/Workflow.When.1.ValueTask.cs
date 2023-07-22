@@ -28,7 +28,7 @@ public partial class Workflow<TEvent>
         Func<TTriggerEvent, TArg, ValueTask<bool>> predicate, TArg arg)
         where TTriggerEvent : TEvent
         => new Trigger<TEvent, TTriggerEvent>(this,
-            Predicate1.FromValueTaskPredicate1(predicate, arg));
+            Predicate1.FromValueTaskPredicate(predicate.BindLast(arg)));
 
     /// <summary>
     /// Initiates a two-step conditional composition that will be triggered by every event of type <typeparamref name="TTriggerEvent"/> yielded by <see langword="this"/> asynchronous workflow that satisfies a given asynchronous <paramref name="predicate"/>.
@@ -44,7 +44,7 @@ public partial class Workflow<TEvent>
         Func<TTriggerEvent, TArg1, TArg2, ValueTask<bool>> predicate, TArg1 arg1, TArg2 arg2)
         where TTriggerEvent : TEvent
         => new Trigger<TEvent, TTriggerEvent>(this,
-            Predicate1.FromValueTaskPredicate2(predicate, arg1, arg2));
+            Predicate1.FromValueTaskPredicate(predicate.BindLast(arg1, arg2)));
 
     /// <summary>
     /// Initiates a two-step conditional composition that will be triggered by every event of type <typeparamref name="TTriggerEvent"/> yielded by <see langword="this"/> asynchronous workflow that satisfies a given asynchronous <paramref name="predicate"/>.
@@ -62,5 +62,5 @@ public partial class Workflow<TEvent>
         Func<TTriggerEvent, TArg1, TArg2, TArg3, ValueTask<bool>> predicate, TArg1 arg1, TArg2 arg2, TArg3 arg3)
         where TTriggerEvent : TEvent
         => new Trigger<TEvent, TTriggerEvent>(this,
-            Predicate1.FromValueTaskPredicate3(predicate, arg1, arg2, arg3));
+            Predicate1.FromValueTaskPredicate(predicate.BindLast(arg1, arg2, arg3)));
 }
