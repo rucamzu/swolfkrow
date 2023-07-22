@@ -1,3 +1,6 @@
+# 0.3.2 (2023-07-22)
+- Added interruption overloads with additional arguments.
+
 # 0.3.1 (2023-07-04)
 
 - Fixed the return types of some public api methods.
