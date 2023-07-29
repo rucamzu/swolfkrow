@@ -7,7 +7,7 @@ namespace Swolfkrow.Tests;
 public partial class Start
 {
     [Test]
-    public async Task FromEventTaskYieldsResultingEvent()
+    public async Task FromTaskYieldsResultingEvent()
     {
         var expectedEvent = Some.Events(howMany: 1).Single();
 
@@ -19,7 +19,7 @@ public partial class Start
     }
 
     [Test]
-    public async Task FromEventTaskFactoryYieldsResultingEvent()
+    public async Task FromTaskFactoryYieldsResultingEvent()
     {
         var expectedEvent = Some.Events(howMany: 1).Single();
 
@@ -34,7 +34,7 @@ public partial class Start
     }
 
     [Test]
-    public async Task FromEventTaskFactoryWithOneArgumentYieldsResultingEvent()
+    public async Task FromTaskFactoryWithOneArgumentYieldsResultingEvent()
     {
         var expectedEvent = Some.Events(howMany: 1).Single();
 
@@ -49,7 +49,7 @@ public partial class Start
     }
 
     [Test]
-    public async Task FromEventTaskFactoryWithTwoArgumentsYieldsResultingEvent()
+    public async Task FromTaskFactoryWithTwoArgumentsYieldsResultingEvent()
     {
         var expectedEvent = Some.Events(howMany: 1).Single();
 
@@ -64,7 +64,7 @@ public partial class Start
     }
 
     [Test]
-    public async Task FromEventTaskFactoryWithThreeArgumentsYieldsResultingEvent()
+    public async Task FromTaskFactoryWithThreeArgumentsYieldsResultingEvent()
     {
         var expectedEvent = Some.Events(howMany: 1).Single();
 

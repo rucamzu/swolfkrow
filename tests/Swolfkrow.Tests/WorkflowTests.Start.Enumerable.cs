@@ -7,7 +7,7 @@ namespace Swolfkrow.Tests;
 public partial class Start
 {
     [Test]
-    public async Task FromEventParamsYieldsAllEvents()
+    public async Task FromEventsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
@@ -19,7 +19,7 @@ public partial class Start
     }
 
     [Test]
-    public async Task FromEventEnumerableYieldsAllEvents()
+    public async Task FromEnumerableYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
@@ -31,7 +31,7 @@ public partial class Start
     }
 
     [Test]
-    public async Task FromEventEnumerableFactoryYieldsAllEvents()
+    public async Task FromEnumerableFactoryYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
@@ -45,7 +45,7 @@ public partial class Start
     }
 
     [Test]
-    public async Task FromEventEnumerableFactoryWithOneArgumentYieldsAllEvents()
+    public async Task FromEnumerableFactoryWithOneArgumentYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
@@ -59,7 +59,7 @@ public partial class Start
     }
 
     [Test]
-    public async Task FromEventEnumerableFactoryWithTwoArgumentsYieldsAllEvents()
+    public async Task FromEnumerableFactoryWithTwoArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
@@ -73,7 +73,7 @@ public partial class Start
     }
 
     [Test]
-    public async Task FromEventEnumerableFactoryWithThreeArgumentsYieldsAllEvents()
+    public async Task FromEnumerableFactoryWithThreeArgumentsYieldsAllEvents()
     {
         var expectedEvents = Some.Events(howMany: 3).ToList();
 
