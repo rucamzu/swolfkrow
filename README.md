@@ -4,20 +4,56 @@
 
 ## Asynchronous workflows
 
-Asynchronous workflows are asynchronous computations that yield an stream of *events* signaling progress, outcomes, and errors.
+In the context of *Swolfkrow*, asynchronous workflows can be understood as asynchronous computations that yield an asynchronous stream of *events* signaling progress, outcomes, and errors.
 
-In practice, asynchronous workflows are objects implementing the [`IAsyncEnumerable<out T>`][system.collections.generic.iasyncenumerable] interface, with a couple of particularities:
+In practice, asynchronous workflows are objects that implement the [`IAsyncEnumerable<out T>`][system.collections.generic.iasyncenumerable] interface, with a few semantic constraints:
 
-- The generic type `T`, named `TEvent` across the *Swolfkrow* library, represents the base type from which the types of all events potentially yielded by the asynchronous workflow derive.
-- Yielded `TEvent` objects are meant to describe significant events occured during the workflow's execution.
-- When enumerated, asynchronous workflows can execute arbitrary asynchronous logic in between yielded `TEvent` objects.
+- The generic type `T`, named `TEvent` across the *Swolfkrow* library, represents the base type from which all events potentially yielded by the asynchronous workflow derive.
+- Yielded `TEvent` objects are assumed to describe relevant events occured during the asynchronous workflow's execution.
+- When enumerated, asynchronous workflows may execute arbitrary asynchronous logic in between consecutively yielded `TEvent` objects.
 
-### The `Workflow<TEvent>` class
+*Swolfkrow* provides the programmatic glue required to declaratively compose simpler asynchronous workflows together into more complex ones. It also provides support to build asynchronous workflows from other primitives, like [`IEnumerable<TEvent>`][system.collections.generic.ienumerable], [`Task<TEvent>`][system.threading.tasks.task], or [`ValueTask<TEvent>`][system.threading.tasks.valuetask].
 
-Swolfkrow represents asynchronous workflows with an explicit [`Workflow<TEvent>`][swolfkrow.workflow] class that implements the [`IAsyncEnumerable<out T>`][system.collections.generic.iasyncenumerable] interface.
+## Fluent API
 
-The `Workflow<TEvent>` class exists both as a semantic anchor with a self-descriptive name, and as a convenient container for the fluent API. It is meaningful during the composition of asynchronous workflows, however the resulting workflow objects behave as expected from any object implementing the [`IAsyncEnumerable<out T>`][system.collections.generic.iasyncenumerable] interface, meaning they will execute their logic and yield events only when enumerated.
+*Swolfkrow*'s fluent API can be visualized as a state machine, where the (arguably less relevant) supporting classes are states, and the composition operators are transitions:
 
+```mermaid
+stateDiagram-v2
+    state "Workflow" as workflow
+    state "Trigger" as trigger
+
+    [*] --> workflow : Workflow.Start(...)
+    workflow --> [*] : IAsyncEnumerable
+    workflow --> workflow : .Then(...)\n.While(...)\n.Until(...)\n.Do(...)
+    workflow --> trigger : .When(...)
+    
+    %%coming soon!
+    %%trigger --> trigger : .Times(...)
+    trigger --> workflow : .Then(...)
+    trigger --> workflow : .Do(...)
+```
+
+The entry point to the DSL is always one of the many `Workflow.Start` factory method overloads, all of which return an initial [`Workflow<Event>`](#the-workflowtevent-class) instance.
+
+The `Workflow<TEvent>` class exposes a number of operators that perform single-step compositions and return a new `Workflow<TEvent>` instance:
+
+- Continuations: `workflow.Then(...)`
+- Side-effects: `workflow.Do(...)`
+- Interruptions: `workflow.While(...)`, `workflow.Until(...)`
+
+The `Workflow<TEvent>` class also exposes a `Workflow<TEvent>.When` operator that enables two-step *triggered* compositions:
+
+- Triggered continuations: `workflow.When(...).Then(...)`
+- Triggered side-effects: `workflow.When(...).Do(...)`
+
+Triggered compositions rely on an intermediate `Trigger<TEvent, ...>` instance produced by the initial call to `Workflow<TEvent>.When`.
+
+The API can be exited after any of the operators that return a `Workflow<TEvent>` instance, given that the `Workflow<TEvent>` class itself implements `IAsyncEnumerable<TEvent>`.
+
+### The `Workflow<TEvent> class`
+
+The `Workflow<TEvent>` class provides a semantic anchor with a self-descriptive name, as well as a convenient container for the fluent API operators. It is meaningful only during the composition of asynchronous workflows and uninteresting outside that context. Composed asynchronous workflows can be exposed directly as `IAsyncEnumerable<TEvent>` instances.
 
 ## Overview
 
@@ -131,5 +167,8 @@ IAsyncEnumerable<EventBase> ComposedWorkflow()
 
 
 [system.collections.generic.iasyncenumerable]: https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1
+[system.collections.generic.ienumerable]: https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1
+[system.threading.tasks.task]: https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task
+[system.threading.tasks.valuetask]: https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask
 
 [swolfkrow.workflow]: ./src/Swolfkrow/Workflow.cs
