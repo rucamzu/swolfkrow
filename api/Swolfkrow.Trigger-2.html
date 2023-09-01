@@ -1,0 +1,1883 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Trigger&lt;TEvent, TTriggerEvent&gt;
+ | Swolfkrow documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Trigger&lt;TEvent, TTriggerEvent&gt;
+ | Swolfkrow documentation ">
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+  </head>
+
+  <script type="module">
+    import options from './../public/main.js'
+    import { init } from './../public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Swolfkrow">
+            Swolfkrow
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Swolfkrow.Trigger`2">
+
+
+
+  <h1 id="Swolfkrow_Trigger_2" data-uid="Swolfkrow.Trigger`2" class="text-break">
+    Class Trigger&lt;TEvent, TTriggerEvent&gt;
+  
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Swolfkrow.html">Swolfkrow</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Swolfkrow.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>The prelude to a two-step conditional composition triggered by events of type <code class="typeparamref">TTriggerEvent</code> yielded by an asynchronous workflow.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Trigger&lt;TEvent, TTriggerEvent&gt; where TTriggerEvent : TEvent</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TEvent</code></dt>
+    <dd><p>The type of the events yielded by the asynchronous workflow.</p>
+</dd>
+    <dt><code>TTriggerEvent</code></dt>
+    <dd><p>The type of the events that trigger the composition.</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Trigger&lt;TEvent, TTriggerEvent&gt;</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="Swolfkrow_Trigger_2_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The <a class="xref" href="Swolfkrow.Trigger-2.html">Trigger&lt;TEvent, TTriggerEvent&gt;</a> class enables the declaration of two-step conditional compositions on asynchronous workflows, by storing the information relative to the triggering condition as specified in the initial call to any of the 'When' method overloads, and exposing in turn methods that allow defining the triggered action.</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do_System_Action__1__" data-uid="Swolfkrow.Trigger`2.Do(System.Action{`1})">
+  Do(Action&lt;TTriggerEvent&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects a synchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do(Action&lt;TTriggerEvent&gt; effect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;TTriggerEvent&gt;</dt>
+    <dd><p>An action encapsulating a synchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given synchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do_System_Action__1___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do_System_Func__1_System_Threading_Tasks_Task__" data-uid="Swolfkrow.Trigger`2.Do(System.Func{`1,System.Threading.Tasks.Task})">
+  Do(Func&lt;TTriggerEvent, Task&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects an asynchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do(Func&lt;TTriggerEvent, Task&gt; effect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TTriggerEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>A function encapsulating an asynchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given asynchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do_System_Func__1_System_Threading_Tasks_Task___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do_System_Func__1_System_Threading_Tasks_ValueTask__" data-uid="Swolfkrow.Trigger`2.Do(System.Func{`1,System.Threading.Tasks.ValueTask})">
+  Do(Func&lt;TTriggerEvent, ValueTask&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects an asynchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do(Func&lt;TTriggerEvent, ValueTask&gt; effect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TTriggerEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a>&gt;</dt>
+    <dd><p>A function encapsulating an asynchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given asynchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do_System_Func__1_System_Threading_Tasks_ValueTask___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do__1_System_Action__1___0____0_" data-uid="Swolfkrow.Trigger`2.Do``1(System.Action{`1,``0},``0)">
+  Do&lt;TArg&gt;(Action&lt;TTriggerEvent, TArg&gt;, TArg)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects a synchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do&lt;TArg&gt;(Action&lt;TTriggerEvent, TArg&gt; effect, TArg arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;TTriggerEvent, TArg&gt;</dt>
+    <dd><p>An action encapsulating a synchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code> and one additional argument.</p>
+</dd>
+    <dt><code>arg</code> <span class="xref">TArg</span></dt>
+    <dd><p>The argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given synchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg</code></dt>
+    <dd><p>The type of the argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do__1_System_Action__1___0____0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do__1_System_Func__1___0_System_Threading_Tasks_Task____0_" data-uid="Swolfkrow.Trigger`2.Do``1(System.Func{`1,``0,System.Threading.Tasks.Task},``0)">
+  Do&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, Task&gt;, TArg)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects an asynchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, Task&gt; effect, TArg arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TTriggerEvent, TArg, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>A function encapsulating an asynchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code> and one additional argument.</p>
+</dd>
+    <dt><code>arg</code> <span class="xref">TArg</span></dt>
+    <dd><p>The argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given asynchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg</code></dt>
+    <dd><p>The type of the argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do__1_System_Func__1___0_System_Threading_Tasks_Task____0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do__1_System_Func__1___0_System_Threading_Tasks_ValueTask____0_" data-uid="Swolfkrow.Trigger`2.Do``1(System.Func{`1,``0,System.Threading.Tasks.ValueTask},``0)">
+  Do&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, ValueTask&gt;, TArg)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects an asynchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, ValueTask&gt; effect, TArg arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TTriggerEvent, TArg, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a>&gt;</dt>
+    <dd><p>A function encapsulating an asynchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code> and one additional argument.</p>
+</dd>
+    <dt><code>arg</code> <span class="xref">TArg</span></dt>
+    <dd><p>The argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given asynchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg</code></dt>
+    <dd><p>The type of the argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do__1_System_Func__1___0_System_Threading_Tasks_ValueTask____0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do__2_System_Action__1___0___1____0___1_" data-uid="Swolfkrow.Trigger`2.Do``2(System.Action{`1,``0,``1},``0,``1)">
+  Do&lt;TArg1, TArg2&gt;(Action&lt;TTriggerEvent, TArg1, TArg2&gt;, TArg1, TArg2)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects a synchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do&lt;TArg1, TArg2&gt;(Action&lt;TTriggerEvent, TArg1, TArg2&gt; effect, TArg1 arg1, TArg2 arg2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-3">Action</a>&lt;TTriggerEvent, TArg1, TArg2&gt;</dt>
+    <dd><p>An action encapsulating a synchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code> and two additional arguments.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given synchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do__2_System_Action__1___0___1____0___1__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do__2_System_Func__1___0___1_System_Threading_Tasks_Task____0___1_" data-uid="Swolfkrow.Trigger`2.Do``2(System.Func{`1,``0,``1,System.Threading.Tasks.Task},``0,``1)">
+  Do&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, Task&gt;, TArg1, TArg2)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects an asynchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, Task&gt; effect, TArg1 arg1, TArg2 arg2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;TTriggerEvent, TArg1, TArg2, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>A function encapsulating an asynchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code> and two additional arguments.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given asynchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do__2_System_Func__1___0___1_System_Threading_Tasks_Task____0___1__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do__2_System_Func__1___0___1_System_Threading_Tasks_ValueTask____0___1_" data-uid="Swolfkrow.Trigger`2.Do``2(System.Func{`1,``0,``1,System.Threading.Tasks.ValueTask},``0,``1)">
+  Do&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, ValueTask&gt;, TArg1, TArg2)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects an asynchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, ValueTask&gt; effect, TArg1 arg1, TArg2 arg2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;TTriggerEvent, TArg1, TArg2, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a>&gt;</dt>
+    <dd><p>A function encapsulating an asynchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code> and two additional arguments.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given asynchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do__2_System_Func__1___0___1_System_Threading_Tasks_ValueTask____0___1__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do__3_System_Action__1___0___1___2____0___1___2_" data-uid="Swolfkrow.Trigger`2.Do``3(System.Action{`1,``0,``1,``2},``0,``1,``2)">
+  Do&lt;TArg1, TArg2, TArg3&gt;(Action&lt;TTriggerEvent, TArg1, TArg2, TArg3&gt;, TArg1, TArg2, TArg3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects a synchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do&lt;TArg1, TArg2, TArg3&gt;(Action&lt;TTriggerEvent, TArg1, TArg2, TArg3&gt; effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-4">Action</a>&lt;TTriggerEvent, TArg1, TArg2, TArg3&gt;</dt>
+    <dd><p>An action encapsulating a synchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code> and three additional arguments.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">TArg3</span></dt>
+    <dd><p>The third argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given synchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>TArg3</code></dt>
+    <dd><p>The type of the third argument passed to the given synchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do__3_System_Action__1___0___1___2____0___1___2__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do__3_System_Func__1___0___1___2_System_Threading_Tasks_Task____0___1___2_" data-uid="Swolfkrow.Trigger`2.Do``3(System.Func{`1,``0,``1,``2,System.Threading.Tasks.Task},``0,``1,``2)">
+  Do&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, Task&gt;, TArg1, TArg2, TArg3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects an asynchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, Task&gt; effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;TTriggerEvent, TArg1, TArg2, TArg3, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>A function encapsulating an asynchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code> and three additional arguments.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">TArg3</span></dt>
+    <dd><p>The third argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given asynchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>TArg3</code></dt>
+    <dd><p>The type of the third argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do__3_System_Func__1___0___1___2_System_Threading_Tasks_Task____0___1___2__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Do_" data-uid="Swolfkrow.Trigger`2.Do*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Do__3_System_Func__1___0___1___2_System_Threading_Tasks_ValueTask____0___1___2_" data-uid="Swolfkrow.Trigger`2.Do``3(System.Func{`1,``0,``1,``2,System.Threading.Tasks.ValueTask},``0,``1,``2)">
+  Do&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, ValueTask&gt;, TArg1, TArg2, TArg3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Injects an asynchronous side effect executed on every yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Do&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, ValueTask&gt; effect, TArg1 arg1, TArg2 arg2, TArg3 arg3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;TTriggerEvent, TArg1, TArg2, TArg3, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask">ValueTask</a>&gt;</dt>
+    <dd><p>A function encapsulating an asynchronous side effect that takes an event of type <code class="typeparamref">TTriggerEvent</code> and three additional arguments.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">TArg3</span></dt>
+    <dd><p>The third argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, after executing the given asynchronous side <code class="paramref">effect</code> on each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+    <dt><code>TArg3</code></dt>
+    <dd><p>The type of the third argument passed to the given asynchronous side <code class="paramref">effect</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Do__3_System_Func__1___0___1___2_System_Threading_Tasks_ValueTask____0___1___2__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then_System_Func__1_System_Collections_Generic_IAsyncEnumerable__0___" data-uid="Swolfkrow.Trigger`2.Then(System.Func{`1,System.Collections.Generic.IAsyncEnumerable{`0}})">
+  Then(Func&lt;TTriggerEvent, IAsyncEnumerable&lt;TEvent&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with an asynchronous workflow produced by a factory that takes the yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then(Func&lt;TTriggerEvent, IAsyncEnumerable&lt;TEvent&gt;&gt; createContinuation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TTriggerEvent, <span class="xref">IAsyncEnumerable</span>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and returns an asynchronous workflow.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the asynchronous workflow returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then_System_Func__1_System_Collections_Generic_IAsyncEnumerable__0____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then_System_Func__1_System_Collections_Generic_IEnumerable__0___" data-uid="Swolfkrow.Trigger`2.Then(System.Func{`1,System.Collections.Generic.IEnumerable{`0}})">
+  Then(Func&lt;TTriggerEvent, IEnumerable&lt;TEvent&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with a synchronous workflow produced by a factory that takes the yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then(Func&lt;TTriggerEvent, IEnumerable&lt;TEvent&gt;&gt; createContinuation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TTriggerEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and returns a synchronous workflow.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the synchronous workflow returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then_System_Func__1_System_Collections_Generic_IEnumerable__0____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then_System_Func__1_System_Threading_Tasks_Task__0___" data-uid="Swolfkrow.Trigger`2.Then(System.Func{`1,System.Threading.Tasks.Task{`0}})">
+  Then(Func&lt;TTriggerEvent, Task&lt;TEvent&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by an asynchronous factory that takes the yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then(Func&lt;TTriggerEvent, Task&lt;TEvent&gt;&gt; createContinuation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TTriggerEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>An asynchronous factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and returns [a task that returns] an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by awaiting a new call to the given <code class="paramref">createContinuation</code> asynchronous factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then_System_Func__1_System_Threading_Tasks_Task__0____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then_System_Func__1_System_Threading_Tasks_ValueTask__0___" data-uid="Swolfkrow.Trigger`2.Then(System.Func{`1,System.Threading.Tasks.ValueTask{`0}})">
+  Then(Func&lt;TTriggerEvent, ValueTask&lt;TEvent&gt;&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by an asynchronous factory that takes the yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then(Func&lt;TTriggerEvent, ValueTask&lt;TEvent&gt;&gt; createContinuation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TTriggerEvent, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>An asynchronous factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and returns [a task that returns] an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by awaiting a new call to the given <code class="paramref">createContinuation</code> asynchronous factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then_System_Func__1_System_Threading_Tasks_ValueTask__0____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then_System_Func__1__0__" data-uid="Swolfkrow.Trigger`2.Then(System.Func{`1,`0})">
+  Then(Func&lt;TTriggerEvent, TEvent&gt;)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by a factory that takes the yielded triggering event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then(Func&lt;TTriggerEvent, TEvent&gt; createContinuation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TTriggerEvent, TEvent&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and returns an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then_System_Func__1__0___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__1_System_Func__1___0_System_Collections_Generic_IAsyncEnumerable__0_____0_" data-uid="Swolfkrow.Trigger`2.Then``1(System.Func{`1,``0,System.Collections.Generic.IAsyncEnumerable{`0}},``0)">
+  Then&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, IAsyncEnumerable&lt;TEvent&gt;&gt;, TArg)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with an asynchronous workflow produced by a factory that takes the yielded triggering event and one additional argument.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, IAsyncEnumerable&lt;TEvent&gt;&gt; createContinuation, TArg arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TTriggerEvent, TArg, <span class="xref">IAsyncEnumerable</span>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and one additional argument, and returns an asynchronous workflow.</p>
+</dd>
+    <dt><code>arg</code> <span class="xref">TArg</span></dt>
+    <dd><p>The additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the asynchronous workflow returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg</code></dt>
+    <dd><p>The type of the additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__1_System_Func__1___0_System_Collections_Generic_IAsyncEnumerable__0_____0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__1_System_Func__1___0_System_Collections_Generic_IEnumerable__0_____0_" data-uid="Swolfkrow.Trigger`2.Then``1(System.Func{`1,``0,System.Collections.Generic.IEnumerable{`0}},``0)">
+  Then&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, IEnumerable&lt;TEvent&gt;&gt;, TArg)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with a synchronous workflow produced by a factory that takes the yielded triggering event and one additional argument.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, IEnumerable&lt;TEvent&gt;&gt; createContinuation, TArg arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TTriggerEvent, TArg, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and one additional argument and returns a synchronous workflow.</p>
+</dd>
+    <dt><code>arg</code> <span class="xref">TArg</span></dt>
+    <dd><p>The additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the synchronous workflow returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg</code></dt>
+    <dd><p>The type of the additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__1_System_Func__1___0_System_Collections_Generic_IEnumerable__0_____0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__1_System_Func__1___0_System_Threading_Tasks_Task__0_____0_" data-uid="Swolfkrow.Trigger`2.Then``1(System.Func{`1,``0,System.Threading.Tasks.Task{`0}},``0)">
+  Then&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, Task&lt;TEvent&gt;&gt;, TArg)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by an asynchronous factory that takes the yielded triggering event and one additional argument.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, Task&lt;TEvent&gt;&gt; createContinuation, TArg arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TTriggerEvent, TArg, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>An asynchronous factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and one additional argument, and returns an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+    <dt><code>arg</code> <span class="xref">TArg</span></dt>
+    <dd><p>The additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by awaiting a new call to the given <code class="paramref">createContinuation</code> asynchronous factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg</code></dt>
+    <dd><p>The type of the additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__1_System_Func__1___0_System_Threading_Tasks_Task__0_____0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__1_System_Func__1___0_System_Threading_Tasks_ValueTask__0_____0_" data-uid="Swolfkrow.Trigger`2.Then``1(System.Func{`1,``0,System.Threading.Tasks.ValueTask{`0}},``0)">
+  Then&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, ValueTask&lt;TEvent&gt;&gt;, TArg)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by an asynchronous factory that takes the yielded triggering event and one additional argument.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, ValueTask&lt;TEvent&gt;&gt; createContinuation, TArg arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TTriggerEvent, TArg, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>An asynchronous factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and one additional argument, and returns an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+    <dt><code>arg</code> <span class="xref">TArg</span></dt>
+    <dd><p>The additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by awaiting a new call to the given <code class="paramref">createContinuation</code> asynchronous factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg</code></dt>
+    <dd><p>The type of the additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__1_System_Func__1___0_System_Threading_Tasks_ValueTask__0_____0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__1_System_Func__1___0__0____0_" data-uid="Swolfkrow.Trigger`2.Then``1(System.Func{`1,``0,`0},``0)">
+  Then&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, TEvent&gt;, TArg)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by a factory that takes the yielded triggering event and one additional argument.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg&gt;(Func&lt;TTriggerEvent, TArg, TEvent&gt; createContinuation, TArg arg)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;TTriggerEvent, TArg, TEvent&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and one additional argument, and returns an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+    <dt><code>arg</code> <span class="xref">TArg</span></dt>
+    <dd><p>The additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg</code></dt>
+    <dd><p>The type of the additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__1_System_Func__1___0__0____0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__2_System_Func__1___0___1_System_Collections_Generic_IAsyncEnumerable__0_____0___1_" data-uid="Swolfkrow.Trigger`2.Then``2(System.Func{`1,``0,``1,System.Collections.Generic.IAsyncEnumerable{`0}},``0,``1)">
+  Then&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, IAsyncEnumerable&lt;TEvent&gt;&gt;, TArg1, TArg2)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with an asynchronous workflow produced by a factory that takes the yielded triggering event and two additional arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, IAsyncEnumerable&lt;TEvent&gt;&gt; createContinuation, TArg1 arg1, TArg2 arg2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;TTriggerEvent, TArg1, TArg2, <span class="xref">IAsyncEnumerable</span>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and two additional arguments, and returns an asynchronous workflow.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the asynchronous workflow returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__2_System_Func__1___0___1_System_Collections_Generic_IAsyncEnumerable__0_____0___1__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__2_System_Func__1___0___1_System_Collections_Generic_IEnumerable__0_____0___1_" data-uid="Swolfkrow.Trigger`2.Then``2(System.Func{`1,``0,``1,System.Collections.Generic.IEnumerable{`0}},``0,``1)">
+  Then&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, IEnumerable&lt;TEvent&gt;&gt;, TArg1, TArg2)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with a synchronous workflow produced by a factory that takes the yielded triggering event and two additional arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, IEnumerable&lt;TEvent&gt;&gt; createContinuation, TArg1 arg1, TArg2 arg2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;TTriggerEvent, TArg1, TArg2, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and two additional arguments and returns a synchronous workflow.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the synchronous workflow returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__2_System_Func__1___0___1_System_Collections_Generic_IEnumerable__0_____0___1__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__2_System_Func__1___0___1_System_Threading_Tasks_Task__0_____0___1_" data-uid="Swolfkrow.Trigger`2.Then``2(System.Func{`1,``0,``1,System.Threading.Tasks.Task{`0}},``0,``1)">
+  Then&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, Task&lt;TEvent&gt;&gt;, TArg1, TArg2)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by an asynchronous factory that takes the yielded triggering event and two additional arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, Task&lt;TEvent&gt;&gt; createContinuation, TArg1 arg1, TArg2 arg2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;TTriggerEvent, TArg1, TArg2, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>An asynchronous factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and two additional arguments, and returns an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by awaiting a new call to the given <code class="paramref">createContinuation</code> asynchronous factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__2_System_Func__1___0___1_System_Threading_Tasks_Task__0_____0___1__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__2_System_Func__1___0___1_System_Threading_Tasks_ValueTask__0_____0___1_" data-uid="Swolfkrow.Trigger`2.Then``2(System.Func{`1,``0,``1,System.Threading.Tasks.ValueTask{`0}},``0,``1)">
+  Then&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, ValueTask&lt;TEvent&gt;&gt;, TArg1, TArg2)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by an asynchronous factory that takes the yielded triggering event and two additional arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, ValueTask&lt;TEvent&gt;&gt; createContinuation, TArg1 arg1, TArg2 arg2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;TTriggerEvent, TArg1, TArg2, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>An asynchronous factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and two additional arguments, and returns an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by awaiting a new call to the given <code class="paramref">createContinuation</code> asynchronous factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__2_System_Func__1___0___1_System_Threading_Tasks_ValueTask__0_____0___1__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__2_System_Func__1___0___1__0____0___1_" data-uid="Swolfkrow.Trigger`2.Then``2(System.Func{`1,``0,``1,`0},``0,``1)">
+  Then&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TEvent&gt;, TArg1, TArg2)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by a factory that takes the yielded triggering event and two additional arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg1, TArg2&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TEvent&gt; createContinuation, TArg1 arg1, TArg2 arg2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-4">Func</a>&lt;TTriggerEvent, TArg1, TArg2, TEvent&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and two additional arguments, and returns an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__2_System_Func__1___0___1__0____0___1__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__3_System_Func__1___0___1___2_System_Collections_Generic_IAsyncEnumerable__0_____0___1___2_" data-uid="Swolfkrow.Trigger`2.Then``3(System.Func{`1,``0,``1,``2,System.Collections.Generic.IAsyncEnumerable{`0}},``0,``1,``2)">
+  Then&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, IAsyncEnumerable&lt;TEvent&gt;&gt;, TArg1, TArg2, TArg3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with an asynchronous workflow produced by a factory that takes the yielded triggering event and three additional arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, IAsyncEnumerable&lt;TEvent&gt;&gt; createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;TTriggerEvent, TArg1, TArg2, TArg3, <span class="xref">IAsyncEnumerable</span>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and three additional arguments, and returns an asynchronous workflow.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">TArg3</span></dt>
+    <dd><p>The third additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the asynchronous workflow returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>TArg3</code></dt>
+    <dd><p>The type of the third additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__3_System_Func__1___0___1___2_System_Collections_Generic_IAsyncEnumerable__0_____0___1___2__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__3_System_Func__1___0___1___2_System_Collections_Generic_IEnumerable__0_____0___1___2_" data-uid="Swolfkrow.Trigger`2.Then``3(System.Func{`1,``0,``1,``2,System.Collections.Generic.IEnumerable{`0}},``0,``1,``2)">
+  Then&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, IEnumerable&lt;TEvent&gt;&gt;, TArg1, TArg2, TArg3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with a synchronous workflow produced by a factory that takes the yielded triggering event and three additional arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, IEnumerable&lt;TEvent&gt;&gt; createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;TTriggerEvent, TArg1, TArg2, TArg3, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and three additional arguments and returns a synchronous workflow.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">TArg3</span></dt>
+    <dd><p>The third additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the synchronous workflow returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>TArg3</code></dt>
+    <dd><p>The type of the third additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__3_System_Func__1___0___1___2_System_Collections_Generic_IEnumerable__0_____0___1___2__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__3_System_Func__1___0___1___2_System_Threading_Tasks_Task__0_____0___1___2_" data-uid="Swolfkrow.Trigger`2.Then``3(System.Func{`1,``0,``1,``2,System.Threading.Tasks.Task{`0}},``0,``1,``2)">
+  Then&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, Task&lt;TEvent&gt;&gt;, TArg1, TArg2, TArg3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by an asynchronous factory that takes the yielded triggering event and three additional arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, Task&lt;TEvent&gt;&gt; createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;TTriggerEvent, TArg1, TArg2, TArg3, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>An asynchronous factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and three additional arguments, and returns an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">TArg3</span></dt>
+    <dd><p>The third additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by awaiting a new call to the given <code class="paramref">createContinuation</code> asynchronous factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>TArg3</code></dt>
+    <dd><p>The type of the third additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__3_System_Func__1___0___1___2_System_Threading_Tasks_Task__0_____0___1___2__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__3_System_Func__1___0___1___2_System_Threading_Tasks_ValueTask__0_____0___1___2_" data-uid="Swolfkrow.Trigger`2.Then``3(System.Func{`1,``0,``1,``2,System.Threading.Tasks.ValueTask{`0}},``0,``1,``2)">
+  Then&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, ValueTask&lt;TEvent&gt;&gt;, TArg1, TArg2, TArg3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by an asynchronous factory that takes the yielded triggering event and three additional arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, ValueTask&lt;TEvent&gt;&gt; createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;TTriggerEvent, TArg1, TArg2, TArg3, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;TEvent&gt;&gt;</dt>
+    <dd><p>An asynchronous factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and three additional arguments, and returns an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">TArg3</span></dt>
+    <dd><p>The third additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by awaiting a new call to the given <code class="paramref">createContinuation</code> asynchronous factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+    <dt><code>TArg3</code></dt>
+    <dd><p>The type of the third additional argument passed to the given <code class="paramref">createContinuation</code> asynchronous factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__3_System_Func__1___0___1___2_System_Threading_Tasks_ValueTask__0_____0___1___2__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+  <a id="Swolfkrow_Trigger_2_Then_" data-uid="Swolfkrow.Trigger`2.Then*"></a>
+
+  <h3 id="Swolfkrow_Trigger_2_Then__3_System_Func__1___0___1___2__0____0___1___2_" data-uid="Swolfkrow.Trigger`2.Then``3(System.Func{`1,``0,``1,``2,`0},``0,``1,``2)">
+  Then&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, TEvent&gt;, TArg1, TArg2, TArg3)
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>Continues triggering events with one single intercalated event produced by a factory that takes the yielded triggering event and three additional arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Workflow&lt;TEvent&gt; Then&lt;TArg1, TArg2, TArg3&gt;(Func&lt;TTriggerEvent, TArg1, TArg2, TArg3, TEvent&gt; createContinuation, TArg1 arg1, TArg2 arg2, TArg3 arg3)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>createContinuation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-5">Func</a>&lt;TTriggerEvent, TArg1, TArg2, TArg3, TEvent&gt;</dt>
+    <dd><p>A factory that takes an event of type <code class="typeparamref">TTriggerEvent</code> and three additional arguments, and returns an event of type <code class="typeparamref">TEvent</code>.</p>
+</dd>
+    <dt><code>arg1</code> <span class="xref">TArg1</span></dt>
+    <dd><p>The first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>arg2</code> <span class="xref">TArg2</span></dt>
+    <dd><p>The second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>arg3</code> <span class="xref">TArg3</span></dt>
+    <dd><p>The third additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Swolfkrow.Workflow-1.html">Workflow</a>&lt;TEvent&gt;</dt>
+    <dd><p>A new asynchronous <a class="xref" href="Swolfkrow.Workflow-1.html">Workflow&lt;TEvent&gt;</a> that yields all the events yielded by the original, and intercalates the event returned by a new call to the given <code class="paramref">createContinuation</code> factory after each yielded triggering event.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TArg1</code></dt>
+    <dd><p>The type of the first additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>TArg2</code></dt>
+    <dd><p>The type of the second additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+    <dt><code>TArg3</code></dt>
+    <dd><p>The type of the third additional argument passed to the given <code class="paramref">createContinuation</code> factory.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Swolfkrow_Trigger_2_Then__3_System_Func__1___0___1___2__0____0___1___2__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The triggering events are those of type <code class="typeparamref">TTriggerEvent</code> that satisfy the triggering condition defined by the preceeding 'When' operator.</p>
+</div>
+
+
+
+
+
+</article>
+
+
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Swolfkrow is licensed under the <a href="https://github.com/rucamzu/swolfkrow/blob/main/LICENSE" target="”_blank”">MIT</a> license. Copyright © <a href="mailto:ruben.campos.zurriaga@gmail.com" target="”_blank”">Rubén Campos Zurriaga</a> 2023. Made with <a href="https://dotnet.github.io/docfx" target="”_blank”">docfx</a>.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

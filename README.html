@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Swolfkrow | Swolfkrow documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Swolfkrow | Swolfkrow documentation ">
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/rucamzu/swolfkrow/blob/v0.4.0/README.md/#L1">
+  </head>
+
+  <script type="module">
+    import options from './public/main.js'
+    import { init } from './public/docfx.min.js'
+    init(options)
+  </script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="Swolfkrow">
+            Swolfkrow
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="swolfkrow"><em>Swolfkrow</em></h1>
+
+<p><em>Swolfkrow</em> (pronounced <em>/ˈwɜː(r)kˌfləʊs/</em>) is a Domain Specific Language (DSL) designed to declaratively compose <a href="#asynchronous-workflows">asynchronous workflows</a> through a fluent API.</p>
+<h2 id="asynchronous-workflows">Asynchronous workflows</h2>
+<p>In the context of <em>Swolfkrow</em>, asynchronous workflows can be understood as asynchronous computations that yield an asynchronous stream of <em>events</em> signaling progress, outcomes, and errors.</p>
+<p>In practice, asynchronous workflows are objects that implement the <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1"><code>IAsyncEnumerable&lt;out T&gt;</code></a> interface, with a few semantic constraints:</p>
+<ul>
+<li>The generic type <code>T</code>, named <code>TEvent</code> across the <em>Swolfkrow</em> library, represents the base type from which all events potentially yielded by the asynchronous workflow derive.</li>
+<li>Yielded <code>TEvent</code> objects are assumed to describe relevant events occured during the asynchronous workflow's execution.</li>
+<li>When enumerated, asynchronous workflows may execute arbitrary asynchronous logic in between consecutively yielded <code>TEvent</code> objects.</li>
+</ul>
+<p><em>Swolfkrow</em> provides the programmatic glue required to declaratively compose simpler asynchronous workflows together into more complex ones. It also provides support to build asynchronous workflows from other primitives, like <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1"><code>IEnumerable&lt;TEvent&gt;</code></a>, <a href="https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task"><code>Task&lt;TEvent&gt;</code></a>, or <a href="https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.valuetask"><code>ValueTask&lt;TEvent&gt;</code></a>.</p>
+<h2 id="fluent-api">Fluent API</h2>
+<p><em>Swolfkrow</em>'s fluent API can be visualized as a state machine, where the (arguably less relevant) supporting classes are states, and the composition operators are transitions:</p>
+<pre><code class="lang-mermaid">stateDiagram-v2
+    state &quot;Workflow&quot; as workflow
+    state &quot;Trigger&quot; as trigger
+
+    [*] --&gt; workflow : Workflow.Start(...)
+    workflow --&gt; [*] : IAsyncEnumerable
+    workflow --&gt; workflow : .Then(...)\n.While(...)\n.Until(...)\n.Do(...)
+    workflow --&gt; trigger : .When(...)
+    
+    %%coming soon!
+    %%trigger --&gt; trigger : .Times(...)
+    trigger --&gt; workflow : .Then(...)
+    trigger --&gt; workflow : .Do(...)
+</code></pre>
+<p>The entry point to the DSL is always one of the many <code>Workflow.Start</code> factory method overloads, all of which return an initial <a href="#the-workflowtevent-class"><code>Workflow&lt;Event&gt;</code></a> instance.</p>
+<p>The <code>Workflow&lt;TEvent&gt;</code> class exposes a number of operators that perform single-step compositions and return a new <code>Workflow&lt;TEvent&gt;</code> instance:</p>
+<ul>
+<li>Continuations: <code>workflow.Then(...)</code></li>
+<li>Side-effects: <code>workflow.Do(...)</code></li>
+<li>Interruptions: <code>workflow.While(...)</code>, <code>workflow.Until(...)</code></li>
+</ul>
+<p>The <code>Workflow&lt;TEvent&gt;</code> class also exposes a <code>Workflow&lt;TEvent&gt;.When</code> operator that enables two-step <em>triggered</em> compositions:</p>
+<ul>
+<li>Triggered continuations: <code>workflow.When(...).Then(...)</code></li>
+<li>Triggered side-effects: <code>workflow.When(...).Do(...)</code></li>
+</ul>
+<p>Triggered compositions rely on an intermediate <code>Trigger&lt;TEvent, ...&gt;</code> instance produced by the initial call to <code>Workflow&lt;TEvent&gt;.When</code>.</p>
+<p>The API can be exited after any of the operators that return a <code>Workflow&lt;TEvent&gt;</code> instance, given that the <code>Workflow&lt;TEvent&gt;</code> class itself implements <code>IAsyncEnumerable&lt;TEvent&gt;</code>.</p>
+<h3 id="the-workflowtevent-class">The <code>Workflow&lt;TEvent&gt; class</code></h3>
+<p>The <code>Workflow&lt;TEvent&gt;</code> class provides a semantic anchor with a self-descriptive name, as well as a convenient container for the fluent API operators. It is meaningful only during the composition of asynchronous workflows and uninteresting outside that context. Composed asynchronous workflows can be exposed directly as <code>IAsyncEnumerable&lt;TEvent&gt;</code> instances.</p>
+<h2 id="overview">Overview</h2>
+<p>The following subsections briefly describe the different types of asynchronous workflow compositions that can be performed through <em>Swolfkrow</em>'s fluent API operators.</p>
+<h3 id="initiations">Initiations</h3>
+<p>The family of <code>Start</code> method overloads provides a single entry point to the DSL:</p>
+<pre><code class="lang-csharp">record EventBase(string Description);
+
+IAsyncEnumerable&lt;EventBase&gt; Step1() { ... }
+
+IAsyncEnumerable&lt;EventBase&gt; ComposeWorkflow()
+    =&gt; Workflow
+        .Start(Step1);
+</code></pre>
+<h3 id="continuations">Continuations</h3>
+<p>Asynchronous workflows can be composed as sequences of simpler workflows, where one workflow starts when the previous one finishes yielding events:</p>
+<pre><code class="lang-csharp">record EventBase(string Description);
+
+IAsyncEnumerable&lt;EventBase&gt; Step1() { ... }
+IAsyncEnumerable&lt;EventBase&gt; Step2() { ... }
+
+IAsyncEnumerable&lt;EventBase&gt; ComposedWorkflow()
+    =&gt; Workflow
+        .Start(Step1)
+        .Then(Step2);
+</code></pre>
+<h3 id="stateful-continuations">Stateful continuations</h3>
+<p>Workflow continuations can be based on state explicitly folded from the events yielded by the workflow:</p>
+<pre><code class="lang-csharp">record EventBase(string Description);
+
+IAsyncEnumerable&lt;EventBase&gt; Step1() { ... }
+IAsyncEnumerable&lt;EventBase&gt; Step2(int someInfo) { ... }
+
+IAsyncEnumerable&lt;EventBase&gt; ComposedWorkflow()
+    =&gt; Workflow
+        .Start(Step1)
+        .Then(
+            createContinuation: currentState =&gt; currentState * 2,
+            computeNextState: (currentState, nextEvent) =&gt; currentState + 1,
+            initialState: 0);
+</code></pre>
+<h3 id="intercalations">Intercalations</h3>
+<p>Asynchronous workflows can be intercalated and executed in the middle of other asynchronous workflows, triggered by events of a specific type and/or satisfying a predicate:</p>
+<pre><code class="lang-csharp">record EventBase(string Description);
+record SomethingHappened(string Description) : EventBase(Description);
+
+IAsyncEnumerable&lt;EventBase&gt; Step1() { ... }
+IAsyncEnumerable&lt;EventBase&gt; Step2(SomethingHappened somethingHappened) { ... }
+
+IAsyncEnumerable&lt;EventBase&gt; ComposedWorkflow()
+    =&gt; Workflow
+        .Start(Step1)
+        .When&lt;SomethingHappened&gt;().Then(Step2);
+</code></pre>
+<h3 id="side-effects">Side effects</h3>
+<p>Side effects can be deliberately injected into an asynchronous workflow:</p>
+<pre><code class="lang-csharp">record EventBase(string Description);
+
+IAsyncEnumerable&lt;EventBase&gt; Step1() { ... }
+IAsyncEnumerable&lt;EventBase&gt; Step2() { ... }
+
+void LogEvent(EventBase someEvent)
+    =&gt; Console.WriteLine($&quot;Something happened: {EventBase}&quot;)
+
+IAsyncEnumerable&lt;EventBase&gt; ComposedWorkflow()
+    =&gt; Workflow
+        .Start(Step1)
+        .Then(Step2)
+        .Do(LogEvent);
+</code></pre>
+<h3 id="interruptions">Interruptions</h3>
+<p>Asynchronous workflows can be interrupted based on a condition computed on each of the yielded events:</p>
+<pre><code class="lang-csharp">public record EventBase(string Description);
+public record SomeError(string Description, Exception Exception) : EventBase(Description);
+
+IAsyncEnumerable&lt;EventBase&gt; Step1() { ... }
+IAsyncEnumerable&lt;EventBase&gt; Step2(int someInfo) { ... }
+
+bool IsError(EventBase nextEvent) =&gt; nextEvent is SomeError;
+
+IAsyncEnumerable&lt;EventBase&gt; ComposedWorkflow()
+    =&gt; Workflow
+        .Start(Step1)
+        .Then(Step2, 42)
+        .Until(IsError);
+</code></pre>
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+        
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Swolfkrow is licensed under the <a href="https://github.com/rucamzu/swolfkrow/blob/main/LICENSE" target="”_blank”">MIT</a> license. Copyright © <a href="mailto:ruben.campos.zurriaga@gmail.com" target="”_blank”">Rubén Campos Zurriaga</a> 2023. Made with <a href="https://dotnet.github.io/docfx" target="”_blank”">docfx</a>.</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
