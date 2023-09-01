@@ -1,3 +1,7 @@
+# 0.4.0 (2023-09-01)
+
+- Target .NET Standard 2.0
+
 # 0.3.2 (2023-07-22)
 - Added interruption overloads with additional arguments.
 
